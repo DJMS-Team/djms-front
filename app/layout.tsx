@@ -3,10 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
+ 
 export const metadata: Metadata = {
   title: "DMajor Store",
-  description: "Where you'll find everything",
+  description: "Were you'll find everything",
 };
 
 export default function RootLayout({
