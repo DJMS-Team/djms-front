@@ -1,17 +1,6 @@
-import React from 'react';
-import Navbar from './components/navbar';  
-import MainLayout from './layout'; 
+import Image from 'next/image'
+import Navbar from './(protected)/components/Navbar'
 
-const Page: React.FC = () => {
-    return (
-        <MainLayout>
-            <Navbar />
-            <div>
-                <h1>Welcome to DMJS</h1>
-               
-            </div>
-        </MainLayout>
-    );
-};
-
-export default Page;
+export default function Home(): any {
+  return <Navbar/>;
+}
