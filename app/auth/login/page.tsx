@@ -1,4 +1,4 @@
-import FormLogin from "@/components/formLogin";
+import FormLogin from "@/components/form-login";
 
 const Register = () => {
   return (
