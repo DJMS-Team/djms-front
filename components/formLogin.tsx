@@ -11,6 +11,10 @@ const FormLogin = () => {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, setIsPending] = useTransition();
 
+  const handleGoogleSubmit = () =>{
+    window.location.href = `http://localhost:3001/auth/google/callback`
+  }
+
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
@@ -31,6 +35,7 @@ const FormLogin = () => {
   };
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="flex gap-3 flex-col w-full">
       <label htmlFor="email">Email</label>
       <input
@@ -74,10 +79,12 @@ const FormLogin = () => {
         <span>O</span>
         <div className="bg-secondary w-full h-[2px]"></div>
       </div>
-      <button className="bg-secondary hover:bg-secondary-hover px-2 py-3 w-16 rounded-lg flex justify-center items-start mx-auto">
-        <IconBrandGoogleFilled className="text-primary" />
-      </button>
+      
     </form>
+    <button className="bg-secondary hover:bg-secondary-hover px-2 py-3 w-16 rounded-lg flex justify-center items-start mx-auto" onClick={handleGoogleSubmit}>
+        <IconBrandGoogleFilled className="text-primary" />
+    </button>
+    </>
   );
 };
 
