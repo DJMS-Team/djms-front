@@ -36,12 +36,13 @@ const Navbar = () => {
                   Ubicacion
                 </a>
             </div>
-              {/* <form onSubmit={handleSearchSubmit} className={`ml-10 flex ${styles.formContainer}`}>
+              {/* onSubmit={handleSearchSubmit} */}
+              <form  className={`ml-10 flex ${styles.formContainer}`}>
                 <input 
                   type="text" 
                   placeholder="Search..."
                   value={searchTerm}
-                  onChange={handleSearchChange}
+                  //onChange={handleSearchChange}
                   className={styles.searchInput}
                 />
                 <button type="submit" className={styles.searchButton}>
@@ -49,7 +50,7 @@ const Navbar = () => {
                     <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 4.476l4.817 4.817a1 1 0 11-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
                   </svg>
                 </button>
-              </form> */}
+              </form>
               <button type="submit" className={styles.userInfo}>SV</button>
               <div className="hidden md:block">
               <div className="navLinks">
