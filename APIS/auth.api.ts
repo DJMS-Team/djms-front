@@ -21,6 +21,7 @@ protected readonly instance: AxiosInstance;
                 email: email,
                 password: password
             })
+        console.log(res.data)
         return res.data
     }catch(error){
         throw error
