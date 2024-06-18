@@ -11,14 +11,15 @@ const Navbar = () => {
     setIsClick(!isClick);
 };
 
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
+const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  setSearchTerm(event.target.value);
+};
 
-  const handleSearchSubmit = (event) => {
-    event.preventDefault();
-    console.log('Searching for:', searchTerm);
-  };
+const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  console.log('Searching for:', searchTerm);
+};
+
 
   return (
     <>
