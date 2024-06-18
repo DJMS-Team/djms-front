@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import styles from './Navbar.module.css';
+import styles from './navbar.module.css';
 import { IconCircuitSwitchClosed, IconMenu, IconShoppingCartFilled, IconShoppingBag, IconLocation } from '@tabler/icons-react';
 
 const Navbar = () => {
