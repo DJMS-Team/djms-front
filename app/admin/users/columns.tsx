@@ -5,14 +5,15 @@ import { Checkbox} from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
-export type Payment = {
-  id: string
-  amount: number
-  status: "pending" | "processing" | "success" | "failed"
+
+export type User = {
+  name: string
   email: string
+  role: string
+  photo_url: string
 }
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<User>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -36,8 +37,18 @@ export const columns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "name",
+    header:  ({ column }) => {
+
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )}
   },
   {
     accessorKey: "email",
@@ -54,7 +65,17 @@ export const columns: ColumnDef<Payment>[] = [
       )}
   },
   {
-    accessorKey: "amount",
-    header: "Amount",
+    accessorKey: "role",
+    header:  ({ column }) => {
+
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Role
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      )}
   },
 ]
