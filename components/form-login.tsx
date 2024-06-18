@@ -3,19 +3,23 @@
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { IconCheck } from "@tabler/icons-react";
-import { useState, useTransition } from "react";
+import { use, useState, useTransition } from "react";
+import { useRouter } from 'next/navigation';
 import { login } from "@/actions/login";
+import { useLogin } from "@/hooks/auth/useLogin";
 
 const FormLogin = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, setIsPending] = useTransition();
+  const {login} = useLogin();
+  const router = useRouter();
 
   const handleGoogleSubmit = () =>{
     window.location.href = `http://localhost:3001/auth/google/callback`
   }
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> =async (event) => {
     event.preventDefault();
 
     const values = {
@@ -25,14 +29,20 @@ const FormLogin = () => {
 
     setError("");
     setSuccess("");
-
+    /*
     setIsPending(() => {
       login(values).then((data: any) => {
         setError(data.error);
         setSuccess(data.success);
       });
-    });
+    });*/
+
+    const loginResponse = await login(values.email, values.password)
+      .catch((e:Error) => alert(e))
+
+      router.push('/auth/login')
   };
+  
 
   return (
     <>
