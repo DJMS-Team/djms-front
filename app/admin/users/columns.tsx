@@ -5,8 +5,10 @@ import { Checkbox} from "@/components/ui/checkbox"
 import { ColumnDef } from "@tanstack/react-table"
 
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
+import { Actions } from "./actions"
 
 export type User = {
+  id: string
   name: string
   email: string
   role: string
@@ -78,4 +80,9 @@ export const columns: ColumnDef<User>[] = [
         </Button>
       )}
   },
+  {
+    id: 'actions',
+    cell: ({row}) => <Actions id={row.original.id}/>
+  }
+  
 ]

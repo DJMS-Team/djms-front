@@ -25,3 +25,18 @@ export const LoginSchema = z.object({
     })
 
 })
+
+export const UserSchema = z.object({
+    email: z.string().email({
+        message: 'Please enter a valid email address'
+    }),
+    role: z.string(),
+    name: z.string().min(2,{
+        message: 'Name is required'
+    }),
+    password: z.string().min(6,{
+        message: 'Password must be at least 6 characters long'
+    }),
+    photo_url: z.string()
+    
+})
