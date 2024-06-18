@@ -11,14 +11,14 @@ const Navbar = () => {
     setIsClick(!isClick);
 };
 
-const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  setSearchTerm(event.target.value);
-};
+// const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+//   setSearchTerm(event.target.value);
+// };
 
-const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-  console.log('Searching for:', searchTerm);
-};
+// const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+//   event.preventDefault();
+//   console.log('Searching for:', searchTerm);
+// };
 
 
   return (
@@ -36,7 +36,7 @@ const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                   Ubicacion
                 </a>
             </div>
-              <form onSubmit={handleSearchSubmit} className={`ml-10 flex ${styles.formContainer}`}>
+              {/* <form onSubmit={handleSearchSubmit} className={`ml-10 flex ${styles.formContainer}`}>
                 <input 
                   type="text" 
                   placeholder="Search..."
@@ -49,7 +49,7 @@ const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                     <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 4.476l4.817 4.817a1 1 0 11-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
                   </svg>
                 </button>
-              </form>
+              </form> */}
               <button type="submit" className={styles.userInfo}>SV</button>
               <div className="hidden md:block">
               <div className="navLinks">
