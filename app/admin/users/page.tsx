@@ -1,44 +1,49 @@
+'use client';
 
-import {
-    Card,
-    CardContent, 
-    CardHeader,
-    CardTitle
-} from "@/components/ui/card";
-import { columns } from "./columns"
+import { useState, useEffect, useCallback } from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { columns } from "./columns";
 import { DataTable } from "@/components/data-table";
-
 import { getUsers } from "@/actions/get-users";
+import { EditUserSheet } from "@/components/user/edit-user-sheet"; // Adjust the import according to your file structure
 
+const UsersClientPage = () => {
+    const [users, setUsers] = useState([]);
+    const [reload, setReload] = useState(false);
 
+    const fetchUsers = useCallback(async () => {
+        const response = await getUsers(1, 50, 'ASC');
+        setUsers(response.users);
+    }, []);
 
-const UsersPage = async () => {
-  
-   const response = await getUsers(1, 50, 'ASC');
+    useEffect(() => {
+        fetchUsers();
+    }, [fetchUsers, reload]);
+
+    const handleUserUpdate = () => {
+        setReload(!reload);
+    };
 
     return (
-        
-            <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
-                <Card className="border-none drop-shadow-sm">
-                    <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
-                        <CardTitle className="text-xl line-clamp-1">
-                            Users Page
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <DataTable
+        <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
+            <Card className="border-none drop-shadow-sm">
+                <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
+                    <CardTitle className="text-xl line-clamp-1">
+                        Users Page
+                    </CardTitle>
+                </CardHeader>
+                <CardContent>
+                    <DataTable
                         filterKey="email"
                         columns={columns}
-                        data={response.users}
-                        //  onDelete={()=>{}}
+                        data={users}
                         disabled={false}
-                        />
-                    </CardContent>
-                </Card>
-            </div>
-        
-        
-    )
+                    />
+                </CardContent>
+            </Card>
+            <EditUserSheet onUserUpdate={handleUserUpdate} />
+        </div>
+    );
 }
 
-export default UsersPage;
+export default UsersClientPage;

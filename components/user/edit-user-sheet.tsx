@@ -1,4 +1,3 @@
-
 import { userApi } from "@/APIS"
 import { 
      Sheet,
@@ -24,11 +23,15 @@ interface User {
     photo_url: string;
 }
 
-export const EditUserSheet = () => {
-    const {isOpen, onClose, id} = useOpenUser()
+type Props = {
+    onUserUpdate: () => void;
+}
+
+export const EditUserSheet = ({ onUserUpdate }: Props) => {
+    const {isOpen, onClose, id} = useOpenUser();
     const { user, loading, error } = useUserData(id as string, 'token');
-    const { onSubmit, updating } = useUpdateUser(id as string, onClose);
-    console.log('user', user)
+    const { onSubmit, updating } = useUpdateUser(id as string, onClose, onUserUpdate);
+    console.log('user', user);
     const defaultValues: User = {
         name: user?.name || '',
         email: user?.email || '',
@@ -62,11 +65,8 @@ export const EditUserSheet = () => {
                         disabled={updating}
                         defaultValues={defaultValues}
                      />
-
                   )
                 }
-                
-                
             </SheetContent>
         </Sheet>
     )
