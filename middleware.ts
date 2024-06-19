@@ -8,8 +8,8 @@ export async function middleware(req: NextRequest){
     const tokenFromOauth = req.cookies.get("currentUser");
 
 
-    if(!token &&
-        !tokenFromOauth &&
+    if(//!token &&
+        //!tokenFromOauth &&
         req.nextUrl.pathname.startsWith('/home')
     ){
         console.log("cant enter home ");
@@ -34,7 +34,7 @@ export async function middleware(req: NextRequest){
         //console.log(current)
     
         if (oAuthToken.length > 0) {
-          const response = NextResponse.redirect(new URL("/home", req.url));
+          const response = NextResponse.redirect(new URL("/auth/login", req.url));
     
           response.cookies.set({
             name: "currentUser",

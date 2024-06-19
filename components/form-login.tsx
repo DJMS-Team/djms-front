@@ -3,15 +3,23 @@
 import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { IconCheck } from "@tabler/icons-react";
-import { useState, useTransition } from "react";
+import { use, useState, useTransition } from "react";
+import { useRouter } from 'next/navigation';
 import { login } from "@/actions/login";
+import { useLogin } from "@/hooks/auth/useLogin";
 
 const FormLogin = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, setIsPending] = useTransition();
+  const {login} = useLogin();
+  const router = useRouter();
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const handleGoogleSubmit = () =>{
+    window.location.href = `http://localhost:3001/auth/google/callback`
+  }
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> =async (event) => {
     event.preventDefault();
 
     const values = {
@@ -21,16 +29,23 @@ const FormLogin = () => {
 
     setError("");
     setSuccess("");
-
+    /*
     setIsPending(() => {
       login(values).then((data: any) => {
         setError(data.error);
         setSuccess(data.success);
       });
-    });
+    });*/
+
+    const loginResponse = await login(values.email, values.password)
+      .catch((e:Error) => alert(e))
+
+      router.push('/auth/login')
   };
+  
 
   return (
+    <>
     <form onSubmit={handleSubmit} className="flex gap-3 flex-col w-full">
       <label htmlFor="email">Email</label>
       <input
@@ -74,10 +89,12 @@ const FormLogin = () => {
         <span>O</span>
         <div className="bg-secondary w-full h-[2px]"></div>
       </div>
-      <button className="bg-secondary hover:bg-secondary-hover px-2 py-3 w-16 rounded-lg flex justify-center items-start mx-auto">
-        <IconBrandGoogleFilled className="text-primary" />
-      </button>
+      
     </form>
+    <button className="bg-secondary hover:bg-secondary-hover px-2 py-3 w-16 rounded-lg flex justify-center items-start mx-auto" onClick={handleGoogleSubmit}>
+        <IconBrandGoogleFilled className="text-primary" />
+    </button>
+    </>
   );
 };
 
