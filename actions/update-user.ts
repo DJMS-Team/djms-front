@@ -3,7 +3,7 @@ import axios from 'axios';
 
 export const updateUser = async (id:string, name:string, password:string, email:string, photo_url:string, role:string) => {
     try {
-        const response = await axios.patch(process.env.NEXT_PUBLIC_API_BASE_URL+`users/${id}`, {
+        const response = await axios.patch(process.env.NEXT_PUBLIC_API_BASE_URL+`/users/${id}`, {
             
              
                     name: name,
@@ -15,10 +15,10 @@ export const updateUser = async (id:string, name:string, password:string, email:
             
                           
         });
-        console.log("User role updated:", response.data);
+        
         return response.data;
     }catch(error) {
-        console.error("Error updating user role:", error);
+        
         return error;
     }
 }
