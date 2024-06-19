@@ -11,23 +11,25 @@ const AdminPage = async () => {
         data = {
             currentPeriod: { income: 0 },
             incomeChange: 0,
-            orderDays: [],
+            ordersDays: [],
         };
     }
-
+    const currentPeriodIncome = data?.currentPeriod?.income ?? 0;
+    const incomeChange = data?.incomeChange ?? 0;
+    const orderDays = data?.ordersDays ?? [];
    
     return (
         <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
             <Suspense fallback={<div>Loading...</div>}>
                 <DataGrid
-                currentPeriod={data.currentPeriod.income}
-                incomeChange={data.incomeChange}
-                orderDays={data.orderDays} />
+                currentPeriod={currentPeriodIncome}
+                incomeChange={incomeChange}
+                orderDays={orderDays} />
              </Suspense>
             <DataCharts
-             currentPeriod={data.currentPeriod.income}
-             incomeChange={data.incomeChange}
-             orderDays={data.ordersDays}/>
+             currentPeriod={currentPeriodIncome}
+             incomeChange={incomeChange}
+             orderDays={orderDays}/>
         </div> 
     )
 }
