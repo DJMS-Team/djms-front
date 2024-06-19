@@ -6,7 +6,16 @@ import { FaPiggyBank } from "react-icons/fa"
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6"
 
 import { DataCard } from "./data-card"
-export const DataGrid = () => {
+
+interface DataGridProps {
+    currentPeriod: number
+    incomeChange: number
+    orderDays: []
+}
+
+export const DataGrid = ({currentPeriod, incomeChange, orderDays}:DataGridProps) => {
+
+
     const params = useSearchParams()
     const to = params.get('to') || ''
     const from = params.get('from') || ''
@@ -14,25 +23,25 @@ export const DataGrid = () => {
     const dateRangeLabel = formatDateRange({to, from})
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-2 mb-8">
-            <DataCard
+            {/* <DataCard
              title="Remaining"
-             value={67}
+             value={currentPeriod}
              icon={FaPiggyBank}
              variant='default'
-             dateRange={dateRangeLabel} />
+             dateRange={dateRangeLabel} /> */}
              <DataCard
              title="Income"
-             value={100}
+             value={currentPeriod}
              icon={FaArrowTrendUp}
-             percentage={0.6}
+             percentage={incomeChange}
              variant='default'
              dateRange={dateRangeLabel} />
-             <DataCard
+             {/* <DataCard
              title="Expenses"
-             value={-66067}
+             value={currentPeriod}
              icon={FaArrowTrendDown}
              variant='default'
-             dateRange={dateRangeLabel} />
+             dateRange={dateRangeLabel} /> */}
         </div>
     )
 }
