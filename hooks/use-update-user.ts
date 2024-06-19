@@ -6,7 +6,7 @@ import { updateUser } from '@/actions/update-user';
 
 type FormValues = z.input<typeof UserSchema>;
 
-export const useUpdateUser = (id : string, onClose: { (): void; (): void; }) => {
+export const useUpdateUser = (id: string, onClose: { (): void; (): void; }, onUserUpdate: { (): void; }) => {
     const [updating, setUpdating] = useState(false);
     const [error, setError] = useState<null | any>(null);
     
@@ -19,6 +19,7 @@ export const useUpdateUser = (id : string, onClose: { (): void; (): void; }) => 
             const user = await updateUser(id, values.name, values.password, values.email, values.photo_url, values.role);
             console.log('User updated:', user);
             onClose();
+            onUserUpdate();
         } catch (err) {
             setError(err);
         } finally {
