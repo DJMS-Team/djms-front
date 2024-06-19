@@ -15,7 +15,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
 
    try {
 
-        const response = await axios.post(process.env.NEXT_PUBLIC_API_BASE_URL + `auth/login`,{
+        const response = await axios.post(process.env.NEXT_PUBLIC_API_BASE_URL + `/auth/login`,{
             email,
             password,
         })
