@@ -6,7 +6,7 @@ export async function middleware(req: NextRequest){
     const cookies = cookie.parse(req.headers.get("Cookie") || "");
     const token = cookies.currentUser;
     const tokenFromOauth = req.cookies.get("currentUser");
-    const role = token ? JSON.parse(token).role : tokenFromOauth ? JSON.parse(tokenFromOauth).role : null;
+    const role = token ? JSON.parse(token).role : tokenFromOauth ? JSON.parse(String(tokenFromOauth)).role : null;
 
     if(//!token &&
         //!tokenFromOauth &&
