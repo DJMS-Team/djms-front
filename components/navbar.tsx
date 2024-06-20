@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './navbar.module.css';
 import { IconCircuitSwitchClosed, IconMenu, IconShoppingCartFilled, IconShoppingBag, IconLocation } from '@tabler/icons-react';
 
-const Navbar = () => {
+export const Navbar = () => {
   const [isClick, setIsClick] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -101,4 +101,3 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
