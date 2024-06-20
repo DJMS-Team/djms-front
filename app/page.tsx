@@ -4,7 +4,7 @@ import {getProducts} from "../actions/get-products";
 import ProductList from "@/components/product-list";
 const Home = async () => {
   const products = await getProducts(1, 50, 'ASC');
-  console.log(products);
+  //console.log(products);
   return (
     <Container>
       <div className="space-y-10 pb-10">
