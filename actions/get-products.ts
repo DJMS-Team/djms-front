@@ -18,7 +18,7 @@ export interface Product {
 
 export const getProducts = async (page = 1, take = 10, order = 'ASC') => {
   try {
-    const response = await axios.get('http://localhost:3001/products', {
+    const response = await axios.get(process.env.NEXT_PUBLIC_API_BASE_URL+`/products`, {
       params: {
         page,
         take,
