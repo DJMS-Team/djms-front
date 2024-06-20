@@ -9,7 +9,7 @@ import { useCart } from "@/hooks/cart/use-cart"
 import { toast } from "react-hot-toast"
 
 export const Summary = () => {
-    const searchParams = useSearchParams()
+    //const searchParams = useSearchParams()
     const items = useCart((state) => state.items)
     const removeAll = useCart((state) => state.removeAll)
 
