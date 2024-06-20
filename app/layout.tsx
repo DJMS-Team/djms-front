@@ -11,7 +11,12 @@ import store from '@/redux/store';
 
 
 const inter = Inter({ subsets: ["latin"] });
- 
+
+
+export const metadata: Metadata = {
+  title: "DMajor Store",
+  description: "Were you'll find everything",
+};
 
 
 export default function RootLayout({
