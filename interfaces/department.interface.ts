@@ -1,4 +1,4 @@
-import { City } from './city.interface';
+import { City } from "./city.interface";
 
 export interface Department {
   id: string;

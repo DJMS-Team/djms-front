@@ -1,6 +1,6 @@
-import { User } from './user.interface';
-import { PaymentMethod } from './payment-method.interface';
-import { OrderDetail } from './order-detail.interface';
+import { User } from "./user.interface";
+import { PaymentMethod } from "./payment-method.interface";
+import { OrderDetail } from "./order-detail.interface";
 
 export interface Order {
   id: string;

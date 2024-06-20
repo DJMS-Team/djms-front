@@ -1,4 +1,4 @@
-import { Order } from './order.interface';
+import { Order } from "./order.interface";
 
 export interface PaymentMethod {
   id: string;

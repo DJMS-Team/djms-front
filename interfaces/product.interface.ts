@@ -1,9 +1,9 @@
-import { Review } from './review.interface';
-import { OrderDetail } from './order-detail.interface';
-import { ProductCategory } from './product-category.interface';
-import { Comment } from './comment.interface';
-import { Inventory } from './inventory.interface';
-import { User } from './user.interface';
+import { Review } from "./review.interface";
+import { OrderDetail } from "./order-detail.interface";
+import { ProductCategory } from "./product-category.interface";
+import { Comment } from "./comment.interface";
+import { Inventory } from "./inventory.interface";
+import { User } from "./user.interface";
 
 export interface Product {
   id: string;
