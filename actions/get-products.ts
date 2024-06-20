@@ -19,7 +19,6 @@ export interface Product {
 export const getProducts = async (page = 1, take = 10, order = 'ASC') => {
   try {
     const response = await axios.get('http://localhost:3001/products', {
-      headers: getAuthorizationHeader(),
       params: {
         page,
         take,
