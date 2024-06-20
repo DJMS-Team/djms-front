@@ -1,17 +1,15 @@
-'use client'
-import type { Metadata } from "next";
-import { Footer } from "@/components/footer";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { Provider } from "react-redux";
-import store from "../redux/store";
+// src/app/layout.tsx
+'use client';
 
-const inter = Inter({ subsets: ["latin"] });
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from '@/redux/store';
+import { Footer } from '@/components/footer';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { metadata } from './metadata';
 
-export const metadata: Metadata = {
-  title: "DMajor Store",
-  description: "Where you'll find everything for your PC",
-};
+const inter = Inter({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,
