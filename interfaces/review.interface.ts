@@ -1,5 +1,5 @@
 import { User } from "./user.interface";
-import { Product } from './product.interface';
+import { Product } from "./product.interface";
 
 export interface Review {
   id: string;

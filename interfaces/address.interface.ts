@@ -1,5 +1,5 @@
 import { User } from "./user.interface";
-import { City } from './city.interface';
+import { City } from "./city.interface";
 
 export interface Address {
   id: string;

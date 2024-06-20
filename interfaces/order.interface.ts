@@ -1,11 +1,10 @@
-import { User } from './user.interface';
-import { PaymentMethod } from './payment-method.interface';
-import { OrderDetail } from './order-detail.interface';
-import { Status } from '@/enums/status.enum';
+import { User } from "./user.interface";
+import { PaymentMethod } from "./payment-method.interface";
+import { OrderDetail } from "./order-detail.interface";
 
 export interface Order {
   id: string;
-  status: Status;
+  status: string;
   date: Date;
   customer: User;
   payment_method: PaymentMethod;
