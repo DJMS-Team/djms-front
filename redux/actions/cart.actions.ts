@@ -19,3 +19,4 @@ export interface ClearCartAction {
 }
 
 export type CartActionTypes = AddToCartAction | RemoveFromCartAction | ClearCartAction;
+
