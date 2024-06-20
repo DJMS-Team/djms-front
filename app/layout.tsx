@@ -1,14 +1,16 @@
+// src/app/layout.tsx
 import type { Metadata } from "next";
 import { Footer } from "@/components/footer";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 
 const inter = Inter({ subsets: ["latin"] });
- 
-export const metadata: Metadata = {
 
+export const metadata: Metadata = {
   title: "DMajor Store",
-  description: "Were you'll find everything",
+  description: "Where you'll find everything for your PC",
 };
 
 export default function RootLayout({
@@ -18,8 +20,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
-      <Footer/>
+      <body className={inter.className}>
+        <Provider store={store}>
+          {children}
+        </Provider>
+        <Footer />
+      </body>
     </html>
   );
 }
