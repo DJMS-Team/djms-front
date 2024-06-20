@@ -1,5 +1,5 @@
 import { Navigation } from "@/components/navigation";
-import Navbar from "../_components/navbar";
+import { Navbar } from "@/components/navbar";
 
 const LayoutProduct = ({ children }: { children: React.ReactNode }) => {
   return (
