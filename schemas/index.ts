@@ -35,5 +35,19 @@ export const CommentSchema = z.object({
     is_question: z.boolean(),
     user_id: z.string(),
     product_id: z.string()
+})
 
+export const UserSchema = z.object({
+    email: z.string().email({
+        message: 'Please enter a valid email address'
+    }),
+    role: z.string(),
+    name: z.string().min(2,{
+        message: 'Name is required'
+    }),
+    password: z.string().min(6,{
+        message: 'Password must be at least 6 characters long'
+    }),
+    photo_url: z.string()
+    
 })

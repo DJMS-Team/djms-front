@@ -32,15 +32,24 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
   filterKey: string
-  onDelete: (rows: Row<TData>[]) => void
+//   onDelete: (rows: Row<TData>[]) => void
   disabled?: boolean
 }
 
+interface Meta {
+    page: number;
+    take: number;
+    itemCount: number;
+    pageCount: number;
+    hasPreviousPage: boolean;
+    hasNextPage: boolean;
+  }
+  
 export function DataTable<TData, TValue>({
   columns,
   data,
   filterKey,
-  onDelete,
+  //onDelete,
   disabled
 }: DataTableProps<TData, TValue>) {
 
