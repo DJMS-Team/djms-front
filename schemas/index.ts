@@ -14,6 +14,7 @@ export const RegisterSchema = z.object({
     })
     
 })
+
 export const LoginSchema = z.object({
 
     email: z.string().email({
@@ -24,6 +25,16 @@ export const LoginSchema = z.object({
         message: 'Password must be at least 6 characters long'
     })
 
+})
+
+export const CommentSchema = z.object({
+    
+    description: z.string().min(1,{
+        message: 'Comment is required'
+    }),
+    is_question: z.boolean(),
+    user_id: z.string(),
+    product_id: z.string()
 })
 
 export const UserSchema = z.object({
