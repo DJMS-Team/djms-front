@@ -1,4 +1,3 @@
-
 interface BillboardProps {
     title: string
     
