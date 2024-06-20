@@ -14,14 +14,14 @@ const ProductCard: React.FC<ProductCard> = ({
 }) => {
 
     return (
-          <div  className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
+          <div  className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 my-4 mx-2">
            <div className="aspect-sqare rounded-xl bg-gray-100 relative">
-                <Image
-                  src={data?.photo_url?.[0]?.url}
+                {/* <Image
+                  src={data.photo_url}
                   fill
                   alt="Image"
                   className="aspect-square object-cover rounded-md"
-                />
+                /> */}
                 <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
                     <div className="flex-gap-x-6 justify-center">
                         <IconButton 
