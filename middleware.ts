@@ -6,7 +6,7 @@ export async function middleware(req: NextRequest){
     const cookies = cookie.parse(req.headers.get("Cookie") || "");
     const token = cookies.currentUser;
     const tokenFromOauth = req.cookies.get("currentUser");
-
+    const role = token ? JSON.parse(token).role : tokenFromOauth ? JSON.parse(String(tokenFromOauth)).role : null;
 
     if(//!token &&
         //!tokenFromOauth &&
@@ -44,6 +44,12 @@ export async function middleware(req: NextRequest){
           return response;
         }
       }
+
+      if((!token || role !== 'admin') && req.nextUrl.pathname.startsWith('/admin')){
+        console.log("Unauthorized access to admin route");
+        return NextResponse.redirect(new URL("/", req.url));
+    }
+
     
       return NextResponse.next()
 }
