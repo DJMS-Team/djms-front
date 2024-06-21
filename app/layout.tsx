@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import store from '@/redux/store';
+import { ToastProvider } from '@/components/cart/toast-provider';
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
       <Provider store={store}>
+      <ToastProvider />
       <Navbar />
       {children}
       </Provider>

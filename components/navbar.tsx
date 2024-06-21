@@ -1,24 +1,29 @@
 'use client'
-import React, { useState } from 'react';
+import React, { use, useEffect, useState } from 'react';
 import styles from './navbar.module.css';
 import { IconCircuitSwitchClosed, IconMenu, IconShoppingCartFilled, IconShoppingBag, IconLocation } from '@tabler/icons-react';
+import { useCart } from '@/hooks/cart/use-cart';
+import { Button } from './ui/button';
+import { ShoppingBag } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export const Navbar = () => {
   const [isClick, setIsClick] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    
+  }, [])
+
+  const cart = useCart()
+  const router = useRouter()
+
   const toggleNavbar = (event: React.MouseEvent) => {
     setIsClick(!isClick);
-};
-
-// const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-//   setSearchTerm(event.target.value);
-// };
-
-// const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-//   event.preventDefault();
-//   console.log('Searching for:', searchTerm);
-// };
+  };
 
 
   return (
@@ -54,12 +59,17 @@ export const Navbar = () => {
               <button type="submit" className={styles.userInfo}>SV</button>
               <div className="hidden md:block">
               <div className="navLinks">
-                <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-4">
+                {/* <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-4">
                 <IconShoppingBag className="inline-block mr-2"/> Mis compras
-                </a>
-                <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
-                <IconShoppingCartFilled className="inline-block mr-2"/> Carrito
-                </a>
+                </a> */}
+                <Button onClick={()=>router.push('/cart')} className='flex items-center rounded-full bg-black px-4 py-2'>
+                  <ShoppingBag className="inline-block mr-2 size-4"/>
+                  <span className="ml-2 text-sm font-medium text-white ">
+                    {cart.items.length}
+                  </span>
+                </Button>
+
+               
             </div>
 
             </div>
