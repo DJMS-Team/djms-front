@@ -14,27 +14,33 @@ interface CartItemProps {
 }
 
 export const CartItem = ({ data }: CartItemProps) => {
-
     const cart = useCart()
+    const item = cart.items.find((item) => item.id === data.id)
 
     const onRemove = () => {
         cart.removeItem(data.id)
-       
     }
 
+    const incrementQuantity = () => {
+        cart.incrementQuantity(data.id)
+    }
+
+    const decrementQuantity = () => {
+        cart.decrementQuantity(data.id)
+    }
 
     return (
-        <li className="flex py-6 border-b ">
+        <li className="flex py-6 border-b">
             <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
-                <Image 
-                 fill
-                 src={data.photo_url}
-                 alt=''
-                 className="object-cover object-center "/>
+                <Image
+                    fill
+                    src={data.photo_url}
+                    alt=''
+                    className="object-cover object-center " />
             </div>
             <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
                 <div className="absolute z-10 right-0 top-0">
-                    <IconButton onClick={onRemove} icon={<X size={15}/>}/>
+                    <IconButton onClick={onRemove} icon={<X size={15} />} />
                 </div>
                 <div className="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
                     <div className="flex justify-between">
@@ -43,12 +49,15 @@ export const CartItem = ({ data }: CartItemProps) => {
                         </p>
                     </div>
                     <div className="mt-1 flex text-sm">
-                        
                         <Currency value={data.price} />
+                    </div>
+                    <div className="mt-1 flex items-center">
+                        <button onClick={decrementQuantity} className="px-2 py-1">-</button>
+                        <span className="px-2">{item?.quantity}</span>
+                        <button onClick={incrementQuantity} className="px-2 py-1">+</button>
                     </div>
                 </div>
             </div>
         </li>
     )
 }
-
