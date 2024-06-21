@@ -27,6 +27,12 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Historia de Compras" />
         </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <ShoppingCart sx={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText primary="Mis productos" />
+        </ListItem>
       </List>
     </Drawer>
   );
