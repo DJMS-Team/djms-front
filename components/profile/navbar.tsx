@@ -1,9 +1,9 @@
 'use client'
 import React, { use, useEffect, useState } from 'react';
-import styles from './navbar.module.css';
+import styles from '../navbar.module.css';
 import { IconCircuitSwitchClosed, IconMenu, IconShoppingCartFilled, IconShoppingBag, IconLocation } from '@tabler/icons-react';
 import { useCart } from '@/hooks/cart/use-cart';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 import { ShoppingBag } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
@@ -111,3 +111,4 @@ export const Navbar = () => {
   );
 };
 
+export default Navbar();

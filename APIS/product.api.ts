@@ -15,15 +15,17 @@ export class ProductApi {
         });
     }
 
-    createProduct = async (product_name:string, description:string, price:number, photo_url:string,product_category_id:string)=>{
+    createProduct = async (product_name:string, description:string, price:number, quantity:number, photo_url:string,product_category_id:string, seller_id:string)=>{
         try{
             const res = await this.instance
                 .post(`/products`,{
                     product_name: product_name,
                     description: description,
                     price: price, 
+                    quantity,
                     photo_url: photo_url,
-                    product_category_id: product_category_id
+                    product_category_id: product_category_id,
+                    seller_id
                 })
             
             return res.data

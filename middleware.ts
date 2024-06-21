@@ -8,8 +8,8 @@ export async function middleware(req: NextRequest){
     const tokenFromOauth = req.cookies.get("currentUser");
     const role = token ? JSON.parse(token).role : tokenFromOauth ? JSON.parse(String(tokenFromOauth)).role : null;
 
-    if(//!token &&
-        //!tokenFromOauth &&
+    if(!token &&
+        !tokenFromOauth &&
         req.nextUrl.pathname.startsWith('/home')
     ){
         console.log("cant enter home ");

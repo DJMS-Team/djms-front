@@ -53,6 +53,7 @@ export class UserApi {
                 .get(`/users/${id}`,{
                     headers: getAuthorizationHeader()
                 })
+            //console.log(res.data)
             return res.data
         }catch(error){
             throw error;
@@ -92,7 +93,7 @@ export class UserApi {
     recievedOrders = async(userId: string) =>{
         try{
             const res = await this.instance
-            .get(`/${userId}/orders/received`,{
+            .get(`/users/${userId}/orders/received`,{
                 headers: getAuthorizationHeader()
             })
             return res.data;
