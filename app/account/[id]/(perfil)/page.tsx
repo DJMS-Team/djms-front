@@ -19,7 +19,7 @@ const ProfilePage = ({params}: Props) =>{
     const [user, setUser] = useState<User>()
     const [addresses, setAddresses] = useState<Address[]>()
     
-    const router = useRouter();
+    const Router = useRouter();
 
     useEffect(()=>{
         const fetchData = async () =>{
@@ -41,7 +41,7 @@ const ProfilePage = ({params}: Props) =>{
     },[])
 
     const onAddAddress = () =>{
-      router.push(`/account/${params.id}/add_address`)
+      Router.push(`/account/${params.id}/add_address`)
     }
 
     return (

@@ -14,7 +14,7 @@ interface Props {
 
 
 
-const addressPage = ({params}:Props) =>{
+const AddressPage = ({params}:Props) =>{
 
     const router = useRouter();
 
@@ -155,4 +155,4 @@ const addressPage = ({params}:Props) =>{
       );
 }
 
-export default addressPage
+export default AddressPage

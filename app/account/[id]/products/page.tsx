@@ -35,8 +35,8 @@ const ProductPage = ({params}:Props) => {
             <Typography variant="h4">Mis productos</Typography>
             <Button variant="contained" color="primary" onClick={onAddProduct}>Añadir</Button>
           </Box>
-          {product?.map((product) => (
-            <Grid container spacing={2}>
+          {product?.map((product,index) => (
+            <Grid container spacing={2} key={index}>
             <Grid item xs={12}>
               <ProductCard {...product} />
             </Grid>

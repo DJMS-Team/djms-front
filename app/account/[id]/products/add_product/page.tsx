@@ -12,7 +12,7 @@ interface Props {
     params: { id: string }
 }
 
-const addProductPage = ({params}: Props) =>{
+const AddProductPage = ({params}: Props) =>{
 
     const router = useRouter();
 
@@ -165,4 +165,4 @@ const addProductPage = ({params}: Props) =>{
 
 }
 
-export default addProductPage;
+export default AddProductPage;

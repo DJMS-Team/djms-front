@@ -48,7 +48,7 @@ const mockData = [
     }
 
 
-const recordPage = ({params}: Props) =>{
+const RecordPage = ({params}: Props) =>{
     const [order, setOrder] = useState<Order[]>()
     const [orderDetail, setOrderDetail] = useState<OrderDetail[]>()
     const calculatePrice = (order:Order) : number =>{
@@ -99,4 +99,4 @@ const recordPage = ({params}: Props) =>{
       );
 }
 
-export default recordPage
+export default RecordPage
