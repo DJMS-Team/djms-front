@@ -9,7 +9,7 @@ const Navbar = () => {
 
   const toggleNavbar = (event: React.MouseEvent) => {
     setIsClick(!isClick);
-};
+  };
 
 // const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 //   setSearchTerm(event.target.value);
@@ -35,7 +35,7 @@ const Navbar = () => {
                 <a href="/" className="text-white ">
                   Ubicacion
                 </a>
-            </div>
+              </div>
               {/* onSubmit={handleSearchSubmit} */}
               <form  className={`ml-10 flex ${styles.formContainer}`}>
                 <input 
@@ -60,7 +60,7 @@ const Navbar = () => {
                 <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-2">
                 <IconShoppingCartFilled className="inline-block mr-2"/> Carrito
                 </a>
-            </div>
+              </div>
 
             </div>
             </div>
