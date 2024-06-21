@@ -26,11 +26,11 @@ export const CartItem = ({ data }: CartItemProps) => {
     return (
         <li className="flex py-6 border-b ">
             <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
-                {/* <Image 
+                <Image 
                  fill
                  src={data.photo_url}
                  alt=''
-                 className="object-cover object-center "/> */}
+                 className="object-cover object-center "/>
             </div>
             <div className="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
                 <div className="absolute z-10 right-0 top-0">
@@ -44,9 +44,6 @@ export const CartItem = ({ data }: CartItemProps) => {
                     </div>
                     <div className="mt-1 flex text-sm">
                         
-                        <p className="text-gray-500">
-                           
-                        </p>
                         <Currency value={data.price} />
                     </div>
                 </div>

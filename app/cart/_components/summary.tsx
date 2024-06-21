@@ -9,9 +9,21 @@ import { useCart } from "@/hooks/cart/use-cart"
 import { toast } from "react-hot-toast"
 
 export const Summary = () => {
-    //const searchParams = useSearchParams()
+    const searchParams = useSearchParams()
     const items = useCart((state) => state.items)
     const removeAll = useCart((state) => state.removeAll)
+
+
+    useEffect(() => {
+        if (searchParams.get('success')) {
+            toast.success('Order placed successfully')
+            removeAll()
+        }
+
+        if(searchParams.get('cancelled')) {
+            toast.error('Order cancelled')
+        }
+    }, [searchParams, removeAll])
 
     const totalPrice = items.reduce((acc, item) => {
         return acc + item.price
