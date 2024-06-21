@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from "react"
+import { Suspense, useEffect } from "react"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import Currency from "@/components/ui/currency"
@@ -8,11 +8,10 @@ import Currency from "@/components/ui/currency"
 import { useCart } from "@/hooks/cart/use-cart"
 import { toast } from "react-hot-toast"
 
-export const Summary = () => {
+const SummaryContent = () => {
     const searchParams = useSearchParams()
     const items = useCart((state) => state.items)
     const removeAll = useCart((state) => state.removeAll)
-
 
     useEffect(() => {
         if (searchParams.get('success')) {
@@ -20,16 +19,15 @@ export const Summary = () => {
             removeAll()
         }
 
-        if(searchParams.get('cancelled')) {
+        if (searchParams.get('cancelled')) {
             toast.error('Order cancelled')
         }
     }, [searchParams, removeAll])
 
     const totalPrice = items.reduce((acc, item) => {
-        return acc + item.price
+        return acc + Number(item.price)
     }, 0)
 
-  
     return (
         <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
             <h2 className="text-lg font-medium text-gray-900">
@@ -47,5 +45,13 @@ export const Summary = () => {
                 Checkout
             </Button>
         </div>
+    )
+}
+
+export const Summary = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <SummaryContent />
+        </Suspense>
     )
 }
