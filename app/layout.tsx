@@ -14,7 +14,6 @@ export default function RootLayout({
     children,
 }: {
     children: React.ReactNode;
-    showNavbar?: boolean;
 }) {
     return (
         <html lang="en">
