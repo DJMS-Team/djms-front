@@ -1,3 +1,4 @@
+import { getAuthorizationHeader } from '@/APIS/getAuthorizationHeader';
 import axios from 'axios';
 
 interface User {
@@ -9,10 +10,8 @@ interface User {
 export const getUsers = async (page = 1 , take = 10 , order = 'ASC') => {
     try {
         
-        const response = await axios.get(process.env.NEXT_PUBLIC_API_BASE_URL+`users`, {   
-                headers:{
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5ZTQwZmVhYS0yYTZiLTQzODItOTQyZC0yZWQ2N2Y3MmM5YjkiLCJlbWFpbCI6InBhYmxvQHBhYmxvLmNvbSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTcxODY2NjU5NiwiZXhwIjoxNzE4NzUyOTk2fQ.mlWtUlYIykDMRekqtIRnjJBgg2XMRlvJT5VC6RDrKJE'
-                },
+        const response = await axios.get(process.env.NEXT_PUBLIC_API_BASE_URL+`/users`, {   
+                headers: getAuthorizationHeader(),
                 params: {
                     page,
                     take,
@@ -25,7 +24,7 @@ export const getUsers = async (page = 1 , take = 10 , order = 'ASC') => {
         
         
       } catch (error) {
-        console.error("Error fetching users:", error);
+        
         return {users: [], meta: null}
       }
 }
