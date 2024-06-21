@@ -6,7 +6,6 @@ import Cookies from "js-cookie";
 import { createComment } from "@/actions/create-comment";
 import ProductDetails from "@/components/productDetail/product-details";
 import ProductSidebar from "@/components/productDetail/product-information";
-import ProductList from "@/components/productDetail/product-list";
 import { Product } from "@/interfaces/product.interface";
 import { User } from "@/interfaces/user.interface";
 
