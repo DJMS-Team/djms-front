@@ -4,39 +4,98 @@ import { IconBrandGoogleFilled } from "@tabler/icons-react";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { IconMailCheck } from "@tabler/icons-react";
 import { useState, useTransition } from "react";
-import { register } from "../actions/register";
+import { uploadImageCloudinary } from "../cloudinary/index";
+import { useRegister } from "@/hooks/auth/useRegister";
 
 const FormRegister = () => {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
-  const [isPending, setIsPending] = useTransition();
+  const [isPending, startTransition] = useTransition();
+  const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(
+    ""
+  );
+  const { register } = useRegister();
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
 
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        setImagePreview(reader.result);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
+    event
+  ) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
+
+    const imageFile = formData.get("input_file") as File;
+    let [status, data] = [false, ""];
+
+    if (imageFile) {
+      [status, data] = await uploadImageCloudinary(imageFile);
+    }
+
     const values = {
-      email: event.currentTarget.email.value,
-      password: event.currentTarget.password.value,
-      name: event.currentTarget.fullname.value,
+      email: formData.get("email") as string,
+      password: formData.get("password") as string,
+      name: formData.get("fullname") as string,
+      photo_url: data || "",
     };
 
     setError("");
     setSuccess("");
 
-    setIsPending(() => {
-      register(values).then((data: any) => {
-        setError(data.error);
-        setSuccess(data.success);
-        if (data.success) {
-          event.currentTarget.reset();
-        }
-      });
+    startTransition(() => {
+      register(
+        values.name,
+        values.password,
+        values.email,
+        values.photo_url,
+        "USER"
+      )
+        .then((data: any) => {
+          setError(data.error);
+          setSuccess(data.success);
+          setImagePreview("");
+        })
+        .catch((e: Error) => setError(e.message));
     });
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex gap-3 flex-col w-full">
-      <label htmlFor="email">Full name</label>
+      <label htmlFor="input_file" id="drop-area" className="flex-grow">
+        <input
+          type="file"
+          id="input_file"
+          name="input_file"
+          accept=".jpg"
+          hidden
+          onChange={handleFileChange}
+        />
+        <div
+          className="img-view w-[150px] h-full min-h-[150px] mx-auto border-2 border-black border-dashed rounded-full flex justify-center items-center flex-col gap-3 bg-gray-100 transition-all duration-200 ease-linear bg-cover"
+          style={{ backgroundImage: `url(${imagePreview})` }}
+        ></div>
+        {imagePreview ? (
+          <p className="text-white text-center mt-5">Uploaded image</p>
+        ) : (
+          <p className="text-black text-center mt-5 py-2 bg-white rounded-lg w-auto">
+            Click to upload image
+          </p>
+        )}
+      </label>
+      <label htmlFor="fullname">Full name</label>
       <input
         id="fullname"
         name="fullname"
