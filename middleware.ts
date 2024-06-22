@@ -8,8 +8,8 @@ export async function middleware(req: NextRequest){
     const tokenFromOauth = req.cookies.get("currentUser");
     const role = token ? JSON.parse(token).role : tokenFromOauth ? JSON.parse(String(tokenFromOauth)).role : null;
 
-    if(//!token &&
-        //!tokenFromOauth &&
+    if(!token &&
+        !tokenFromOauth &&
         req.nextUrl.pathname.startsWith('/home')
     ){
         console.log("cant enter home ");
@@ -45,10 +45,10 @@ export async function middleware(req: NextRequest){
         }
       }
 
-    //   if((!token || role !== 'admin') && req.nextUrl.pathname.startsWith('/admin')){
-    //     console.log("Unauthorized access to admin route");
-    //     return NextResponse.redirect(new URL("/", req.url));
-    // }
+      if((!token || role !== 'ADMIN') && req.nextUrl.pathname.startsWith('/admin')){
+        
+        return NextResponse.redirect(new URL("/", req.url));
+      }
 
     
       return NextResponse.next()
