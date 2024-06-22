@@ -33,7 +33,7 @@ export const UserButton = () => {
     }
 
     return (
-        <div className='flex items-center rounded-full bg-transparent px-4 py-2 border-2 border-neon'>
+        <div className='flex items-center rounded-full bg-transparent px-4 py-2'>
             <DropdownMenu>
             <DropdownMenuTrigger>
                 <IconUser className="inline-block text-white" />

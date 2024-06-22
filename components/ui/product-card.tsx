@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductCard> = ({
     }
 
     return (
-          <div  onClick ={handleClick}className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 my-4 mx-2">
+          <div  onClick ={handleClick}className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 my-4 mx-2 scale-90 hover:scale-100">
            <div className="aspect-square rounded-xl bg-gray-100 relative">
 
                  <Image
