@@ -13,6 +13,7 @@ export type User = {
   email: string
   role: string
   photo_url: string
+  status: string
 }
 
 export const columns: ColumnDef<User>[] = [
