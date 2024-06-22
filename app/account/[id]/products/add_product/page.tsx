@@ -6,6 +6,7 @@ import { Department } from "@/interfaces/departmen";
 import { Box, Button, Container, Grid, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
+import { uploadImageCloudinaryProduct } from "@/cloudinary";
 
 
 interface Props {
@@ -37,7 +38,14 @@ const AddProductPage = ({params}: Props) =>{
     };
 
     const handleSubmit = async () => {
-        const product = await productApi.createProduct(name, description,price,quantity, '', '0aab0870-d55e-41b8-8cc4-6fb97336cd7c',params.id)
+
+      let [status, data] = [false, ""];
+
+      if (selectedImage) {
+        [status, data] = await uploadImageCloudinaryProduct(selectedImage);
+      }
+
+        const product = await productApi.createProduct(name, description,price,quantity, data || '', '0aab0870-d55e-41b8-8cc4-6fb97336cd7c',params.id)
         router.push(`/account/${params.id}/products`)
     };
 

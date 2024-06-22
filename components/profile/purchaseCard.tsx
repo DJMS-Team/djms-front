@@ -11,7 +11,7 @@ interface Info {
 
 const PurchaseCard = ({ title, quantity, price, address, status }: Info) => {
   return (
-    <Card>
+    <Card className='w-80'>
       <CardContent>
         <Grid container spacing={2}>
           <Grid item>
