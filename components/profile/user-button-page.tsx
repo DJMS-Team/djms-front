@@ -17,6 +17,7 @@ import { LogoutButton } from '../dashboard/logout-button';
 import Link from 'next/link';
 import { LogOut, User } from 'lucide-react';
 import Cookies from 'js-cookie';
+import { IconUser } from '@tabler/icons-react';
 
 export const UserButton = () => {
     let id = null;
@@ -32,14 +33,10 @@ export const UserButton = () => {
     }
 
     return (
-        <DropdownMenu>
+        <div className='flex items-center rounded-full bg-transparent px-4 py-2 border-2 border-neon'>
+            <DropdownMenu>
             <DropdownMenuTrigger>
-                <Avatar>
-                    <AvatarImage />
-                    <AvatarFallback className='bg-blue-500'>
-                        <FaUser className='text-white' />
-                    </AvatarFallback>
-                </Avatar>
+                <IconUser className="inline-block text-white" />
             </DropdownMenuTrigger>
             <DropdownMenuContent className='w-40' align='end'>
                 <DropdownMenuItem>
@@ -63,5 +60,6 @@ export const UserButton = () => {
                 </LogoutButton>
             </DropdownMenuContent>
         </DropdownMenu>
+        </div>
     );
 };
