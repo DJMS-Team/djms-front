@@ -37,7 +37,7 @@ export const UserButton = () => {
             
                 <LogoutButton>
                     <DropdownMenuItem>
-                        <LogOut className='size-4'/>
+                        <LogOut className='size-4 mr-2'/>
                         Logout
                     </DropdownMenuItem>
                 </LogoutButton>
