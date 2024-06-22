@@ -34,7 +34,7 @@ const ProductCard: React.FC<ProductCard> = ({
                 toast.error('There is not enough stock')
             }
         } else {
-            toast.error('Error loading item')
+            cart.addItem(data);
         }
     }
 
