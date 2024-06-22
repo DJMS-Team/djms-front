@@ -8,7 +8,7 @@ interface BillboardProps {
 export const Billboard = ({title, photoUrl, subtitle, btnText}:BillboardProps) => {
     return (
         <div className="overflow-hidden">
-           <div className='relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover bg-fixed bg-right-bottom bg-blend-darken'
+           <div className='min-h-screen relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover bg-fixed bg-right-bottom bg-blend-darken'
                 style={{backgroundImage: `url(${photoUrl})`}}>
                 <div className="h-full w-full flex flex-col justify-center items-start px-36 text-center gap-y-8">
                     <div className="text-left text-white flex flex-col gap-5">
