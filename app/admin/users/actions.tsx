@@ -21,20 +21,7 @@ type Props = {
 export const Actions = ({id}: Props) => {
    
     const {onOpen} = useOpenUser()
-   
-    const { user, loading, error } = useUserData(id, 'token')
-    
-    const onClickBlock = async () => {
-        if (loading || error || !user) return
 
-        await updateUser(id, user.name, user.password, user.email, user.photo_url, user.role, 'INACTIVE')
-    }
-
-    const onClickDelete = async () => {
-        if (loading || error || !user) return
-
-        await updateUser(id, user.name, user.password, user.email, user.photo_url, user.role, 'DELETED')
-    }
 
     return (
         <>
@@ -52,15 +39,7 @@ export const Actions = ({id}: Props) => {
                         <Edit className="size-4 mr-2" />
                         Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem
-                     onClick={onClickDelete}>
-                        <Trash className="size-4 mr-2" />
-                        Delete
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={onClickBlock} className=' bg-destructive/15'>
-                        <Ban className='size-4 mr-2'/>
-                        Block
-                    </DropdownMenuItem>
+                    
                 </DropdownMenuContent>
             </DropdownMenu>
         </>
