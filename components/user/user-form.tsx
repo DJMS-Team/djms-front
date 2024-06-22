@@ -93,6 +93,22 @@ export const UserForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Prop
                     </FormItem>
                  )}
                  />
+                 <FormField
+                 name="status"
+                 control={form.control}
+                 render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>
+                            Status
+                        </FormLabel>
+                        <FormControl>
+                            <Input disabled={disabled} 
+                             placeholder='ACTIVE | INACTIVE | DELETED'
+                             {...field} />
+                        </FormControl>
+                    </FormItem>
+                 )}
+                 />
                 <Button className='w-full' disabled={disabled}>
                     Save Changes
                 </Button>
