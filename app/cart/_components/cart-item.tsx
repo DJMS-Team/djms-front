@@ -8,6 +8,7 @@ import IconButton from "@/components/ui/icon-button"
 import Currency from "@/components/ui/currency"
 import { useCart } from "@/hooks/cart/use-cart"
 import { Product } from "@/interfaces/product.interface"
+import { getProductById } from "@/actions/get-product"
 
 interface CartItemProps {
     data: Product
@@ -27,6 +28,20 @@ export const CartItem = ({ data }: CartItemProps) => {
 
     const decrementQuantity = () => {
         cart.decrementQuantity(data.id)
+    }
+
+    const verifyStock = async () => {
+        const product: Product = await getProductById(data.id);
+        
+        if (item) {
+            if (Number(product.quantity) - item.quantity > 0) {
+                incrementQuantity();
+            } else {
+                toast.error('There is not enough stock')
+            }
+        } else {
+            toast.error('Error loading item')
+        }
     }
 
     return (
@@ -54,7 +69,7 @@ export const CartItem = ({ data }: CartItemProps) => {
                     <div className="mt-1 flex items-center">
                         <button onClick={decrementQuantity} className="px-2 py-1">-</button>
                         <span className="px-2">{item?.quantity}</span>
-                        <button onClick={incrementQuantity} className="px-2 py-1">+</button>
+                        <button onClick={verifyStock} className="px-2 py-1">+</button>
                     </div>
                 </div>
             </div>
