@@ -7,6 +7,7 @@ import { use, useState, useTransition } from "react";
 import { useRouter } from 'next/navigation';
 import { login } from "@/actions/login";
 import { useLogin } from "@/hooks/auth/useLogin";
+import Cookies from "js-cookie";
 
 const FormLogin = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -40,7 +41,16 @@ const FormLogin = () => {
     const loginResponse = await login(values.email, values.password)
       .catch((e:Error) => alert(e))
 
-      router.push('/auth/login')
+    const currentUser = Cookies.get("currentUser");
+    const role = currentUser ? JSON.parse(currentUser).role : currentUser ? JSON.parse(String(currentUser)).role : null;
+    console.log(role);
+    if(role === 'ADMIN'){
+      console.log()
+      router.push("/admin");
+    }else if(role === 'USER'){
+      
+      router.push("/");
+    }
   };
   
 
