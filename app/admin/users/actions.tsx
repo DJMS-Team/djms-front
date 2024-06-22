@@ -19,15 +19,21 @@ type Props = {
 
 
 export const Actions = ({id}: Props) => {
-   console.log('Actions', id)
+   
     const {onOpen} = useOpenUser()
-    console.log('hi')
+   
     const { user, loading, error } = useUserData(id, 'token')
-    console.log('user', user)
+    
     const onClickBlock = async () => {
         if (loading || error || !user) return
 
         await updateUser(id, user.name, user.password, user.email, user.photo_url, user.role, 'INACTIVE')
+    }
+
+    const onClickDelete = async () => {
+        if (loading || error || !user) return
+
+        await updateUser(id, user.name, user.password, user.email, user.photo_url, user.role, 'DELETED')
     }
 
     return (
@@ -36,7 +42,7 @@ export const Actions = ({id}: Props) => {
                 <DropdownMenuTrigger asChild>
                     <Button variant='ghost' className='size-8 p-0'>
                         <MoreHorizontal className="size-4" />
-                    </Button>
+                    </Button>   
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align='end'>
                     <DropdownMenuItem
@@ -47,7 +53,7 @@ export const Actions = ({id}: Props) => {
                         Edit
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                     >
+                     onClick={onClickDelete}>
                         <Trash className="size-4 mr-2" />
                         Delete
                     </DropdownMenuItem>
