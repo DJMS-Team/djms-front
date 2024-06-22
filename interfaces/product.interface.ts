@@ -12,6 +12,7 @@ export interface Product {
   price: number;
   photo_url: string;
   size?: string;
+  quantity: number;
   order_details?: OrderDetail[];
   reviews?: Review[];
   product_category: ProductCategory;
