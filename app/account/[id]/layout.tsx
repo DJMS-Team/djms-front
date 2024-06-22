@@ -10,7 +10,7 @@ type Props = {
 const accountLayout = ({children}: Props) => {
     return (
         <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <div className="">
           <Sidebar />
           <main className="ml-60 mt-20 p-4 flex-1">
