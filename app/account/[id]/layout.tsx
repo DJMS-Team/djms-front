@@ -1,4 +1,4 @@
-import {Navbar} from "@/components/profile/navbar";
+import { Navbar } from "@/components/navbar";
 import Sidebar from "@/components/profile/sidebar";
 
 type Props = {
@@ -8,17 +8,18 @@ type Props = {
 
 
 const accountLayout = ({children}: Props) => {
-    return (
-        <div>
-        <Navbar />
-        <div className="">
-          <Sidebar />
-          <main className="ml-60 mt-20 p-4 flex-1">
-            {children}
-          </main>
-        </div>
+  return (
+    <div className="layout">
+      <Navbar />
+      
+      <div className="content">
+         <Sidebar />
+        <main className="main-content">
+          {children}
+        </main>
       </div>
-    )
+    </div>
+  );
 }
 
 export default accountLayout
