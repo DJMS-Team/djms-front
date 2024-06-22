@@ -18,7 +18,12 @@ const ProfilePage = ({params}: Props) =>{
 
     const [user, setUser] = useState<User>()
     const [addresses, setAddresses] = useState<Address[]>()
-    
+
+    const [updateName, setUpdateName] = useState<string>('')
+    const [updateEmail, setUpdateEmail] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
+    const [photo_url, setPhotoUrl] = useState<string>('')
+    const [user_role, setUserRole] = useState<string>('')
     const Router = useRouter();
 
     useEffect(()=>{
@@ -26,14 +31,12 @@ const ProfilePage = ({params}: Props) =>{
             const res = await userApi.findOneUser(params.id)
             console.log(res)
             setUser(res)
-            const addresses: Address[] = res.addresses || []; // Cambié `res.addreses` a `res.addresses`
-            const updatedAddresses = await Promise.all(
-                addresses.map(async (address) => {
-                return await addressApi.findOneAddress(address.id);
-            })
-            );
-            setAddresses(updatedAddresses)
-            
+            setAddresses(res.addresses)
+            setUpdateName(res.name)
+            setUpdateEmail(res.email)
+            setPassword(res.password)
+            setPhotoUrl(res.photo_url)
+            setUserRole(res.role)
         }
 
         fetchData();
@@ -42,6 +45,15 @@ const ProfilePage = ({params}: Props) =>{
 
     const onAddAddress = () =>{
       Router.push(`/account/${params.id}/add_address`)
+    }
+
+    const onUpdateAddress = (id:string) =>{
+      Router.push(`/account/${params.id}/update_address/${id}`)
+    }
+
+    const onUpdateUser = async () => {
+      await userApi.updateOneUser(params.id,updateName,updateEmail, photo_url, user_role)
+      window.location.reload()
     }
 
     return (
@@ -56,19 +68,21 @@ const ProfilePage = ({params}: Props) =>{
     
           <TextField
             fullWidth
-            value = {user?.name}
+            value = {updateName}
             margin="normal"
             variant="outlined"
+            onChange={(e)=>setUpdateName(e.target.value)}
           />
     
           <TextField
             fullWidth
-            value = {user?.email}
+            value = {updateEmail}
             margin="normal"
             variant="outlined"
+            onChange={(e)=>setUpdateEmail(e.target.value)}
           />
     
-          <Button variant="contained" color="primary" sx={{ mt: 2 }}  >
+          <Button variant="contained" color="primary" sx={{ mt: 2 }} onClick={onUpdateUser} >
             Actualizar
           </Button>
     
@@ -92,20 +106,25 @@ const ProfilePage = ({params}: Props) =>{
           </Grid>
     
         <Grid container spacing={2}>
-        {addresses?.map((address) => (
-          <Grid item xs={12} sm={6} key={address.id}>
-            <Card>
-              <CardContent>
-                <Typography variant="h6">{`${address.street} # ${address.avenue}-${address.house_number}`}</Typography>
-                <Typography variant="body2">{address.city?.name}</Typography>
-                <Typography variant="body2">{user?.name}</Typography>
-                <IconButton sx={{ float: 'right' }}>
-                  <MoreVertIcon />
-                </IconButton>
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
+        <Grid container spacing={2}>
+      {addresses?.map((address) => (
+        <Grid item xs={12} sm={6} key={address.id}>
+          <Card>
+            <CardContent>
+              <Typography variant="h6">{`${address.street} # ${address.avenue}-${address.house_number}`}</Typography>
+              <Typography variant="body2">{address.city?.name}</Typography>
+              <Typography variant="body2">{user?.name}</Typography>
+              <IconButton sx={{ float: 'right' }}>
+                <MoreVertIcon />
+              </IconButton>
+              <Button variant="contained" color="primary" onClick={() => onUpdateAddress(address.id)}>
+                Update Address
+              </Button>
+            </CardContent>
+          </Card>
+        </Grid>
+      ))}
+    </Grid>
       </Grid>
         </Container>
       );
