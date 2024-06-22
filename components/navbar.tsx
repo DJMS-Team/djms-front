@@ -4,8 +4,9 @@ import styles from './navbar.module.css';
 import { IconCircuitSwitchClosed, IconMenu, IconShoppingCartFilled, IconShoppingBag, IconLocation } from '@tabler/icons-react';
 import { useCart } from '@/hooks/cart/use-cart';
 import { Button } from './ui/button';
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { UserButton } from './profile/user-button-page';
 
 export const Navbar = () => {
   const [isClick, setIsClick] = useState(false);
@@ -22,12 +23,12 @@ export const Navbar = () => {
   const router = useRouter()
 
   const toggleNavbar = (event: React.MouseEvent) => {
-    setIsClick(!isClick);
+    //setIsClick(!isClick);
   };
 
 
   return (
-    <>
+    
       <nav className="bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
@@ -41,8 +42,7 @@ export const Navbar = () => {
                   Ubicacion
                 </a>
               </div>
-              {/* onSubmit={handleSearchSubmit} */}
-              <form  className={`ml-10 flex ${styles.formContainer}`}>
+              <form className={`ml-10 flex ${styles.formContainer}`}>
                 <input 
                   type="text" 
                   placeholder="Search..."
@@ -56,23 +56,15 @@ export const Navbar = () => {
                   </svg>
                 </button>
               </form>
-              <button type="submit" className={styles.userInfo}>SV</button>
-              <div className="hidden md:block">
-              <div className="navLinks">
-                {/* <a href="/" className="text-white hover:bg-white hover:text-black rounded-lg p-4">
-                <IconShoppingBag className="inline-block mr-2"/> Mis compras
-                </a> */}
-                <Button onClick={()=>router.push('/cart')} className='flex items-center rounded-full bg-black px-4 py-2'>
-                  <ShoppingBag className="inline-block mr-2 size-4"/>
-                  <span className="ml-2 text-sm font-medium text-white ">
-                    {cart.items.length}
-                  </span>
-                </Button>
-
-               
             </div>
-
-            </div>
+            <div className="flex items-center space-x-4">
+              <Button onClick={()=>router.push('/cart')} className='flex items-center rounded-full bg-black px-4 py-2'>
+                <ShoppingCart className="inline-block mr-2 size-4"/>
+                <span className="ml-2 text-sm font-medium text-white ">
+                  {cart.items.length}
+                </span>
+              </Button>
+              <UserButton />
             </div>
             <div className="md:hidden flex items-center">
               <button onClick={toggleNavbar} className="p-2 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
@@ -89,25 +81,22 @@ export const Navbar = () => {
           </div>
         )}
         <div className={styles.bottomBar}>
-        <div className={styles.bottomContent}>
-              <a href="/" className={styles.bottomItems}>
-                Categorias
-              </a>
-              <a href="/" className={styles.bottomItems}>
-                Ofertas
-              </a>
-              <a href="/" className={styles.bottomItems}>
-                Vender
-              </a>
-              <a href="/" className={styles.bottomItems}>
-                PQRS/Ayuda
-              </a>
-        
-            </div>
-            
+          <div className={styles.bottomContent}>
+            <a href="/" className={styles.bottomItems}>
+              Categorias
+            </a>
+            <a href="/" className={styles.bottomItems}>
+              Ofertas
+            </a>
+            <a href="/" className={styles.bottomItems}>
+              Vender
+            </a>
+            <a href="/" className={styles.bottomItems}>
+              PQRS/Ayuda
+            </a>
+          </div>
         </div>
       </nav>
-    </>
+    
   );
 };
-

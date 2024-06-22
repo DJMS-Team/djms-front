@@ -8,17 +8,17 @@ type Props = {
 
 
 const accountLayout = ({children}: Props) => {
-  return (
-    <div className="layout">
-      <Navbar />
-      
-      <div className="content">
-         <Sidebar />
-        <main className="main-content">
-          {children}
-        </main>
+    return (
+        <div>
+        {/* <Navbar /> */}
+        <div className="">
+          <Sidebar />
+          <main className="ml-60 mt-20 p-4 flex-1">
+            {children}
+          </main>
+        </div>
       </div>
-    </div>
+    
   );
 }
 

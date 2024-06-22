@@ -1,6 +1,7 @@
 import { HeaderLogo } from "@/components/header-logo"
 import { Navigation } from "@/components/navigation"
 import { WelcomeMsg } from "@/components/welcome-msg"
+import { UserButton } from "./dashboard/user-button"
 export const Header = () => {
     return (
         <header className="bg-gradient-to-b from-blue-700 to-blue-500
@@ -11,7 +12,9 @@ export const Header = () => {
                         <HeaderLogo />
                         <Navigation />
                     </div>
-                    
+                    <div className="flex items-center ml-auto">
+                        <UserButton />
+                    </div>
                 </div>
                 <WelcomeMsg />
             </div>
