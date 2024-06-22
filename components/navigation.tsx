@@ -78,9 +78,7 @@ export const Navigation = () => {
               label={route.label}
               isActive={pathname === route.href} />
             ))}
-            <div className="flex items-center ml-auto">
-                <UserButton />
-            </div>
+           
         </nav>
     )
 }
