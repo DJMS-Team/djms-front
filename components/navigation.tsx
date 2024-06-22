@@ -13,6 +13,7 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Menu } from "lucide-react"
+import { UserButton } from "./dashboard/user-button"
 
 const routes = [
     {
@@ -77,6 +78,7 @@ export const Navigation = () => {
               label={route.label}
               isActive={pathname === route.href} />
             ))}
+           
         </nav>
     )
 }

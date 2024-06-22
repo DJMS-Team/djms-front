@@ -4,11 +4,12 @@ import { Product } from "../../interfaces/product.interface"
 import IconButton from "./icon-button"
 import {  Expand, ShoppingCart } from "lucide-react"
 import Currency from "./currency"
-
+import { toast } from 'react-hot-toast'
 import { MouseEventHandler } from "react"
 import { useCart } from "@/hooks/cart/use-cart"
 
 import { useRouter } from "next/navigation"
+import { getProductById } from "@/actions/get-product"
 
 interface ProductCard {
     data: Product
@@ -20,10 +21,21 @@ const ProductCard: React.FC<ProductCard> = ({
 
 
     const cart = useCart()
-    const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+
+    const onAddToCart: MouseEventHandler<HTMLButtonElement> = async (event) => {
        event?.stopPropagation()
-       
-       cart.addItem(data)
+
+       const product = cart.items.find((item) => item.id == data.id);
+        
+        if (product) {
+            if (Number(data.quantity) - product.quantity > 0) {
+                cart.addItem(data);
+            } else {
+                toast.error('There is not enough stock')
+            }
+        } else {
+            toast.error('Error loading item')
+        }
     }
 
     const router = useRouter();

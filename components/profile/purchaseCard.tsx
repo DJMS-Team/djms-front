@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import { Card, CardContent, Grid, Typography, Avatar } from '@mui/material';
+import { ShoppingCart } from 'lucide-react';
 interface Info {
     title:string,
     quantity: number,
@@ -17,7 +16,7 @@ const PurchaseCard = ({ title, quantity, price, address, status }: Info) => {
         <Grid container spacing={2}>
           <Grid item>
             <Avatar style={{ backgroundColor: '#3f51b5' }}>
-              <ShoppingCartIcon />
+              <ShoppingCart/>
             </Avatar>
           </Grid>
           <Grid item xs={12} sm container>
