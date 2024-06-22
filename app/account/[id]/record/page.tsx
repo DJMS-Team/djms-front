@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
-import { Container, Grid, Typography, Box } from '@material-ui/core';
+import { Container, Grid, Typography, Box } from '@mui/material';
 import PurchaseCard from '@/components/profile/purchaseCard';
 import { Order } from '@/interfaces/order';
 import { orderApi, userApi } from '@/APIS';

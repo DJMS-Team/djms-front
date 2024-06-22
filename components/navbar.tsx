@@ -4,7 +4,7 @@ import styles from './navbar.module.css';
 import { IconCircuitSwitchClosed, IconMenu, IconShoppingCartFilled, IconShoppingBag, IconLocation } from '@tabler/icons-react';
 import { useCart } from '@/hooks/cart/use-cart';
 import { Button } from './ui/button';
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 export const Navbar = () => {
@@ -63,7 +63,7 @@ export const Navbar = () => {
                 <IconShoppingBag className="inline-block mr-2"/> Mis compras
                 </a> */}
                 <Button onClick={()=>router.push('/cart')} className='flex items-center rounded-full bg-black px-4 py-2'>
-                  <ShoppingBag className="inline-block mr-2 size-4"/>
+                  <ShoppingCart className="inline-block mr-2 size-4"/>
                   <span className="ml-2 text-sm font-medium text-white ">
                     {cart.items.length}
                   </span>
