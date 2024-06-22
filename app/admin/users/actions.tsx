@@ -1,15 +1,16 @@
 'use client'
 
-import { useOpenUser } from '@/hooks/use-open-user'
+import { useOpenUser } from '@/hooks/user/use-open-user'
 import { Button } from '@/components/ui/button'
-import { Edit, MoreHorizontal, Trash } from 'lucide-react'
+import { Ban, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import {
     DropdownMenu,
     DropdownMenuItem,
     DropdownMenuContent,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { on } from 'events'
+import { useUserData } from '@/hooks/user/use-user-data'
+import { updateUser } from '@/actions/update-user'
 
 
 type Props = {
@@ -18,9 +19,17 @@ type Props = {
 
 
 export const Actions = ({id}: Props) => {
-   // console.log('Actions', id)
+   console.log('Actions', id)
     const {onOpen} = useOpenUser()
-    
+    console.log('hi')
+    const { user, loading, error } = useUserData(id, 'token')
+    console.log('user', user)
+    const onClickBlock = async () => {
+        if (loading || error || !user) return
+
+        await updateUser(id, user.name, user.password, user.email, user.photo_url, user.role, 'INACTIVE')
+    }
+
     return (
         <>
             <DropdownMenu>
@@ -37,9 +46,14 @@ export const Actions = ({id}: Props) => {
                         <Edit className="size-4 mr-2" />
                         Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem
+                     >
                         <Trash className="size-4 mr-2" />
                         Delete
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={onClickBlock} className=' bg-destructive/15'>
+                        <Ban className='size-4 mr-2'/>
+                        Block
                     </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
