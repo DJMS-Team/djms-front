@@ -18,7 +18,7 @@ type Props = {
 
 export const Chart = ({data = []}:Props) => {
     return (
-        <Card className="border-none drop-shadow-sm">
+        <Card className="bg-[#F4ECFF] border-none drop-shadow-sm">
             <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row
              lg:items-center justify-between">
                 <CardTitle className="text-xl line-clamp-1">

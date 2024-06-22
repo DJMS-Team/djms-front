@@ -48,6 +48,7 @@ export const UserSchema = z.object({
     password: z.string().min(6,{
         message: 'Password must be at least 6 characters long'
     }),
-    photo_url: z.string()
+    photo_url: z.string(),
+    status: z.string()
     
 })
