@@ -18,7 +18,8 @@ const accountLayout = ({children}: Props) => {
           </main>
         </div>
       </div>
-    )
+    
+  );
 }
 
 export default accountLayout

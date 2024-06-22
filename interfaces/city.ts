@@ -1,4 +1,7 @@
+import { Department } from "./departmen"
+
 export interface City {
     id:string, 
-    name:string
+    name:string,
+    department: Department
 }
