@@ -9,19 +9,22 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="bg-white border-t flex flex-col items-center pb-6" id='footer'>
-      <div className="w-full max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-    
-        <div className="flex flex-col space-y-2">
+    <footer className="bg-black text-white p-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
+        <div className="flex flex-col items-center">
+          <p>DMajorStore</p>
+          <img src="/logo/logo.png" alt="DMajorStore Logo" className="mt-4" />
+        </div>
+        <div className="flex flex-col items-center space-y-2">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              handleClick('/terms');
+              handleClick('/policy');
             }}
-            className="text-xs text-black hover:underline"
+            className="font-bold mb-3"
           >
-            Terms and Conditions
+            Politicas de privacidad
           </a>
           <a
             href="#"
@@ -29,23 +32,21 @@ export const Footer = () => {
               e.preventDefault();
               handleClick('/policy');
             }}
-            className="text-xs text-black hover:underline"
+            className="font-bold mb-3"
           >
-            Privacy Policy
+            Terminos y condiciones
           </a>
         </div>
-
-        
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col items-center space-y-2">
           <a
             href="#"
             onClick={(e) => {
               e.preventDefault();
-              handleClick('/pqrs');
+              handleClick('/about');
             }}
-            className="text-xs text-black hover:underline"
+            className="font-bold mb-3"
           >
-            PQRS
+            Conoce de nosotros
           </a>
           <a
             href="#"
@@ -53,14 +54,15 @@ export const Footer = () => {
               e.preventDefault();
               handleClick('/about');
             }}
-            className="text-xs text-black hover:underline"
+            className="font-bold mb-3"
           >
-            About Us
+            PQRS/Contactanos
           </a>
         </div>
       </div>
-      <p className="text-xs text-center text-black">©copy: 2024 DJMS Store | All Rights Reserved</p>
+      <div className="flex justify-center mt-8">
+        <p className="font-bold">© 2024 DJMS Store | All Rights Reserved</p>
+      </div>
     </footer>
   );
 };
-
