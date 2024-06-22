@@ -38,7 +38,9 @@ export const useCart = create(
             toast.success('Product added to cart', { icon: '🛒' });
         },
         removeItem: (id: string) => {
-            set({ items: [...get().items.filter((item) => item.id !== id)] });
+            set({ 
+                items: [...get().items.filter((item) => item.id !== id)] 
+            });
             toast.success('Product removed from cart', { icon: '🛒' });
         },
         removeAll: () => set({ items: [] }),
@@ -46,7 +48,9 @@ export const useCart = create(
             set({
                 items: get().items.map(item =>
                     item.id === id
-                        ? { ...item, quantity: item.quantity + 1 }
+                        ? { ...item, quantity: item.quantity + 1, 
+                            price: Number(item.price) + Number(item.price/item.quantity) 
+                        }
                         : item
                 ),
                 
@@ -60,7 +64,9 @@ export const useCart = create(
                 set({
                     items: currentItems.map(item =>
                         item.id === id
-                            ? { ...item, quantity: item.quantity - 1 }
+                            ? { ...item, quantity: item.quantity - 1,
+                                price: Number(item.price) - Number(item.price/item.quantity)
+                             }
                             : item
                     )
                 });
