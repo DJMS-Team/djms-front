@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
-
 import { Product } from '@/interfaces/product.interface'
 import toast from 'react-hot-toast'
 
@@ -28,7 +27,7 @@ export const useCart = create(
                 set({
                     items: currentItems.map(item =>
                         item.id === data.id
-                            ? { ...item, quantity: item.quantity + 1 }
+                            ? { ...item, quantity: Number(item.quantity) + 1 }
                             : item
                     )
                 });
@@ -49,7 +48,8 @@ export const useCart = create(
                     item.id === id
                         ? { ...item, quantity: item.quantity + 1 }
                         : item
-                )
+                ),
+                
             });
         },
         decrementQuantity: (id: string) => {
