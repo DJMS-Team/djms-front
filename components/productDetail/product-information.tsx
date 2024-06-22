@@ -49,7 +49,6 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product }) => 
             <Button onClick={onAddToCart}>Add to cart</Button>
           </CardFooter>
         </Card>
-        <PayMethodCard />
       </div>
     </div>
   );

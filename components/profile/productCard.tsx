@@ -13,8 +13,8 @@ const ProductCard = (product: Product) => {
     <Card sx={{ display: 'flex', mb: 2 }}>
       <CardMedia
         component="img"
-        sx={{ width: 151 }}
-        image="https://via.placeholder.com/150"
+        sx={{ width: 150 }}
+        image={product.photo_url}
         alt="Pad Mouse Gaming"
       />
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>

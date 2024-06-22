@@ -82,7 +82,7 @@ const RecordPage = ({params}: Props) =>{
             <Typography variant="h4" gutterBottom>
               Historial de compras
             </Typography>
-            <Grid container spacing={4}>
+            <Grid spacing={4} gap={5} className='mt-10 flex'>
             {order?.map((order, index) => (
                 <PurchaseCard
                     key={index}
