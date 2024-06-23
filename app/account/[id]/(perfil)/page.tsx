@@ -41,7 +41,7 @@ const ProfilePage = ({params}: Props) =>{
 
         fetchData();
         //console.log(params.id)
-    },[])
+    },[params.id])
 
     const onAddAddress = () =>{
       Router.push(`/account/${params.id}/add_address`)

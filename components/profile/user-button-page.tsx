@@ -38,7 +38,7 @@ export const UserButton = () => {
             <DropdownMenuTrigger>
                 <IconUser className="inline-block" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent className='w-40' align='end'>
+            <DropdownMenuContent className='w-40 px-4 bg-[#2a2a5a] text-white border-none' align='end'>
                 <DropdownMenuItem>
                     {id ? (
                         <Link href={`/account/${id}`} className='flex items-center'>

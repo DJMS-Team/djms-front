@@ -52,7 +52,7 @@ const UpdateAddressPage = ({params}: Props) =>{
         }
 
         fetchData();
-    },[])
+    },[params.id])
 
     async function changeDepartment( cities:City[]) {
         console.log(cities)
