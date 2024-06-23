@@ -196,6 +196,8 @@ export const Navbar = () => {
                 <p>Categorias</p>
                 <AiOutlineCaretDown size={12} className="mt-[1px]" />
               </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {/* {categories.map((category) => (
               <DropdownMenuContent className="px-4 bg-[#2a2a5a] text-white border-none">
                 {categories.map((category) => (
                   <DropdownMenuItem
@@ -204,7 +206,7 @@ export const Navbar = () => {
                   >
                     {category.category}
                   </DropdownMenuItem>
-                ))}
+                ))} */}
               </DropdownMenuContent>
             </DropdownMenu>
             <a href="/" className={`${styles.navLink} text-white`}>
