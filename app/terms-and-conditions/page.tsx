@@ -17,14 +17,14 @@ const TermsAndConditions = () => {
                 <hr className='my-4 border-gray-300'/>
                 <h2 className="text-xl font-bold mt-4">Introducción</h2>
                 <p className="m-1">
-                    Bienvenido a DMajor Store. Al acceder y utilizar nuestro sitio web, aceptas estar sujeto a los siguientes Términos y Condiciones. Si no estás de acuerdo con alguna parte de estos términos, por favor, no utilices nuestro sitio web.
+                    Bienvenido a DMajor Store. Al acceder y utilizar nuestro sitio web, aceptas estar sujeto a los siguientes Terminos y Condiciones. Si no estas de acuerdo con alguna parte de estos terminos, por favor, no utilices nuestro sitio web.
                 </p>
                 <h2 className="text-xl font-bold mt-4">Definiciones</h2>
                 <ul className="list-disc list-inside">
-                    <li>"DMajor Store" se refiere a la tienda en línea operada por nosotros.</li>
-                    <li>"Usuario" se refiere a cualquier persona que accede y utiliza nuestro sitio web.</li>
-                    <li>"Producto" se refiere a cualquier artículo disponible para la venta en DMajor Store.</li>
-                    <li>"Sitio web" se refiere a la plataforma en línea de DMajor Store, accesible en DMajoreStore.com</li>
+                    <li>DMajor Store se refiere a la tienda en línea operada por nosotros.</li>
+                    <li>Usuario se refiere a cualquier persona que accede y utiliza nuestro sitio web.</li>
+                    <li>Producto se refiere a cualquier artículo disponible para la venta en DMajor Store.</li>
+                    <li>Sitio web se refiere a la plataforma en línea de DMajor Store, accesible en DMajoreStore.com</li>
                 </ul>
                 <h2 className="text-xl font-bold mt-4">Uso del Sitio Web</h2>
                 <p className="m-1">

@@ -1,6 +1,7 @@
 'use client'
 
 import { Navbar } from "@/components/navbar";
+import Image from 'next/image';
 
 const AboutUs = () => {
 
@@ -24,7 +25,8 @@ const AboutUs = () => {
                     {teamMembers.map((member, index) => (
                         <div key={index} className="flex flex-col items-center">
                             <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-300">
-                                <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                                <Image src={member.image} alt={member.name} width={96} height={96} className="w-full h-full object-cover" />
+                        
                             </div>
                             <p className="mt-2 text-center">{member.name}</p>
                         </div>
