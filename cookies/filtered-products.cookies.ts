@@ -1,24 +1,22 @@
-// En un archivo utilitario, por ejemplo, cookies.ts
 import { FilterProductsDto } from '@/interfaces/filter-products-dto';
 import axios from 'axios';
-import Cookies from 'universal-cookie';
-
-const cookies = new Cookies();
+import Cookies from 'js-cookie';
+import { emitCookieChangeEvent } from './cookies-change';
 
 export const getProductsFiltered = async (query: FilterProductsDto) => {
   try {
-    console.log('haciendo filter products')
+    console.log('Sending filters:', query);
     const response = await axios.get(process.env.NEXT_PUBLIC_API_BASE_URL + '/products/filter', {
-      params: {
-        query
-      }
+      params: query
     });
 
-    const { data } = response.data;
+    Cookies.set('filteredProducts', JSON.stringify(response.data), {
+      path: '/',
+    });
 
-    cookies.set('filteredProducts', JSON.stringify(data), { path: '/' });
+    emitCookieChangeEvent(); // Emite el evento cuando se actualiza la cookie
 
-    return data;
+    return response.data;
   } catch (error) {
     console.error('Failed to fetch products:', error);
     return [];
@@ -26,13 +24,20 @@ export const getProductsFiltered = async (query: FilterProductsDto) => {
 };
 
 export const getFilteredProductsFromCookie = () => {
-  const storedProducts = cookies.get('filteredProducts');
+  const storedProducts = Cookies.get('filteredProducts');
+
   if (storedProducts) {
-    return JSON.parse(storedProducts);
+    try {
+      return JSON.parse(storedProducts);
+    } catch (error) {
+      console.error('Failed to parse stored products:', error);
+      return [];
+    }
   }
   return [];
 };
 
 export const clearFilteredProductsCookie = () => {
-  cookies.remove('filteredProducts', { path: '/' });
+  Cookies.remove('filteredProducts', { path: '/' });
+  emitCookieChangeEvent(); // Emite el evento cuando se borra la cookie
 };

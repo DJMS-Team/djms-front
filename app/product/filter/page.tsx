@@ -1,20 +1,29 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { getFilteredProductsFromCookie, clearFilteredProductsCookie } from '@/cookies/filtered-products.cookies';
+import { getFilteredProductsFromCookie } from '@/cookies/filtered-products.cookies';
 import { Product } from '@/interfaces/product.interface';
 
 const FilteredProductsPage = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
 
-  useEffect(() => {
+  const updateFilteredProducts = () => {
     const storedProducts = getFilteredProductsFromCookie();
     setFilteredProducts(storedProducts);
+    console.log('Stored products:', storedProducts);
+  };
 
-    clearFilteredProductsCookie();
+  useEffect(() => {
+    updateFilteredProducts();
+
+    window.addEventListener('cookieChange', updateFilteredProducts);
+
+    return () => {
+      window.removeEventListener('cookieChange', updateFilteredProducts);
+    };
   }, []);
 
   return (
-    <div>
+    <div className='mt-10'>
       {filteredProducts.map(product => (
         <div key={product.id}>
           <p>{product.product_name}</p>

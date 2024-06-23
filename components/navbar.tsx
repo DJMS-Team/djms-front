@@ -86,14 +86,14 @@ export const Navbar = () => {
     console.log('current path: ' + currentPath)
 
     if (currentPath === "/product/filter") {
-      router.refresh();
+      router.push("/product/filter");
     } else {
       router.push("/product/filter");
     }
   };
 
   if (!isMounted) {
-    return null; // Render nothing until the component is mounted
+    return null;
   }
 
   return (
