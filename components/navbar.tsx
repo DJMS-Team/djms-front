@@ -140,7 +140,7 @@ export const Navbar = () => {
                     <p>Categorias</p>
                     <AiOutlineCaretDown size={12} className="mt-[1px]" />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent>
+                  <DropdownMenuContent className="px-4 bg-[#2a2a5a] text-white border-none">
                     {categories.map((category) => (
                       <DropdownMenuItem
                         onClick={() => router.push("/category/${category.id}")}
