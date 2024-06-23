@@ -28,7 +28,7 @@ const UpdateaProductPage = ({params}:Props) =>{
         }
 
         fetchData();
-    },[])
+    },[params.id])
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0){
