@@ -4,16 +4,16 @@ import { formatCurrency } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 
 
-export const CustomTooltip = ({ active, payload }: any) => {
+export const CategoryTooltip = ({ active, payload }: any) => {
     if( !active ) return null
 
-    const date = payload[0].payload.date
-    const income = payload[0].value
+    const category = payload[0].payload.category
+    const sales = payload[0].value
 
     return (
         <div className='rounded-sm bg-white shadow-sm border overflow-hidden'>
             <div className='text-sm p-2 px-3 bg-muted text-muted-foreground'>
-                {format(date, 'MMM dd, yyyy')}
+                {category}
             </div>
             <Separator className='border-t' />
             <div className='p-2 px-3 space-y-1'>
@@ -25,7 +25,7 @@ export const CustomTooltip = ({ active, payload }: any) => {
                         </p>
                         </div>
                         <p className='text-sm text-right font-medium'>
-                            {formatCurrency(income)}
+                            {formatCurrency(sales)}
                         </p>
                     </div>
             </div>
