@@ -28,11 +28,10 @@
 .searchButton {
   background-color: #0ff; /* Neon button background */
   color: black;
-  padding: 8px 16px;
+  padding: 5px 10px;
   border: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
-  margin-right: 30px;
 }
 
 .bottomBar {
@@ -71,26 +70,14 @@
   background-color: rgba(0, 255, 255, 0.2);
 }
 
-@media (min-width: 768px) {
-  .searchInput {
-    width: 300px;
-  }
-}
-
 @media (max-width: 767px) {
   .formContainer {
-    flex-direction: column;
     width: 100%;
   }
 
-  .searchInput,
-  .searchButton {
+  .searchInput {
     width: 100%;
     border-radius: 5px;
-  }
-
-  .searchButton {
-    margin-top: 8px;
   }
 
   .bottomContent {
