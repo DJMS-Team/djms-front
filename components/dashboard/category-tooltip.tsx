@@ -21,7 +21,7 @@ export const CategoryTooltip = ({ active, payload }: any) => {
                     <div className='flex items-center gap-x-2'>
                         <div className='size-1.5 bg-[#2a2a5a] rounded-full' />
                         <p className='text-sm text-muted-foreground'>
-                            Income
+                            Ingreso
                         </p>
                         </div>
                         <p className='text-sm text-right font-medium'>

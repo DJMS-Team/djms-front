@@ -22,7 +22,7 @@ const routes = [
     },
     {
         href: "/admin/users",
-        label: "Users"
+        label: "Usuarios"
     }
 ]
 
