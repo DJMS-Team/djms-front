@@ -16,7 +16,7 @@ export const useUpdateUser = (id: string, onClose: { (): void; (): void; }, onUs
         
         try {
             console.log('Updating user:', values);
-            const user = await updateUser(id, values.name, values.password, values.email, values.photo_url, values.role);
+            const user = await updateUser(id, values.name, values.password, values.email, values.photo_url, values.role, values.status);
             console.log('User updated:', user);
             onClose();
             onUserUpdate();

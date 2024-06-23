@@ -124,6 +124,7 @@ export function DataTable<TData, TValue>({
                 table.getRowModel().rows.map((row) => (
                 <TableRow
                     key={row.id}
+                    className={(row.original as any).status === 'INACTIVE' ? 'bg-red-100' : ''}
                     data-state={row.getIsSelected() && "selected"}
                 >
                     {row.getVisibleCells().map((cell) => (

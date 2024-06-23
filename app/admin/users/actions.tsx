@@ -1,15 +1,16 @@
 'use client'
 
-import { useOpenUser } from '@/hooks/use-open-user'
+import { useOpenUser } from '@/hooks/user/use-open-user'
 import { Button } from '@/components/ui/button'
-import { Edit, MoreHorizontal, Trash } from 'lucide-react'
+import { Ban, Edit, MoreHorizontal, Trash } from 'lucide-react'
 import {
     DropdownMenu,
     DropdownMenuItem,
     DropdownMenuContent,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { on } from 'events'
+import { useUserData } from '@/hooks/user/use-user-data'
+import { updateUser } from '@/actions/update-user'
 
 
 type Props = {
@@ -18,16 +19,17 @@ type Props = {
 
 
 export const Actions = ({id}: Props) => {
-   // console.log('Actions', id)
+   
     const {onOpen} = useOpenUser()
-    
+
+
     return (
         <>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button variant='ghost' className='size-8 p-0'>
                         <MoreHorizontal className="size-4" />
-                    </Button>
+                    </Button>   
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align='end'>
                     <DropdownMenuItem
@@ -37,10 +39,7 @@ export const Actions = ({id}: Props) => {
                         <Edit className="size-4 mr-2" />
                         Edit
                     </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <Trash className="size-4 mr-2" />
-                        Delete
-                    </DropdownMenuItem>
+                    
                 </DropdownMenuContent>
             </DropdownMenu>
         </>
