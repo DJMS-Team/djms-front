@@ -11,14 +11,9 @@ const Sidebar = () => {
       sx={{
         width: 240,
         flexShrink: 0,
-        [`& .MuiDrawer-paper`]: {
-          width: 240,
-          marginTop: '64px',
-          backgroundColor: 'transparent',
-          borderRight: 'none',
-          color: 'black'
-        },
+        [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', backgroundColor: 'black', color: 'white', marginTop: '80px'},
       }}
+      className='mt-20'
     >
       <List>
         <ListItem button>
