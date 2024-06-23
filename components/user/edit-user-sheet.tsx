@@ -5,13 +5,13 @@ import {
      SheetDescription,
      SheetHeader,
      SheetTitle } from "@/components/ui/sheet"
-import { useOpenUser } from "@/hooks/use-open-user"
+import { useOpenUser } from "@/hooks/user/use-open-user"
 import { UserForm } from "./user-form"
 import { z } from "zod"
 import { UserSchema } from "@/schemas"
-import { useUserData } from "@/hooks/use-user-data"
+import { useUserData } from "@/hooks/user/use-user-data"
 import { Loader2 } from "lucide-react"
-import { useUpdateUser } from "@/hooks/use-update-user"
+import { useUpdateUser } from "@/hooks/user/use-update-user"
 
 type FormValues = z.input<typeof UserSchema>
 
@@ -21,6 +21,7 @@ interface User {
     role: string;
     password: string;
     photo_url: string;
+    status: string;
 }
 
 type Props = {
@@ -37,7 +38,8 @@ export const EditUserSheet = ({ onUserUpdate }: Props) => {
         email: user?.email || '',
         role: user?.role || '',
         password: user?.password || '',
-        photo_url: user?.photo_url || ''
+        photo_url: user?.photo_url || '',
+        status: user?.status || ''
     };
     if (!user) return null;
     

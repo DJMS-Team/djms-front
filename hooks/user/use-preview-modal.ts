@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { Product } from "../interfaces/product.interface"; 
+import { Product } from "../../interfaces/product.interface"; 
 
 interface PreviewModalStore {
     isOpen:boolean;

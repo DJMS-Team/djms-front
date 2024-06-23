@@ -8,6 +8,7 @@ interface User {
     role: string;
     password: string;
     photo_url: string;
+    status: string
 }
 
 export const useUserData = (id: string, token: string) => {
