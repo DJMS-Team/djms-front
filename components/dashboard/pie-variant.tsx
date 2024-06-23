@@ -20,7 +20,7 @@ type Props = {
 }
 
 export const PieVariant = ({ data }: Props) => {
-    console.log('dataPie', data)
+    
     return (
         <ResponsiveContainer width="100%" height={350}>
             <PieChart>
