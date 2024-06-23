@@ -34,7 +34,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product }) => 
 
   return (
     <div className="md:w-1/2 md:pl-6 mt-6 md:mt-0">
-      <div className="sticky top-8">
+      <div className="sticky top-16">
         <Card className="border-none shadow-none">
           <CardHeader>
             <CardTitle className="text-3xl font-bold">{product?.product_name}</CardTitle>
