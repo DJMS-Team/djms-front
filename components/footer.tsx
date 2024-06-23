@@ -15,7 +15,7 @@ export const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center ">
         <div className="flex flex-col items-center m-5 ">
         <p>DMajorStore</p>
-          <Image src="/images/logo.png" alt="DMajorStore Logo" className="mt-4 w-20 h-20" />
+          <Image src="/images/logo.png" alt="DMajorStore Logo" width={96} height={96} className="mt-4 w-20 h-20" />
         </div>
         <div className="flex flex-col items-center space-y-2 m-5">
           <a
