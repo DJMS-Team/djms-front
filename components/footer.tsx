@@ -12,8 +12,8 @@ export const Footer = () => {
     <footer className="bg-black text-white p-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center">
         <div className="flex flex-col items-center">
-          <p>DMajorStore</p>
-          <img src="/logo/logo.png" alt="DMajorStore Logo" className="mt-4" />
+        <p>DMajorStore</p>
+          <img src="/images/logo.png" alt="DMajorStore Logo" className="mt-4 w-20 h-20" />
         </div>
         <div className="flex flex-col items-center space-y-2">
           <a
