@@ -84,7 +84,7 @@ export const Navbar = () => {
     setIsClick(!isClick);
   };
 
-  const isMobile = useMedia("(max-width: 1023px)", false);
+  const isMobile = useMedia("(max-width: 900px)", false);
 
   if (isMobile) {
     return (

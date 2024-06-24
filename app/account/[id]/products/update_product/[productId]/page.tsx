@@ -28,7 +28,7 @@ const UpdateaProductPage = ({params}:Props) =>{
         }
 
         fetchData();
-    },[])
+    },[params.productId])
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0){
@@ -51,11 +51,11 @@ const UpdateaProductPage = ({params}:Props) =>{
 
 
     return(
-        <Container>
+        <Container sx={{mt: 2}}>
           <Grid
             container
             direction="column"
-            style={{ minHeight: '100vh' }} // Para centrar verticalmente
+            style={{ minHeight: '90vh' }} // Para centrar verticalmente
           >
             <Grid item>
               <Box
@@ -64,9 +64,10 @@ const UpdateaProductPage = ({params}:Props) =>{
                 boxShadow={3} 
                 borderRadius={8} 
                 style={{ width: '100%', maxWidth: '900px' }}
+                className="mx-auto"
               >
                 <Typography variant="h5" gutterBottom>
-                  Agregar direccion
+                  Editar producto
                 </Typography>
                 <form noValidate autoComplete="off">
                 <Box sx={{ textAlign: 'center', p: 2, border: '1px dashed gray', borderRadius: '8px', bgcolor: '#f9f9f9' }}>
