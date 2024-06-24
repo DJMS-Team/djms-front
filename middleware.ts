@@ -1,8 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
 import cookie from "cookie";
 
+export const config = {
+  matcher: [
+    // match all routes except static files and APIs
+    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+  ],
+};
 
 export async function middleware(req: NextRequest){
+    // Add a new header x-current-path which passes the path to downstream components
+    const headers = new Headers(req.headers);
+    headers.set("x-current-path", req.nextUrl.pathname);
+  
     const cookies = cookie.parse(req.headers.get("Cookie") || "");
     const token = cookies.currentUser;
     const tokenFromOauth = req.cookies.get("currentUser");
@@ -51,5 +61,5 @@ export async function middleware(req: NextRequest){
       }
 
     
-      return NextResponse.next()
+      return NextResponse.next({ headers })
 }
