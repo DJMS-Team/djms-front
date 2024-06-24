@@ -47,8 +47,7 @@ const FormLogin = () => {
     if(role === 'ADMIN'){
       console.log()
       router.push("/admin");
-    }else if(role === 'USER'){
-      
+    }else {
       router.push("/");
     }
   };

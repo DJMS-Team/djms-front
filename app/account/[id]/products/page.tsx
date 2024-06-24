@@ -30,7 +30,7 @@ const ProductPage = ({params}:Props) => {
     }
 
     return (
-        <Container>
+        <Container maxWidth="md" sx={{ mt: 2 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
             <Typography variant="h4">Mis productos</Typography>
             <Button variant="contained" color="primary" onClick={onAddProduct}>Añadir</Button>

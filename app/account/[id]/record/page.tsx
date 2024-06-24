@@ -74,15 +74,15 @@ const RecordPage = ({params}: Props) =>{
 
         fetchData();
 
-    },[])
+    },[params.id])
 
     return (
-        <Container>
+        <Container maxWidth="md" sx={{ mt: -2 }}>
           <Box my={4}>
             <Typography variant="h4" gutterBottom>
               Historial de compras
             </Typography>
-            <Grid spacing={4} gap={5} className='mt-10 flex'>
+            <Grid spacing={4} gap={5} className='mt-10 flex flex-wrap flex-'>
             {order?.map((order, index) => (
                 <PurchaseCard
                     key={index}

@@ -52,7 +52,7 @@ const UpdateAddressPage = ({params}: Props) =>{
         }
 
         fetchData();
-    },[params.id])
+    },[params.AdressId, params.id])
 
     async function changeDepartment( cities:City[]) {
         console.log(cities)
@@ -65,11 +65,11 @@ const UpdateAddressPage = ({params}: Props) =>{
     }
 
     return (
-        <Container>
+        <Container sx={{mt: 2}}>
           <Grid
             container
             direction="column"
-            style={{ minHeight: '100vh' }} // Para centrar verticalmente
+            style={{ minHeight: '90vh' }} // Para centrar verticalmente
           >
             <Grid item>
               <Box 
@@ -78,11 +78,12 @@ const UpdateAddressPage = ({params}: Props) =>{
                 boxShadow={3} 
                 borderRadius={8} 
                 style={{ width: '100%', maxWidth: '900px' }}
+                className="mx-auto"
               >
                 <Typography variant="h5" gutterBottom>
-                  Agregar direccion
+                  Editar dirección
                 </Typography>
-                <form noValidate autoComplete="off">
+                <form noValidate autoComplete="off" className="mt-5">
                   <Box mb={2}>
                     <Typography variant="body1" gutterBottom>
                       Departamento
