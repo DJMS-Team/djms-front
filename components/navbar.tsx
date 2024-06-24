@@ -91,6 +91,18 @@ export const Navbar = () => {
     }
   };
 
+  const handleCategoryClick = async (categoryF: string) => {
+    const filter = { category: categoryF }
+
+    await getProductsFiltered(filter);
+
+    const currentPath = window.location.pathname;
+
+    if (!(currentPath === "/product/filter")) {
+      router.push("/product/filter");
+    }
+  }
+
   if (!isMounted) {
     return null;
   }
@@ -212,7 +224,7 @@ export const Navbar = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   {categories.map((category) => (
-                    <DropdownMenuItem onClick={() => router.push(`/category/${category.id}`)} key={category.id}>
+                    <DropdownMenuItem onClick={() => handleCategoryClick(category.category)} key={category.id}>
                       {category.category}
                     </DropdownMenuItem>
                   ))}
