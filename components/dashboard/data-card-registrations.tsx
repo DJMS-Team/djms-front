@@ -59,7 +59,7 @@ interface DataCardProps extends BoxVariants, IconVariants {
 }
 
 
-export const DataCard = ({
+export const DataCardRegistrations = ({
     icon: Icon,
     title,
     value = 0,
@@ -95,7 +95,7 @@ export const DataCard = ({
                  end={value}
                  decimals={2}
                  decimalPlaces={2}
-                 formattingFn={formatCurrency}
+                 formattingFn={(val: number) => val.toString()}
                   />
             </h1>
             <p className={cn(
