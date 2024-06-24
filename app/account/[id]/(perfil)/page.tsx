@@ -10,8 +10,7 @@ import {
   Grid,
   IconButton,
 } from "@mui/material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+
 import { useEffect, useState } from "react";
 import { User } from "@/interfaces/user";
 import { Address } from "@/interfaces/address";
@@ -25,7 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Trash, Edit } from "lucide-react";
+import { Trash, Edit, Plus, MoreVertical } from "lucide-react";
 interface Props {
   params: { id: string };
 }
@@ -130,7 +129,7 @@ const ProfilePage = ({ params }: Props) => {
         </Grid>
         <Grid item>
           <IconButton color="primary">
-            <AddCircleIcon />
+            <Plus className="size-4"/>
           </IconButton>
         </Grid>
       </Grid>
@@ -145,7 +144,7 @@ const ProfilePage = ({ params }: Props) => {
                 <Typography variant="body2">{user?.name}</Typography>
                 <DropdownMenu>
                   <DropdownMenuTrigger className="absolute top-0 right-0 mt-2 mr-2">
-                    <MoreVertIcon />
+                    <MoreVertical className="size-4"/>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuItem

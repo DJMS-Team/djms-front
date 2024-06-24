@@ -39,7 +39,7 @@ export const UserButton = () => {
                 <Avatar>
                     <AvatarImage/>
                     <AvatarFallback className='bg-purple-dark hover:bg-[#00FFFF33]'>
-                        <FaUser className='text-white'/>
+                        <User className='text-white'/>
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
