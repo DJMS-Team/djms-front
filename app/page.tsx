@@ -5,7 +5,7 @@ import ProductList from "@/components/product-list";
 import { Navbar } from "../components/navbar";
 const Home = async () => {
   const products = await getProducts(1, 50, "ASC");
-  console.log(products.products);
+  
   return (
     <>
       <Navbar />
