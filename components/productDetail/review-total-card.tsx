@@ -1,10 +1,6 @@
 "use client"
-import { IconUser } from "@tabler/icons-react";
-import { Review } from "@/interfaces/review.interface";
 import { useEffect, useState } from "react";
 import { productApi } from "@/APIS";
-import { useStartTyping } from "react-use";
-import {Button, Rate} from "antd"
 
 interface ReviewCardProps {
 
@@ -37,11 +33,11 @@ const ReviewTotalCard: React.FC<ReviewCardProps> = ({ product_id }) => {
         <div className="mx-auto p-4">
             <div className="text-8xl font-bold flex-col flex text-center">{displayValue}</div>
             <div>
-            <Rate 
+            {/* <Rate 
                 style={{color : "#2A2A5A"}} 
                 value={totalReviews}
                 disabled
-            />
+            /> */}
             </div>
         </div>
       </div>

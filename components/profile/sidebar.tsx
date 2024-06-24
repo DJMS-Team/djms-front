@@ -1,10 +1,10 @@
 // components/Sidebar.js
 import React from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Person, ShoppingBag, ShoppingCart } from '@mui/icons-material';
+import { User, ShoppingBag, ShoppingCart } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-
+import { FaUser } from 'react-icons/fa';
 const Sidebar = () => {
 
   const router = useRouter();
@@ -34,19 +34,19 @@ const Sidebar = () => {
       <List>
         <ListItem onClick={() => router.push("/account/" + id)}>
           <ListItemIcon >
-            <Person sx={{ color: 'white' }} />
+            <User className='size-6 text-white' />
           </ListItemIcon>
           <ListItemText primary="Perfil" />
         </ListItem>
         <ListItem onClick={() => router.push("/account/" + id + "/record")}>
           <ListItemIcon>
-            <ShoppingCart sx={{ color: 'white' }} />
+            <ShoppingCart className='size-6 text-white' />
           </ListItemIcon>
           <ListItemText primary="Historia de Compras" />
         </ListItem>
         <ListItem onClick={() => router.push("/account/" + id + "/products")}>
           <ListItemIcon>
-            <ShoppingBag sx={{ color: 'white' }} />
+            <ShoppingBag className='size-6 text-white' />
           </ListItemIcon>
           <ListItemText primary="Mis productos" />
         </ListItem>

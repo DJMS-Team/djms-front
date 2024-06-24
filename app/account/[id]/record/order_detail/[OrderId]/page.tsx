@@ -2,9 +2,8 @@
 import { orderApi, resourceApi } from "@/APIS";
 import { CardFooter } from "@/components/ui/card";
 import { Order } from "@/interfaces/order";
-import { Card, CardContent, CardHeader, CardMedia, Container, Typography } from "@mui/material";
+import { Card, CardContent, CardHeader, CardMedia, Container, Typography, Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import {Button, Rate} from "antd"
 import { useRouter } from "next/navigation";
 
 
@@ -50,13 +49,7 @@ const OrderDetailPage = ({params}: Props) =>{
                     </div>
                     </CardContent>
                     <CardFooter>
-                        <Rate 
-                        style={{color : "#2A2A5A"}} 
-                        allowHalf
-                        onChange={(value: any) =>{
-                            setRate(value);
-                        }}
-                        />
+                        
                     </CardFooter>
                     <Button className="flex-col" onClick={()=>onGiveReview(order_detail.product.id)}>Hacer reseña</Button>
                 
