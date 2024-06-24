@@ -50,11 +50,11 @@ const AddressPage = ({params}:Props) =>{
     }
 
     return (
-        <Container>
+        <Container sx={{mt: 2}}>
           <Grid
             container
             direction="column"
-            style={{ minHeight: '100vh' }} // Para centrar verticalmente
+            style={{ minHeight: '90vh' }} // Para centrar verticalmente
           >
             <Grid item>
               <Box 
@@ -63,11 +63,12 @@ const AddressPage = ({params}:Props) =>{
                 boxShadow={3} 
                 borderRadius={8} 
                 style={{ width: '100%', maxWidth: '900px' }}
+                className="mx-auto"
               >
                 <Typography variant="h5" gutterBottom>
                   Agregar direccion
                 </Typography>
-                <form noValidate autoComplete="off">
+                <form noValidate autoComplete="off" className="mt-5">
                   <Box mb={2}>
                     <Typography variant="body1" gutterBottom>
                       Departamento
@@ -144,7 +145,7 @@ const AddressPage = ({params}:Props) =>{
                   </Box>
                   <Box mt={2}>
                     <Button variant="contained" color="primary" fullWidth onClick={onCreateAddress}>
-                      Iniciar Sesión
+                      Agregar dirección
                     </Button>
                   </Box>
                 </form>

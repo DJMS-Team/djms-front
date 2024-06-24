@@ -6,6 +6,8 @@ import { IconMailCheck } from "@tabler/icons-react";
 import { useState, useTransition } from "react";
 import { uploadImageCloudinary } from "../cloudinary/index";
 import { useRegister } from "@/hooks/auth/useRegister";
+import { useRouter } from 'next/navigation';
+import Cookies from "js-cookie";
 
 const FormRegister = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -15,6 +17,7 @@ const FormRegister = () => {
     ""
   );
   const { register } = useRegister();
+  const router = useRouter();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -70,6 +73,11 @@ const FormRegister = () => {
         })
         .catch((e: Error) => setError(e.message));
     });
+
+    const currentUser = Cookies.get("currentUser");
+    if (currentUser) {
+      router.push("/auth/login");
+    }
   };
 
   return (

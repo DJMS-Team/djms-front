@@ -81,6 +81,17 @@ export class ProductApi {
         }
     }
 
+    totalRating = async (id:string) =>{
+        try{
+            const res = await this.instance
+                .get(`/products/${id}/reviews`)
+            console.log(res.data)
+            return parseFloat(res.data)
+        }catch(error){
+            throw error;
+        }
+    }
+
     /*
     filteredProducts = async (category:string,priceMin: number, priceMax: number, size:string) => {
         try{

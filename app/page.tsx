@@ -9,7 +9,7 @@ const Home = async () => {
   return (
     <>
       <Navbar />
-      <div className="bg-[#f4ecff] w-full">
+      <div className="bg-white w-full">
         <div className="py-12">
           <Billboard
             title="Los mejores productos"

@@ -50,11 +50,11 @@ const AddProductPage = ({params}: Props) =>{
     };
 
     return (
-        <Container>
+        <Container sx={{mt: 2}}>
           <Grid
             container
             direction="column"
-            style={{ minHeight: '100vh' }} // Para centrar verticalmente
+            style={{ minHeight: '90vh' }} // Para centrar verticalmente
           >
             <Grid item>
               <Box
@@ -63,12 +63,13 @@ const AddProductPage = ({params}: Props) =>{
                 boxShadow={3} 
                 borderRadius={8} 
                 style={{ width: '100%', maxWidth: '900px' }}
+                className="mx-auto"
               >
                 <Typography variant="h5" gutterBottom>
-                  Agregar direccion
+                  Agregar producto
                 </Typography>
-                <form noValidate autoComplete="off">
-                <Box sx={{ textAlign: 'center', p: 2, border: '1px dashed gray', borderRadius: '8px', bgcolor: '#f9f9f9' }}>
+                <form noValidate autoComplete="off" className="mt-5">
+                <Box sx={{ textAlign: 'center', p: 2, border: '1px dashed gray', borderRadius: '8px', bgcolor: '#f9f9f9', mb: 2 }}>
                 <input
                     accept="image/*"
                     style={{ display: 'none' }}

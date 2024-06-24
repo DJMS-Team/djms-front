@@ -1,9 +1,25 @@
 // components/Sidebar.js
 import React from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Person, ShoppingCart } from '@mui/icons-material';
+import { Person, ShoppingBag, ShoppingCart } from '@mui/icons-material';
+import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const Sidebar = () => {
+
+  const router = useRouter();
+  let id = null;
+  const currentUser = Cookies.get("currentUser");
+
+  if (currentUser) {
+    try {
+      const parsedUser = JSON.parse(currentUser);
+      id = parsedUser.id;
+    } catch (error) {
+      console.error("Error parsing JSON:", error);
+    }
+  }
+
   return (
     <Drawer
       variant="permanent"
@@ -11,26 +27,26 @@ const Sidebar = () => {
       sx={{
         width: 240,
         flexShrink: 0,
-        [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', backgroundColor: 'black', color: 'white', marginTop: '80px'},
+        [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', backgroundColor: '#1c1c3c', color: 'white', marginTop: '80px'},
       }}
-      className='mt-20'
+      className='mt-20 hidden md:block'
     >
       <List>
-        <ListItem button>
-          <ListItemIcon>
-            <Person sx={{ color: 'black' }} />
+        <ListItem onClick={() => router.push("/account/" + id)}>
+          <ListItemIcon >
+            <Person sx={{ color: 'white' }} />
           </ListItemIcon>
           <ListItemText primary="Perfil" />
         </ListItem>
-        <ListItem button>
+        <ListItem onClick={() => router.push("/account/" + id + "/record")}>
           <ListItemIcon>
-            <ShoppingCart sx={{ color: 'black' }} />
+            <ShoppingCart sx={{ color: 'white' }} />
           </ListItemIcon>
           <ListItemText primary="Historia de Compras" />
         </ListItem>
-        <ListItem button>
+        <ListItem onClick={() => router.push("/account/" + id + "/products")}>
           <ListItemIcon>
-            <ShoppingCart sx={{ color: 'black' }} />
+            <ShoppingBag sx={{ color: 'white' }} />
           </ListItemIcon>
           <ListItemText primary="Mis productos" />
         </ListItem>

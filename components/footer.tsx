@@ -1,14 +1,18 @@
-'use client';
-import { useRouter } from 'next/navigation';
 import styles from "./footer.module.css";
 import Image from 'next/image';
+import { headers } from "next/headers"; // to get actual url
+import Link from 'next/link'
 
 export const Footer = () => {
-  const router = useRouter();
+  const headerList = headers();
+  const pathname = headerList.get("x-current-path");
+  console.log('actual url ' + pathname);
 
-  const handleClick = (route: string) => {
-    router.push(route);
-  };
+  if (pathname) {
+    if (pathname === '/auth/login' || pathname === '/auth/register' || pathname.includes('account')) {
+      return null;
+    }
+  }
 
   return (
     <footer className={styles.footer}>
@@ -18,48 +22,32 @@ export const Footer = () => {
           <Image src="/images/logo.png" alt="DMajorStore Logo" width={96} height={96} className="mt-4 w-20 h-20" />
         </div>
         <div className="flex flex-col items-center space-y-2 m-5">
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handleClick('/privacy-policy');
-            }}
+          <Link
+            href="/privacy-policy"
             className="font-bold mb-3"
           >
             Politicas de privacidad
-          </a>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handleClick('/terms-and-conditions');
-            }}
+          </Link>
+          <Link
+            href="/terms-and-conditions"
             className="font-bold mb-3"
           >
             Terminos y condiciones
-          </a>
+          </Link>
         </div>
         <div className="flex flex-col items-center space-y-2 m-5">
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handleClick('/about-us');
-            }}
+          <Link
+            href="/about-us"
             className="font-bold mb-3"
           >
             Conoce de nosotros
-          </a>
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              handleClick('/contact-us');
-            }}
+          </Link>
+          <Link
+            href="/contact-us"
             className="font-bold mb-3"
           >
             PQRS/Contactanos
-          </a>
+          </Link>
         </div>
       </div>
       <div className="flex justify-center mt-2">
