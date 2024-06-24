@@ -30,7 +30,7 @@ const OrderDetailPage = ({params}: Props) =>{
         <Container className="mx-auto p-4">
             <div className="flex flex-col gap-4">
             {order?.order_details.map((order_detail)=>(
-            <Card className="bg-white/99 shadow-md rounded-lg p-4 flex-col">
+            <Card className="bg-white/99 shadow-md rounded-lg p-4 flex-col" key={order.status}>
                 
                     <CardContent className="flex items-center">
                     <img
@@ -42,7 +42,7 @@ const OrderDetailPage = ({params}: Props) =>{
                         <Typography variant="h5">{order_detail.product.product_name}</Typography>
                     </div>
                     </CardContent>
-                    <CardFooter className="flex-col">
+                    <CardFooter>
                         <Rate 
                         style={{color : "#2A2A5A"}} 
                         allowHalf
