@@ -75,10 +75,11 @@ const SummaryContent = () => {
         
         const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
         console.log(order)
-        items.map((item)=>{
-            const res = orderApi.createOrderDetail(item.quantity, order?.id, item.id)
-            console.log(res)
-        })
+        for (const item of items) {
+            const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
+            console.log(res);
+        }
+        
         window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
         localStorage.removeItem('cart-storage')
         setOpen(false);
