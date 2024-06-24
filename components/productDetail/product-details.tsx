@@ -5,7 +5,7 @@ import ProductDescription from "./product-description";
 import ProductQuestions from "./product-questions";
 import ProductReviews from "./product-reviews";
 import { Product } from "@/interfaces/product.interface";
-import { User } from "@/interfaces/user.interface";
+import { User } from "@/interfaces/user";
 
 interface ProductDetailsProps {
   product: Product | null;

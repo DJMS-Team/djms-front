@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { IconExclamationCircle, IconCheck } from "@tabler/icons-react";
-import { User } from "@/interfaces/user.interface";
+import { User } from "@/interfaces/user";
 
 interface ProductQuestionsProps {
   handleSubmitComment: React.FormEventHandler<HTMLFormElement>;

@@ -7,7 +7,9 @@ import { createComment } from "@/actions/create-comment";
 import ProductDetails from "@/components/productDetail/product-details";
 import ProductSidebar from "@/components/productDetail/product-information";
 import { Product } from "@/interfaces/product.interface";
-import { User } from "@/interfaces/user.interface";
+import { User } from "@/interfaces/user";
+import { userApi } from "@/APIS";
+import { Address } from "@/interfaces/address";
 
 const getCurrentUserFromCookies = (): User | null => {
   const userCookie = Cookies.get("currentUser");
@@ -21,11 +23,17 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
   const [successComment, setSuccessComment] = useState<string | undefined>("");
   const [isPendingComment, setIsPendingComment] = useTransition();
   const [currentUser, setCurrentUser] = useState<User | null>(getCurrentUserFromCookies);
+  const [addresses, setAddresses] = useState<Address[]>()
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProductById(id);
       setProduct(response);
+      if(currentUser){
+        const user = await userApi.findOneUser(currentUser?.id)
+        setAddresses(user?.addresses)
+      }
+        
     };
 
     fetchData();
@@ -69,7 +77,7 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
           successComment={successComment}
           currentUser={currentUser ? currentUser : null}
         />
-        <ProductSidebar product={product} />
+        <ProductSidebar product={product} user={currentUser} addresses={addresses}/>
       </div>
       {/* <ProductList
         title="Seller products"

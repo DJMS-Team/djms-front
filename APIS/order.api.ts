@@ -15,7 +15,9 @@ export class OrderApi {
         });
     }
 
-    createOrder = async (status:string, date:Date, customer_id:string, payment_method_id:string, address_id:string ) => {
+
+    createOrder = async (status:string, date:Date, customer_id:string,payment_method_id:string, address_id:string ) => {
+
         try{
             const res = await this.instance.
                 post(`/orders`,{
@@ -23,7 +25,9 @@ export class OrderApi {
                     date:date,
                     customer_id:customer_id,
                     payment_method_id:payment_method_id,
+
                     address_id,
+
                 })
             
             return res.data;
