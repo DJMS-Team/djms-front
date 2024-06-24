@@ -38,7 +38,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         successComment={successComment}
         currentUser={currentUser ? currentUser : null}
       />
-      <ProductReviews reviews={product?.reviews} />
+      <ProductReviews reviews={product?.reviews} product={product} />
     </div>
   );
 };

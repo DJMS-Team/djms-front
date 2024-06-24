@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./navbar.module.css";
-import { getProductsFiltered } from "@/cookies/filtered-products.cookies";
+import { clearFilteredProductsCookie, getProductsFiltered } from "@/cookies/filtered-products.cookies";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import { IconSearch } from "@tabler/icons-react";

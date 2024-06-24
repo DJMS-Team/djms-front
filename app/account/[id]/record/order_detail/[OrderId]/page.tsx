@@ -1,10 +1,11 @@
 "use client"
-import { orderApi } from "@/APIS";
+import { orderApi, resourceApi } from "@/APIS";
 import { CardFooter } from "@/components/ui/card";
 import { Order } from "@/interfaces/order";
 import { Card, CardContent, CardHeader, CardMedia, Container, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import {Button, Rate} from "antd"
+import { useRouter } from "next/navigation";
 
 
 interface Props {
@@ -12,9 +13,9 @@ interface Props {
 }
 
 const OrderDetailPage = ({params}: Props) =>{
-
+    const router = useRouter();
     const [order, setOrder] = useState<Order>()
-    const [rate, setRate] = useState<number>()
+    const [rate, setRate] = useState<number>(0)
 
     useEffect(()=>{
         const fetchData = async () =>{
@@ -25,6 +26,12 @@ const OrderDetailPage = ({params}: Props) =>{
 
         fetchData();
     },[])
+
+    const onGiveReview = async (product_id:string) =>{
+        const res = await resourceApi.createReview(rate, params.id, product_id);
+        console.log(res);
+        router.push(`/account/${params.id}`)
+    }
 
     return(
         <Container className="mx-auto p-4">
@@ -50,8 +57,8 @@ const OrderDetailPage = ({params}: Props) =>{
                             setRate(value);
                         }}
                         />
-                        <Button>Hacer review</Button>
                     </CardFooter>
+                    <Button className="flex-col" onClick={()=>onGiveReview(order_detail.product.id)}>Hacer reseña</Button>
                 
             </Card>
             ))}
