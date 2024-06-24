@@ -32,7 +32,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({categories}
 
     return (
         <DropdownMenu>
-                  <DropdownMenuTrigger className="flex gap-2 items-center">
+                  <DropdownMenuTrigger className={`flex gap-2 items-center ${styles.navLink} text-white`}>
                     <p>Categorias</p>
                     <AiOutlineCaretDown size={12} className="mt-[1px]" />
                   </DropdownMenuTrigger>

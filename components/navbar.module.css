@@ -70,6 +70,14 @@
   background-color: rgba(0, 255, 255, 0.2);
 }
 
+.seeProducts {
+  transition: background-color 0.3s;
+}
+
+.seeProducts:hover {
+  background-color: rgb(27, 27, 27);
+}
+
 @media (max-width: 767px) {
   .formContainer {
     width: 100%;

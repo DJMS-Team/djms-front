@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation";
 import { UserButton } from "./profile/user-button-page";
 import { ProductCategory } from "@/interfaces/product-category.interface";
 import { getCategories } from "@/actions/get-categories";
-import { AiOutlineCaretDown } from "react-icons/ai";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useMedia } from "react-use";
 import Link from "next/link";
@@ -24,12 +23,12 @@ export const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [categories, setCategories] = useState<ProductCategory[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-
   const isMobile = useMedia("(max-width: 930px)", false);
   const router = useRouter();
 
   let id: number | null = null;
   const currentUser = Cookies.get("currentUser");
+  console.log('user ' + currentUser)
 
   if (currentUser) {
     try {
@@ -103,10 +102,27 @@ export const Navbar = () => {
                 <FormSearch />
                 <ProductCategories categories={categories}>
                 </ProductCategories>
+                {currentUser ? 
+                  <a href="/" className={`${styles.navLink} text-white`}>
+                    Vender
+                  </a>:
+                  <a href="/auth/login" className={`${styles.navLink} text-white`}>
+                    Vender
+                  </a>
+                }
+                {currentUser ? 
+                <>
                 <Link href={`/account/${id}`} className="flex items-center">
                   Perfil
-                </Link>
-                <LogoutButton>Logout</LogoutButton>
+                  </Link>
+                  <LogoutButton>Log Out</LogoutButton>
+                </>: 
+                <Button className={`${styles.navLink}`}>
+                  <Link href='/auth/login'>
+                    Log In
+                  </Link>
+                </Button>
+                }
               </nav>
             </SheetContent>
           </Sheet>
@@ -133,9 +149,14 @@ export const Navbar = () => {
           </div>
           <div className="flex items-center justify-center flex-grow space-x-4">
             <ProductCategories categories={categories}></ProductCategories>
-            <a href="/" className={`${styles.navLink} text-white`}>
-              Vender
-            </a>
+            {currentUser ? 
+              <a href="/" className={`${styles.navLink} text-white`}>
+                Vender
+              </a>:
+              <a href="/auth/login" className={`${styles.navLink} text-white`}>
+                Vender
+              </a>
+            }
           </div>
           <div className="flex items-center space-x-4">
             <button
@@ -147,7 +168,14 @@ export const Navbar = () => {
                 {cart.items.length}
               </span>
             </button>
-            <UserButton />
+            {currentUser ? 
+                <UserButton />: 
+                <Button className={`${styles.navLink}`}>
+                  <Link href='/auth/login'>
+                    Log In
+                  </Link>
+                </Button>
+            }
           </div>
         </div>
       </div>
