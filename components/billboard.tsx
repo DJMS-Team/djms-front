@@ -1,3 +1,5 @@
+import styles from "./navbar.module.css";
+
 interface BillboardProps {
     title: string
     subtitle: string
@@ -14,7 +16,7 @@ export const Billboard = ({title, photoUrl, subtitle, btnText}:BillboardProps) =
                     <div className="text-left text-white flex flex-col gap-5">
                         <h2 className="text-3xl md:text-4xl font-bold">{title}</h2>
                         <p className="w-96">{subtitle}</p>
-                        <button className="px-6 py-2 bg-black text-white rounded-lg w-40">
+                        <button className= {`${styles.seeProducts} px-6 py-2 bg-black text-white rounded-lg w-40`}>
                             {btnText}
                         </button>
                     </div>
