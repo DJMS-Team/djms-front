@@ -21,7 +21,7 @@ const AboutUs = () => {
                     <h1 className="text-2xl font-bold mb-4">Acerca de Nosotros</h1>
                     <p className="text-sm">Conoce a nuestro equipo</p>
                 </div>
-                <div className="flex justify-center space-x-8 mt-8">
+                <div className="flex justify-center space-x-8 mt-8 flex-wrap">
                     {teamMembers.map((member, index) => (
                         <div key={index} className="flex flex-col items-center">
                             <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-gray-300">

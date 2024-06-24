@@ -1,10 +1,8 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { getFilteredProductsFromCookie, getQueryTypeFromCookie } from '@/cookies/filtered-products.cookies';
+import { clearFilteredProductsCookie, getFilteredProductsFromCookie, getQueryTypeFromCookie } from '@/cookies/filtered-products.cookies';
 import { Product } from '@/interfaces/product.interface';
-import ProductList from '@/components/product-list';
-import { Badge } from '@/components/ui/badge';
-import Cookies from 'js-cookie';
+import { ProductFilteredList } from '@/components/products-filtered-list';
 
 const FilteredProductsPage = () => {
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
@@ -45,15 +43,11 @@ const FilteredProductsPage = () => {
 
   return (
     <>
-      <div className='px-4 sm:px-6 lg:px-36 mt-3'>
-        <Badge>
-          {`${queryType} cuando ${queryValue}`}
-        </Badge>
-      </div>
       <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-36 mt-3">
-      <ProductList
+      <ProductFilteredList
         title="Productos disponibles"
         items={filteredProducts || []}
+        productFilteredBadge={{queryType, queryValue}}
       />
       </div>
     </>
