@@ -15,24 +15,28 @@ export const getProductsFiltered = async (query: FilterProductsDto) => {
     });
 
     if (query.category) {
+      removeQueryTypes();
       Cookies.set('category', JSON.stringify(query.category), {
         path: '/',
       });
     }
 
     if (query.search) {
+      removeQueryTypes();
       Cookies.set('search', JSON.stringify(query.search), {
         path: '/',
       });
     }
 
     if (query.priceMax) {
+      removeQueryTypes();
       Cookies.set('priceMax', JSON.stringify(query.priceMax), {
         path: '/',
       });
     }
 
     if (query.priceMin) {
+      removeQueryTypes();
       Cookies.set('priceMin', JSON.stringify(query.priceMin), {
         path: '/',
       });
@@ -46,6 +50,13 @@ export const getProductsFiltered = async (query: FilterProductsDto) => {
     return [];
   }
 };
+
+const removeQueryTypes = () => {
+  Cookies.remove('search', { path: '/' });
+  Cookies.remove('category', { path: '/' });
+  Cookies.remove('priceMax', { path: '/' });
+  Cookies.remove('priceMin', { path: '/' });
+}
 
 export const getFilteredProductsFromCookie = () => {
   const storedProducts = Cookies.get('filteredProducts');
@@ -71,31 +82,28 @@ export const getQueryTypeFromCookie = () => {
 
   if (search) {
     const value = JSON.parse(search);
-    queryType = 'Búsqueda por palabras claves';
+    queryType = 'búsqueda por PALABRAS CLAVES';
     return {queryType, value}
   }
   if (category) {
     const value = JSON.parse(category)
-    queryType = 'Búsqueda por categoría';
+    queryType = 'búsqueda por CATEGORÍA';
     return {queryType, value}
   }
   if (priceMax) {
     const value = JSON.parse(priceMax)
-    queryType = 'Búsqueda por precio máximo';
+    queryType = 'búsqueda por PRECIO MÁXIMO';
     return {queryType, value}
   }
   if (priceMin) {
     const value = JSON.parse(priceMin)
-    queryType = 'Búsqueda por precio mínimo';
+    queryType = 'búsqueda por PRECIO MÍNIMO';
     return {queryType, value}
   }
 }
 
 export const clearFilteredProductsCookie = () => {
+  console.log('clearing')
   Cookies.remove('filteredProducts', { path: '/' });
-  Cookies.remove('search', { path: '/' });
-  Cookies.remove('category', { path: '/' });
-  Cookies.remove('priceMax', { path: '/' });
-  Cookies.remove('priceMin', { path: '/' });
   emitCookieChangeEvent(); 
 };
