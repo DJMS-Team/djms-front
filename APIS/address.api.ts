@@ -71,5 +71,49 @@ export class AddresApi {
         }
     }
 
+    findDepartments = async() =>{
+        try{
+            const res = await this.instance
+                .get(`/department`)
+            
+            return res.data
+        }catch(error){
+            throw error;
+        }
+    }
+
+    findOneDepartment = async(id:string)=>{
+        try{
+            const res = await this.instance
+                .get(`/department/${id}`)
+            
+            return res.data
+        }catch(error){
+            throw error;
+        }
+    }
+
+    findCity = async(id:string) => {
+        try{
+            const res = await this.instance
+                .get(`/city`)
+
+            return res.data;
+        }catch(error){
+            throw error
+        }
+    }
+
+    findOneCity = async(id:string) =>{
+        try{
+            const res = await this.instance
+                .get(`/city/${id}`)
+
+            return res.data;
+        }catch(err){
+            throw err
+        }
+    }
+
 
 }

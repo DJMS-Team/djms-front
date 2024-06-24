@@ -53,27 +53,29 @@ export class UserApi {
                 .get(`/users/${id}`,{
                     headers: getAuthorizationHeader()
                 })
+            //console.log(res.data)
             return res.data
         }catch(error){
             throw error;
         }
     }
 
-    updateOneUser = async (id:string, name:string, password:string, email:string, photo_url:string, role:string)=>{
+    updateOneUser = async (id:string, name:string, email:string, photo_url:string | undefined, role:string | undefined)=>{
+        let res;
         try{
-            const res = await this.instance
+            res = await this.instance
                 .patch(`/users/${id}`,{
-                    name: name,
-                    password: password,
-                    email: email,
-                    photo_url: photo_url,
-                    role: role
-                },{
-                    headers: getAuthorizationHeader()
-                })
-            
+                    name,
+                    email,
+                    photo_url,
+                    role
+            })
+
+            console.log(res.status)
             return res.data
         }catch(error){
+            console.log(res?.status)
+            return res?.status
             throw error;
         }
     }
@@ -92,7 +94,7 @@ export class UserApi {
     recievedOrders = async(userId: string) =>{
         try{
             const res = await this.instance
-            .get(`/${userId}/orders/received`,{
+            .get(`/users/${userId}/orders/received`,{
                 headers: getAuthorizationHeader()
             })
             return res.data;
