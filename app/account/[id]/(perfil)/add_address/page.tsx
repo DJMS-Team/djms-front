@@ -37,7 +37,7 @@ const AddressPage = ({params}:Props) =>{
         }
 
         fetchData();
-    },[])
+    },[params.id])
     
     async function changeDepartment( cities:City[]) {
         console.log(cities)

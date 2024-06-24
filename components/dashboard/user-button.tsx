@@ -28,15 +28,15 @@ export const UserButton = () => {
             <DropdownMenuTrigger>
                 <Avatar>
                     <AvatarImage/>
-                    <AvatarFallback className='bg-blue-500'>
+                    <AvatarFallback className='bg-purple-dark hover:bg-[#00FFFF33]'>
                         <FaUser className='text-white'/>
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className='w-40' align='end'>                
+            <DropdownMenuContent className='w-40 px-4 bg-[#2a2a5a] text-white border-none' align='end'>                
             
                 <LogoutButton>
-                    <DropdownMenuItem>
+                    <DropdownMenuItem className='hover:bg-[#00FFFF33]'>
                         <LogOut className='size-4 mr-2'/>
                         Logout
                     </DropdownMenuItem>

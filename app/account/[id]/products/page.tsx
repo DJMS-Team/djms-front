@@ -23,7 +23,7 @@ const ProductPage = ({params}:Props) => {
         }
 
         fetchData();
-    },[])
+    },[params.id])
 
     const onAddProduct = () =>{
         router.push(`/account/${params.id}/products/add_product`)
