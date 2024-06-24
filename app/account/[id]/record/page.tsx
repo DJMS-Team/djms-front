@@ -6,42 +6,6 @@ import PurchaseCard from '@/components/profile/purchaseCard';
 import { Order } from '@/interfaces/order';
 import { orderApi, userApi } from '@/APIS';
 import { OrderDetail } from '@/interfaces/order_detail';
-import { OrderApi } from '@/APIS/order.api';
-const mockData = [
-    {
-      title: "Pad Mouse Gaming",
-      quantity: 4,
-      price: 70000,
-      address: "Calle 4ta # 14-102",
-      card: "4319 5312 0215 1289",
-      status: "Finalizado"
-    },
-    {
-        title: "Pad Mouse Gaming",
-        quantity: 4,
-        price: 70000,
-        address: "Calle 4ta # 14-102",
-        card: "4319 5312 0215 1289",
-        status: "Finalizado"
-    },
-    {
-        title: "Pad Mouse Gaming",
-        quantity: 4,
-        price: 70000,
-        address: "Calle 4ta # 14-102",
-        card: "4319 5312 0215 1289",
-        status: "Finalizado"
-    },
-    {
-        title: "Pad Mouse Gaming",
-        quantity: 4,
-        price: 70000,
-        address: "Calle 4ta # 14-102",
-        card: "4319 5312 0215 1289",
-        status: "Finalizado"
-    },
-    // Agrega más objetos si quieres más items en el historial
-  ];
 
     interface Props {
         params: { id: string }

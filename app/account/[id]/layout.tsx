@@ -1,19 +1,11 @@
 "use client";
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { Navbar } from "@/components/navbar";
 import Sidebar from "@/components/profile/sidebar";
 import { Exo_2 } from "next/font/google";
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { ShoppingBag, ShoppingCart, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { Person, ShoppingCart, ShoppingBag } from "@mui/icons-material";
 
 const exo_2 = Exo_2({ subsets: ["latin"] });
 
@@ -21,11 +13,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-const theme = createTheme({
-  typography: {
-    fontFamily: exo_2.style.fontFamily,
-  },
-});
 
 const AccountLayout = ({ children }: Props) => {
   const router = useRouter();
@@ -42,7 +29,7 @@ const AccountLayout = ({ children }: Props) => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    
       <div className={exo_2.className}>
         <Navbar />
         <div>
@@ -53,21 +40,21 @@ const AccountLayout = ({ children }: Props) => {
                 onClick={() => router.push("/account/" + id + "/products")}
                 className="flex flex-col flex-grow  justify-center gap-2 items-center text-white cursor-pointer"
               >
-                <ShoppingBag sx={{ color: "white" }} />
+                <ShoppingBag className="size-4 text-white" />
                 <span>Productos</span>
               </div>
               <div
                 onClick={() => router.push("/account/" + id)}
                 className="flex flex-col flex-grow justify-center gap-2 items-center text-white cursor-pointer"
               >
-                <Person sx={{ color: "white" }} />
+                <User className="size-4 text-white" />
                 <span>Perfil</span>
               </div>
               <div
                 onClick={() => router.push("/account/" + id + "/record")}
                 className="flex flex-col flex-grow  justify-center gap-2 items-center text-white cursor-pointer"
               >
-                <ShoppingCart sx={{ color: "white" }} />
+                <ShoppingCart className="size-4 text-white" />
                 <span>Compras</span>
               </div>
             </div>
@@ -77,7 +64,7 @@ const AccountLayout = ({ children }: Props) => {
           </main>
         </div>
       </div>
-    </ThemeProvider>
+   
   );
 };
 

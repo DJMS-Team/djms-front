@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import styles from "./navbar.module.css";
-import { IconMenu, IconSearch, IconShoppingCart } from "@tabler/icons-react";
 import { useCart } from "@/hooks/cart/use-cart";
 import { Button } from "./ui/button";
 import { LogOut, Menu, ShoppingCart, User } from "lucide-react";
@@ -82,7 +81,7 @@ export const Navbar = () => {
             onClick={() => router.push("/cart")}
             className="text-white flex items-center relative px-5 py-2"
           >
-            <IconShoppingCart size={28} className="z-10" />
+            <ShoppingCart size={28} className="z-10" />
             <span className="absolute bg-purple-dark text-white z-[-10] rounded-full px-2 top-0 right-0">
               {cart.items.length}
             </span>
@@ -117,7 +116,7 @@ export const Navbar = () => {
                   </Link>
                   <LogoutButton>Log Out</LogoutButton>
                 </>: 
-                <Button className={`${styles.navLink}`}>
+                <Button className={`bg-purple-dark ${styles.navLink} `}>
                   <Link href='/auth/login'>
                     Log In
                   </Link>
@@ -163,14 +162,14 @@ export const Navbar = () => {
               onClick={() => router.push("/cart")}
               className="flex items-center relative px-5 py-2"
             >
-              <IconShoppingCart size={28} className="z-10" />
+              <ShoppingCart size={28} className="z-10" />
               <span className="absolute bg-purple-dark text-white  z-[-10] rounded-full px-2 top-0 right-0">
                 {cart.items.length}
               </span>
             </button>
             {currentUser ? 
                 <UserButton />: 
-                <Button className={`${styles.navLink}`}>
+                <Button className={`bg-purple-dark ${styles.navLink}`}>
                   <Link href='/auth/login'>
                     Log In
                   </Link>
