@@ -36,7 +36,12 @@ export const UserButton = () => {
         <div className='flex items-center rounded-full bg-transparent'>
             <DropdownMenu>
             <DropdownMenuTrigger>
-                <IconUser className="inline-block" />
+                <Avatar>
+                    <AvatarImage/>
+                    <AvatarFallback className='bg-purple-dark hover:bg-[#00FFFF33]'>
+                        <FaUser className='text-white'/>
+                    </AvatarFallback>
+                </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='w-40 px-4 bg-[#2a2a5a] text-white border-none' align='end'>
                 <DropdownMenuItem>

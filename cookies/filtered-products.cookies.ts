@@ -14,7 +14,31 @@ export const getProductsFiltered = async (query: FilterProductsDto) => {
       path: '/',
     });
 
-    emitCookieChangeEvent(); // Emite el evento cuando se actualiza la cookie
+    if (query.category) {
+      Cookies.set('category', JSON.stringify(query.category), {
+        path: '/',
+      });
+    }
+
+    if (query.search) {
+      Cookies.set('search', JSON.stringify(query.search), {
+        path: '/',
+      });
+    }
+
+    if (query.priceMax) {
+      Cookies.set('priceMax', JSON.stringify(query.priceMax), {
+        path: '/',
+      });
+    }
+
+    if (query.priceMin) {
+      Cookies.set('priceMin', JSON.stringify(query.priceMin), {
+        path: '/',
+      });
+    }
+
+    emitCookieChangeEvent();
 
     return response.data;
   } catch (error) {
@@ -37,7 +61,41 @@ export const getFilteredProductsFromCookie = () => {
   return [];
 };
 
+export const getQueryTypeFromCookie = () => {
+  var queryType = undefined;
+
+  const search = Cookies.get('search');
+  const category = Cookies.get('category');
+  const priceMax = Cookies.get('priceMax');
+  const priceMin = Cookies.get('priceMin');
+
+  if (search) {
+    const value = JSON.parse(search);
+    queryType = 'Búsqueda por palabras claves';
+    return {queryType, value}
+  }
+  if (category) {
+    const value = JSON.parse(category)
+    queryType = 'Búsqueda por categoría';
+    return {queryType, value}
+  }
+  if (priceMax) {
+    const value = JSON.parse(priceMax)
+    queryType = 'Búsqueda por precio máximo';
+    return {queryType, value}
+  }
+  if (priceMin) {
+    const value = JSON.parse(priceMin)
+    queryType = 'Búsqueda por precio mínimo';
+    return {queryType, value}
+  }
+}
+
 export const clearFilteredProductsCookie = () => {
   Cookies.remove('filteredProducts', { path: '/' });
-  emitCookieChangeEvent(); // Emite el evento cuando se borra la cookie
+  Cookies.remove('search', { path: '/' });
+  Cookies.remove('category', { path: '/' });
+  Cookies.remove('priceMax', { path: '/' });
+  Cookies.remove('priceMin', { path: '/' });
+  emitCookieChangeEvent(); 
 };
