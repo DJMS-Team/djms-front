@@ -46,7 +46,7 @@ const OrderDetailPage = ({params}: Props) =>{
                         <Rate 
                         style={{color : "#2A2A5A"}} 
                         allowHalf
-                        onChange={(value) =>{
+                        onChange={(value: any) =>{
                             setRate(value);
                         }}
                         />
