@@ -72,6 +72,18 @@ export class ProductApi {
         }
     }
 
+    findProductsCategory = async () =>{
+        try{
+            const res = await this.instance
+            .get(`/product-category`)
+
+            return res.data
+        }catch(err){
+            throw err
+        }
+        
+    }
+
     deleteProduct = async (id:string) => {
         try{
             const res = await this.instance
@@ -89,6 +101,19 @@ export class ProductApi {
             return parseFloat(res.data)
         }catch(error){
             throw error;
+        }
+    }
+
+    decrementProduct = async(product_id:string, quantity:number)=>{
+        try{
+            const res = await this.instance
+                .patch(`/products/decrement/${product_id}`,{
+                    quantity
+                })
+            console.log(res.data)
+            return res.data
+        }catch(err){
+            throw err;
         }
     }
 
