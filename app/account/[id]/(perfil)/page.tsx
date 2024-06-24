@@ -16,7 +16,6 @@ import { useEffect, useState } from "react";
 import { User } from "@/interfaces/user";
 import { Address } from "@/interfaces/address";
 import { addressApi, userApi } from "@/APIS";
-import { AddresApi } from "@/APIS/address.api";
 import { useRouter } from "next/navigation";
 import {
   DropdownMenu,
@@ -26,8 +25,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IconEdit, IconTrash } from "@tabler/icons-react";
-
+import { Trash, Edit } from "lucide-react";
 interface Props {
   params: { id: string };
 }
@@ -46,7 +44,7 @@ const ProfilePage = ({ params }: Props) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await userApi.findOneUser(params.id);
-      console.log(res);
+      
       setUser(res);
       setAddresses(res.addresses);
       setUpdateName(res.name);
@@ -153,13 +151,13 @@ const ProfilePage = ({ params }: Props) => {
                     <DropdownMenuItem
                       onClick={() => onUpdateAddress(address.id)}
                     >
-                      <IconEdit className="mr-2" />
+                      <Edit className="size-4 mr-2" />
                       Editar
                     </DropdownMenuItem>
                     <DropdownMenuItem
                     onClick={() => addressApi.deleteAddress(address.id)}
                     >
-                      <IconTrash className="mr-2" />
+                      <Trash className="size-4 mr-2" />
                       Eliminar
                     </DropdownMenuItem>
                   </DropdownMenuContent>

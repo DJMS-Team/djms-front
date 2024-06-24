@@ -1,9 +1,8 @@
 "use client"
 
 import { productApi } from "@/APIS";
-import { City } from "@/interfaces/city";
-import { Department } from "@/interfaces/departmen";
-import { Box, Button, Container, Grid, MenuItem, Select, TextField, Typography } from "@mui/material";
+
+import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useState } from "react";
 import { useRouter } from "next/navigation";
 import { uploadImageCloudinaryProduct } from "@/cloudinary";
