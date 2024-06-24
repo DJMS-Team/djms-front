@@ -2,9 +2,10 @@
 import { orderApi, resourceApi } from "@/APIS";
 import { CardFooter } from "@/components/ui/card";
 import { Order } from "@/interfaces/order";
-import { Card, CardContent, CardHeader, CardMedia, Container, Typography, Button } from "@mui/material";
+import { Card, CardContent, CardHeader, CardMedia, Container, Typography, Button, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { Rate } from "antd";
 
 
 interface Props {
@@ -14,7 +15,7 @@ interface Props {
 const OrderDetailPage = ({params}: Props) =>{
     const router = useRouter();
     const [order, setOrder] = useState<Order>()
-    const [rate, setRate] = useState<number>(0)
+    const [rate, setRate] = useState<number | null>(0)
 
     useEffect(()=>{
         const fetchData = async () =>{
@@ -27,9 +28,11 @@ const OrderDetailPage = ({params}: Props) =>{
     },[])
 
     const onGiveReview = async (product_id:string) =>{
-        const res = await resourceApi.createReview(rate, params.id, product_id);
-        console.log(res);
-        router.push(`/account/${params.id}`)
+        if(rate) {
+            const res = await resourceApi.createReview(rate, params.id, product_id);
+            console.log(res);
+            router.push(`/account/${params.id}`)
+        }
     }
 
     return(
@@ -49,7 +52,15 @@ const OrderDetailPage = ({params}: Props) =>{
                     </div>
                     </CardContent>
                     <CardFooter>
-                        
+                    <Rating
+                        value = {rate}
+                        style={{color : "#2A2A5A"}} 
+                        precision={0.25}
+                        onChange={(value, newValue) =>{
+                            console.log(newValue)
+                            setRate(newValue);
+                        }}
+                        />
                     </CardFooter>
                     <Button className="flex-col" onClick={()=>onGiveReview(order_detail.product.id)}>Hacer reseña</Button>
                 
