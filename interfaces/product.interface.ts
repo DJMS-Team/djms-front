@@ -9,7 +9,7 @@ export interface Product {
   product_name: string;
   description: string | null;
   price: number;
-  photo_url: string;
+  photo_url: string[];
   order_details?: OrderDetail[];
   reviews?: Review[];
   product_category: ProductCategory;
