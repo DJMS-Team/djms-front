@@ -1,12 +1,12 @@
 "use client";
 
-import { IconBrandGoogleFilled } from "@tabler/icons-react";
+import { IconBrandGoogleFilled, IconCheck } from "@tabler/icons-react";
 import { IconExclamationCircle } from "@tabler/icons-react";
 import { IconMailCheck } from "@tabler/icons-react";
 import { useState, useTransition } from "react";
 import { uploadImageCloudinary } from "../cloudinary/index";
 import { useRegister } from "@/hooks/auth/useRegister";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 
 const FormRegister = () => {
@@ -69,15 +69,15 @@ const FormRegister = () => {
         .then((data: any) => {
           setError(data.error);
           setSuccess(data.success);
-          setImagePreview("");
+          if (data?.success) {
+            setTimeout(() => {
+              router.push("/auth/login");
+            }, 2000);
+          }
         })
         .catch((e: Error) => setError(e.message));
     });
 
-    const currentUser = Cookies.get("currentUser");
-    if (currentUser) {
-      router.push("/auth/login");
-    }
   };
 
   return (
@@ -96,14 +96,16 @@ const FormRegister = () => {
           style={{ backgroundImage: `url(${imagePreview})` }}
         ></div>
         {imagePreview ? (
-          <p className="text-white text-center mt-5">Uploaded image</p>
+          <p className="text-black text-center mt-5 py-2 bg-white rounded-3xl w-auto">
+            Click para cambiar la imagen
+          </p>
         ) : (
-          <p className="text-black text-center mt-5 py-2 bg-white rounded-lg w-auto">
-            Click to upload image
+          <p className="text-black text-center mt-5 py-2 bg-white rounded-3xl w-auto">
+            Click para subir una imagen
           </p>
         )}
       </label>
-      <label htmlFor="fullname">Full name</label>
+      <label htmlFor="fullname">Nombre completo</label>
       <input
         id="fullname"
         name="fullname"
@@ -113,7 +115,7 @@ const FormRegister = () => {
         disabled={isPending}
         required
       />
-      <label htmlFor="email">Email</label>
+      <label htmlFor="email">Correo electronico</label>
       <input
         id="email"
         name="email"
@@ -123,7 +125,7 @@ const FormRegister = () => {
         disabled={isPending}
         required
       />
-      <label htmlFor="password">Password</label>
+      <label htmlFor="password">Contraseña</label>
       <input
         id="password"
         name="password"
@@ -134,29 +136,21 @@ const FormRegister = () => {
         required
       />
       {error && (
-        <div className="text-white font-bold bg-danger rounded-lg px-2 py-1">
+        <div className="text-white font-bold bg-red-500 mt-2 rounded-lg px-2 py-1 flex gap-2">
           <IconExclamationCircle /> {error}
         </div>
       )}
       {success && (
-        <div className="text-white font-bold bg-green-500 rounded-log px-2 py-1">
-          <IconMailCheck /> {success}
+        <div className="text-white font-bold bg-green-500 rounded-lg mt-2 px-2 py-1 flex gap-2">
+          <IconCheck /> {success}
         </div>
       )}
       <button
         type="submit"
-        className="bg-success mt-2 hover:bg-success-hover text-white w-full p-[10px] rounded-3xl"
+        className="mt-2 bg-[#0FF] hover:bg-[#0FF]/60 text-black font-bold transition-all w-full p-[10px] rounded-3xl"
         disabled={isPending}
       >
-        Create an account
-      </button>
-      <div className="flex justify-center items-center gap-2">
-        <div className="bg-secondary w-full h-[2px]"></div>
-        <span>O</span>
-        <div className="bg-secondary w-full h-[2px]"></div>
-      </div>
-      <button className="bg-secondary hover:bg-secondary-hover px-2 py-3 w-16 rounded-lg flex justify-center items-start mx-auto">
-        <IconBrandGoogleFilled className="text-primary" />
+        Crear cuenta
       </button>
     </form>
   );
