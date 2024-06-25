@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </CardHeader>
         <CardContent>
           <Image
-            src={product?.photo_url ? product.photo_url : ""}
+            src={product?.photo_url[0] ? product.photo_url[0] : ""}
             alt={product?.product_name ? product.product_name : "Empty product!"}
             width={100}
             height={100}
