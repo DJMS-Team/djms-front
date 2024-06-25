@@ -1,11 +1,12 @@
 "use client"
 
-import { productApi } from "@/APIS";
+import { orderApi, productApi } from "@/APIS";
 
-import { Box, Button, Container, Grid, TextField, Typography } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { Box, Button, Container, Grid, MenuItem, Select, TextField, Typography } from "@mui/material";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { uploadImageCloudinaryProduct } from "@/cloudinary";
+import { ProductCategory } from "@/interfaces/product-category.interface";
 
 
 interface Props {
@@ -21,6 +22,17 @@ const AddProductPage = ({params}: Props) =>{
     const [description, setDescription] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
     const [quantity, setQuantity] = useState<number>(0)
+    const [productCategories, setProductCategories] = useState<ProductCategory[]>([])
+    const [category, setCategory] = useState<string>('')
+
+    useEffect(()=>{
+      const fetchData = async ()=>{
+        const res = await productApi.findProductsCategory();
+        setProductCategories(res);
+      }
+
+      fetchData();
+    },[]) 
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0){
@@ -44,7 +56,7 @@ const AddProductPage = ({params}: Props) =>{
         [status, data] = await uploadImageCloudinaryProduct(selectedImage);
       }
 
-        const product = await productApi.createProduct(name, description,price,quantity, data || '', '0aab0870-d55e-41b8-8cc4-6fb97336cd7c',params.id)
+        const product = await productApi.createProduct(name, description,price,quantity, data || '', category ,params.id)
         router.push(`/account/${params.id}/products`)
     };
 
@@ -67,7 +79,7 @@ const AddProductPage = ({params}: Props) =>{
                 <Typography variant="h5" gutterBottom>
                   Agregar producto
                 </Typography>
-                <form noValidate autoComplete="off" className="mt-5">
+                <form noValidate autoComplete="off" className="mt-5 mx-auto">
                 <Box sx={{ textAlign: 'center', p: 2, border: '1px dashed gray', borderRadius: '8px', bgcolor: '#f9f9f9', mb: 2 }}>
                 <input
                     accept="image/*"
@@ -130,6 +142,18 @@ const AddProductPage = ({params}: Props) =>{
                         
                     />
                     
+                  </Box>
+                  <Box mb={2}>
+                    <p className="block w-full truncate whitespace-nowrap overflow-hidden">Categoria</p>
+                    <Select
+                      fullWidth
+                      onChange={(e)=>setCategory(e.target.value)}
+                      value = {category}
+                    >
+                      {productCategories.map((category)=>(
+                        <MenuItem value={category.id} key={category.id}>{category.category}</MenuItem>
+                      ))}
+                    </Select>
                   </Box>
                   <Box mb={2}>
                     <Typography variant="body1" gutterBottom>
