@@ -3,11 +3,11 @@ import FormRegister from "@/components/form-register";
 const Register = () => {
   return (
     <>
-      <h1 className="text-4xl text-center w-full">Sing in</h1>
+      <h1 className="text-4xl text-center w-full">Registrarse</h1>
       <FormRegister />
       <a href="/auth/login">
-        Already have an account?{" "}
-        <span className="text-success hover:underline">Login</span>
+        ¿Ya tienes una cuenta?{" "}
+        <span className="text-success hover:underline">Ingresa</span>
       </a>
     </>
   );
