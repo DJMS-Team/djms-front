@@ -11,6 +11,7 @@ interface Props {
 }
 
 const OrderDetailPage = ({params}: Props) => {
+    //Console.log puta vida
     const router = useRouter();
     const [order, setOrder] = useState<Order>()
     const [ratings, setRatings] = useState<{ [key: string]: number | null }>({})
