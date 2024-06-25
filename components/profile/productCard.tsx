@@ -16,7 +16,7 @@ const ProductCard = (product: Product) => {
       <CardMedia
         component="img"
         sx={{ width: 100 }}
-        image={product.photo_url}
+        image={product.photo_url[0]}
         alt="Pad Mouse Gaming"
       />
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>

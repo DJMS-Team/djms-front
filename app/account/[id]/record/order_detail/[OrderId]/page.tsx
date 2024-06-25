@@ -2,34 +2,22 @@
 import { orderApi, resourceApi } from "@/APIS";
 import { CardFooter } from "@/components/ui/card";
 import { Order } from "@/interfaces/order";
-<<<<<<< HEAD
 import { Card, CardContent, CardHeader, CardMedia, Container, Typography, Button, Rating, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Rate } from "antd";
-=======
-import { Card, CardContent, CardHeader, CardMedia, Container, Typography, Button, Rating } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { Rate } from "antd";
-
->>>>>>> f1a4920 (fix categories and stock2)
 
 interface Props {
     params: { id:string, OrderId:string }
 }
 
 const OrderDetailPage = ({params}: Props) => {
+    //Console.log puta vida
     const router = useRouter();
     const [order, setOrder] = useState<Order>()
-<<<<<<< HEAD
     const [ratings, setRatings] = useState<{ [key: string]: number | null }>({})
     const [open, setOpen] = useState(false);
     const [comment, setComment] = useState<string | null>(null);
     const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
-=======
-    const [rate, setRate] = useState<number | null>(0)
->>>>>>> f1a4920 (fix categories and stock2)
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,15 +29,9 @@ const OrderDetailPage = ({params}: Props) => {
         fetchData();
     }, [])
 
-<<<<<<< HEAD
     const onGiveReview = async (product_id: string) => {
         if (ratings[product_id]) {
             const res = await resourceApi.createReview(ratings[product_id]!, comment, params.id, product_id);
-=======
-    const onGiveReview = async (product_id:string) =>{
-        if(rate) {
-            const res = await resourceApi.createReview(rate, params.id, product_id);
->>>>>>> f1a4920 (fix categories and stock2)
             console.log(res);
             router.push(`/account/${params.id}`)
         }
@@ -76,11 +58,12 @@ const OrderDetailPage = ({params}: Props) => {
     return (
         <Container className="mx-auto p-4">
             <div className="flex flex-col gap-4">
+
                 {order?.order_details.map((order_detail) => (
                     <Card className="bg-white/99 shadow-md rounded-lg p-4 flex-col" key={order_detail.product.id}>
                         <CardContent className="flex items-center">
                             <img
-                                src={order_detail.product.photo_url}
+                                src={order_detail.product.photo_url[0]}
                                 alt="Producto"
                                 className="w-11 h-11 rounded-full mr-4"
                             />
@@ -121,45 +104,6 @@ const OrderDetailPage = ({params}: Props) => {
                         </Dialog>
                     </Card>
                 ))}
-                <Card className="bg-white/50 shadow-md rounded-lg p-4">
-                    <CardHeader title={
-                        <h5>La orden con Fecha {order?.date.toString()} fue entregada</h5>
-                    }>
-                    </CardHeader>
-                    <CardContent>
-                        La orden fue entregada en la dirección {`${order?.address.street} # ${order?.address.avenue}-${order?.address.house_number}`}
-                    </CardContent>
-<<<<<<< HEAD
-                </Card>
-=======
-                    <CardFooter>
-                    <Rating
-                        value = {rate}
-                        style={{color : "#2A2A5A"}} 
-                        precision={0.25}
-                        onChange={(value, newValue) =>{
-                            console.log(newValue)
-                            setRate(newValue);
-                        }}
-                        />
-                    </CardFooter>
-                    <Button className="flex-col" onClick={()=>onGiveReview(order_detail.product.id)}>Hacer reseña</Button>
-                
-            </Card>
-            ))}
-            <Card className="bg-white/50 shadow-md rounded-lg p-4">
-                <CardHeader title= {
-                    <h5>La orden con Fecha {order?.date.toString()} fue entregada</h5>
-                }>
-                    
-                </CardHeader>
-                <CardContent>
-                    
-                    Este es el detalle de la orden
-                </CardContent>
-            </Card>
-            {/* Puedes agregar más Cards aquí */}
->>>>>>> f1a4920 (fix categories and stock2)
             </div>
         </Container>
     );
