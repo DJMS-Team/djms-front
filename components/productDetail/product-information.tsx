@@ -1,5 +1,5 @@
 'use client'
-
+import { toast } from 'react-hot-toast'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import PayMethodCard from "./pay-method-card";
@@ -30,6 +30,16 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
      if (product) {
        cart.addItem(product);
      }
+  }
+
+  const handleBuyNow = () => {
+    if (product) {
+      if (product?.quantity > 0) {
+        handleOpen();
+      } else {
+        toast.error('There is not enough stock')
+      }
+    }
   }
 
   const handleOpen = () => {
@@ -75,7 +85,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
             <p>Stock: {product?.quantity}</p>
           </CardContent>
           <CardFooter className="flex gap-5">
-            <Button onClick={handleOpen}>Buy now</Button>
+            <Button onClick={handleBuyNow}>Buy now</Button>
             <Button onClick={onAddToCart}>Add to cart</Button>
           </CardFooter>
           <Dialog open={open} onClose={handleClose}>
