@@ -8,6 +8,7 @@ import "./globals.css";
 import store from "@/redux/store";
 import { ToastProvider } from "@/components/cart/toast-provider";
 import { Exo_2 } from "next/font/google";
+import { ModalProvider } from "@/components/productDetail/modal-provider";
 
 const exo_2 = Exo_2({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={exo_2.className}>
         <ToastProvider />
+        <ModalProvider  />
         <div className="min-h-[90vh]">{children}</div>
         <Footer />
       </body>
