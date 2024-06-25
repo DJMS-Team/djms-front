@@ -6,6 +6,7 @@ import PurchaseCard from '@/components/profile/purchaseCard';
 import { Order } from '@/interfaces/order';
 import { orderApi, userApi } from '@/APIS';
 import { OrderDetail } from '@/interfaces/order_detail';
+import Link from 'next/link';
 
     interface Props {
         params: { id: string }
@@ -18,14 +19,18 @@ const RecordPage = ({params}: Props) =>{
     const calculatePrice = (order:Order) : number =>{
       let quantity=0;
       let partial_price =0
+      let partial_total = 0;
+      //console.log(order)
       order.order_details.map((detail)=>{
-          quantity += detail.quantity
-          partial_price += detail.product.price;
+          quantity = +detail.quantity
+          partial_price = +detail.product.price;
+          partial_total += quantity * partial_price
+          //console.log("Esta es la cantidad " + quantity + " Este es el precio parcial " + partial_price)
       })
 
 
 
-      return quantity*partial_price
+      return partial_total
     }
 
     useEffect(()=>{
@@ -48,14 +53,17 @@ const RecordPage = ({params}: Props) =>{
             </Typography>
             <Grid spacing={4} gap={5} className='mt-10 flex flex-wrap flex-'>
             {order?.map((order, index) => (
+              <Link href={`/account/${params.id}/record/order_detail/${order.id}`} key={index}>
                 <PurchaseCard
-                    key={index}
+                    
                     title={`Order ${index + 1}`} // Ejemplo de título, podrías usar algo relevante del objeto Order
-                    quantity={order.order_details.reduce((acc, detail) => acc + detail.quantity, 0)} // Ejemplo de cantidad, podrías obtener esto de los detalles de la orden
+                    quantity={order.order_details.reduce((acc, detail) => acc + +detail.quantity, 0)} // Ejemplo de cantidad, podrías obtener esto de los detalles de la orden
                     price={calculatePrice(order)}
                     address={order.address.street} // Ejemplo de dirección, adaptado a tu estructura Address
                     status={order.status} // Estado de la orden
                 />
+              </Link>
+                
             ))}
             </Grid>
           </Box>
