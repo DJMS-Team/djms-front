@@ -52,15 +52,27 @@ export class ResourceApi {
             .delete(`/comments/${id}`)
     }
 
-    createReview = async (score: number, user_id:string, product_id: string ) =>{
+    createReview = async (score: number, comment:string | null, user_id:string, product_id: string ) =>{
         try{
-            const res = await this.instance
-            .post(`/reviews`, {
-                score: score,
-                user_id:user_id,
-                product_id: product_id
-            })
-            return res.data;
+            if(comment){
+                const res = await this.instance
+                .post(`/reviews`, {
+                    score: score,
+                    comment,
+                    user_id:user_id,
+                    product_id: product_id
+                })
+                return res.data;
+            }else{
+                const res = await this.instance
+                .post(`/reviews`, {
+                    score: score,
+                    user_id:user_id,
+                    product_id: product_id
+                })
+                return res.data;
+            }
+           
         }catch(error){
             throw error;
         }
@@ -89,6 +101,7 @@ export class ResourceApi {
         }
     }
 
+    
 
 
 }
