@@ -44,7 +44,7 @@ export async function middleware(req: NextRequest){
         //console.log(current)
     
         if (oAuthToken.length > 0) {
-          const response = NextResponse.redirect(new URL("/auth/login", req.url));
+          const response = NextResponse.redirect(new URL("/", req.url));
     
           response.cookies.set({
             name: "currentUser",

@@ -28,7 +28,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         <Badge>{product?.product_category?.category}</Badge>
       </div>
       <ProductImage
-        photoUrl={product?.photo_url}
+        photoUrl={product?.photo_url[0]}
         productName={product?.product_name}
       />
       <ProductDescription description={product?.description ? product.description : 'There is not a description of the product'} />
