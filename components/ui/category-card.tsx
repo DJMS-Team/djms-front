@@ -11,34 +11,26 @@ import { useCart } from "@/hooks/cart/use-cart"
 import { useRouter } from "next/navigation"
 import { getProductById } from "@/actions/get-product"
 import { ProductCategory } from "@/interfaces/product-category.interface"
+import { getProductsFiltered } from "@/cookies/filtered-products.cookies"
+import { useCategories } from "@/hooks/use-categories"
 
-interface CategoryCard {
-    data: Product;
+interface CategoryCardProps {
+    data: ProductCategory;
 }
 
-const CategoryCard: React.FC<CategoryCard> = ({
+const CategoryCard: React.FC<CategoryCardProps> = ({
     data
 }) => {
-
-
-    const cart = useCart()
-
-    const router = useRouter();
-    const handleClick = () => {
-        router.push(`/product/filter`)
-    }
+    const router = useRouter()
+    const { handleCategoryClick } = useCategories({ router })
 
     return (
-          <div  onClick ={handleClick}className="bg-purple-900 cursor-pointer text-white group cursor-pointer rounded-xl border p-4 space-y-2 my-2 mx-2 scale-40 ">
-          
+          <div  onClick ={() => handleCategoryClick(data.category)}className="bg-purple-900 cursor-pointer text-white group cursor-pointer rounded-xl border p-4 space-y-2 my-2 mx-2 scale-40 ">
             <div>
                 <p className="font-semibold text-lg">
-                {data.product_category.category}
+                    {data.category}
                 </p>
-                
             </div>
-            
-           
         </div>
     )
 }

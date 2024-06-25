@@ -5,9 +5,14 @@ import ProductList from "@/components/product-list";
 import { Navbar } from "../components/navbar";
 import CategoryCard from "@/components/ui/category-card";
 import Categories from "@/components/categories";
+import { getCategories } from "@/actions/get-categories";
+import { useState, useEffect } from "react";
+import { ProductCategory } from "@/interfaces/product-category.interface";
+
 const Home = async () => {
   const products = await getProducts(1, 50, "ASC");
-  
+  const categories = await getCategories();
+
   return (
     <>
       <Navbar />
@@ -22,16 +27,18 @@ const Home = async () => {
         </div>
         <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-36">
           <Categories
-          title="Productos disponibles"
-          items={products.products || []}
+          title="Categorías"
+          items={categories}
+          
           />
           <ProductList
             title="Productos disponibles"
-            items={products.products || []}
+            items={products.products || []} 
           />
         </div>
       </div>
     </>
   );
 };
+
 export default Home;
