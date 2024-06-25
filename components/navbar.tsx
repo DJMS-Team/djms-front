@@ -10,11 +10,10 @@ import { ProductCategory } from "@/interfaces/product-category.interface";
 import { getCategories } from "@/actions/get-categories";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useMedia } from "react-use";
-import Link from "next/link";
-import { LogoutButton } from "./dashboard/logout-button";
 import Cookies from "js-cookie";
 import { FormSearch } from "./form-search";
 import { ProductCategories } from "./product-categories";
+import { NavbarRole } from "./navbar-role";
 
 export const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -45,6 +44,10 @@ export const Navbar = () => {
     };
     
     fetchCategories();
+  }, []);
+
+  
+  useEffect(() => {
     setIsMounted(true);
 
     const handleScroll = () => {
@@ -101,27 +104,8 @@ export const Navbar = () => {
                 <FormSearch />
                 <ProductCategories categories={categories}>
                 </ProductCategories>
-                {currentUser ? 
-                  <a href="/" className={`${styles.navLink} text-white`}>
-                    Vender
-                  </a>:
-                  <a href="/auth/login" className={`${styles.navLink} text-white`}>
-                    Vender
-                  </a>
-                }
-                {currentUser ? 
-                <>
-                <Link href={`/account/${id}`} className="flex items-center">
-                  Perfil
-                  </Link>
-                  <LogoutButton>Log Out</LogoutButton>
-                </>: 
-                <Button className={`bg-purple-dark ${styles.navLink} `}>
-                  <Link href='/auth/login'>
-                    Log In
-                  </Link>
-                </Button>
-                }
+                <NavbarRole isMobile={true} section='vender' currentUser={currentUser} idUser={null} />
+                <NavbarRole isMobile={true} section='userButton' currentUser={currentUser} idUser={id} />
               </nav>
             </SheetContent>
           </Sheet>
@@ -148,14 +132,7 @@ export const Navbar = () => {
           </div>
           <div className="flex items-center justify-center flex-grow space-x-4">
             <ProductCategories categories={categories}></ProductCategories>
-            {currentUser ? 
-              <a href="/" className={`${styles.navLink} text-white`}>
-                Vender
-              </a>:
-              <a href="/auth/login" className={`${styles.navLink} text-white`}>
-                Vender
-              </a>
-            }
+            <NavbarRole isMobile={false} section='vender' currentUser={currentUser} idUser={null} />
           </div>
           <div className="flex items-center space-x-4">
             <button
@@ -167,14 +144,7 @@ export const Navbar = () => {
                 {cart.items.length}
               </span>
             </button>
-            {currentUser ? 
-                <UserButton />: 
-                <Button className={`bg-purple-dark ${styles.navLink}`}>
-                  <Link href='/auth/login'>
-                    Log In
-                  </Link>
-                </Button>
-            }
+            <NavbarRole isMobile={false} section='userButton' currentUser={currentUser} idUser={null} />
           </div>
         </div>
       </div>
