@@ -5,13 +5,13 @@ import { Order } from "@/interfaces/order";
 import { Card, CardContent, CardHeader, CardMedia, Container, Typography, Button, Rating, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Rate } from "antd";
 
 interface Props {
     params: { id:string, OrderId:string }
 }
 
 const OrderDetailPage = ({params}: Props) => {
+    //Console.log puta vida
     const router = useRouter();
     const [order, setOrder] = useState<Order>()
     const [ratings, setRatings] = useState<{ [key: string]: number | null }>({})
@@ -58,11 +58,12 @@ const OrderDetailPage = ({params}: Props) => {
     return (
         <Container className="mx-auto p-4">
             <div className="flex flex-col gap-4">
+
                 {order?.order_details.map((order_detail) => (
                     <Card className="bg-white/99 shadow-md rounded-lg p-4 flex-col" key={order_detail.product.id}>
                         <CardContent className="flex items-center">
                             <img
-                                src={order_detail.product.photo_url}
+                                src={order_detail.product.photo_url[0]}
                                 alt="Producto"
                                 className="w-11 h-11 rounded-full mr-4"
                             />
@@ -103,15 +104,6 @@ const OrderDetailPage = ({params}: Props) => {
                         </Dialog>
                     </Card>
                 ))}
-                <Card className="bg-white/50 shadow-md rounded-lg p-4">
-                    <CardHeader title={
-                        <h5>La orden con Fecha {order?.date.toString()} fue entregada</h5>
-                    }>
-                    </CardHeader>
-                    <CardContent>
-                        La orden fue entregada en la dirección {`${order?.address.street} # ${order?.address.avenue}-${order?.address.house_number}`}
-                    </CardContent>
-                </Card>
             </div>
         </Container>
     );
