@@ -10,7 +10,7 @@ import {useRouter} from 'next/navigation';
 import { User } from "@/interfaces/user";
 import { Address } from "@/interfaces/address";
 import { Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Select } from "@mui/material";
-import { orderApi } from "@/APIS";
+import { orderApi, productApi } from "@/APIS";
 interface ProductInformationProps {
   product: Product | null;
   user: User | null;
@@ -46,6 +46,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
       console.log(order)
       const res = await orderApi.createOrderDetail(1, order?.id,product?.id )
       window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
+      //await productApi.decrementProduct(product.id, 1)
       localStorage.removeItem('cart-storage')
       setOpen(false);
     }
