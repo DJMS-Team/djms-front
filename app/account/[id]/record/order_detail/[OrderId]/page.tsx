@@ -5,7 +5,6 @@ import { Order } from "@/interfaces/order";
 import { Card, CardContent, CardHeader, CardMedia, Container, Typography, Button, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { Rate } from "antd";
 
 
 interface Props {
@@ -43,7 +42,7 @@ const OrderDetailPage = ({params}: Props) =>{
                 
                     <CardContent className="flex items-center">
                     <img
-                        src={order_detail.product.photo_url}
+                        src={order_detail.product.photo_url[0]}
                         alt="Producto"
                         className="w-11 h-11 rounded-full mr-4"
                     />

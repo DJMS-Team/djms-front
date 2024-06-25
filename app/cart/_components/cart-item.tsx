@@ -49,7 +49,7 @@ export const CartItem = ({ data }: CartItemProps) => {
             <div className="relative h-24 w-24 rounded-md overflow-hidden sm:h-48 sm:w-48">
                 <Image
                     fill
-                    src={data.photo_url}
+                    src={data.photo_url[0]}
                     alt=''
                     className="object-cover object-center " />
             </div>
