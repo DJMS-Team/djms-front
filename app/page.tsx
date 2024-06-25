@@ -3,6 +3,8 @@ import { Billboard } from "../components/billboard";
 import { getProducts } from "../actions/get-products";
 import ProductList from "@/components/product-list";
 import { Navbar } from "../components/navbar";
+import CategoryCard from "@/components/ui/category-card";
+import Categories from "@/components/categories";
 const Home = async () => {
   const products = await getProducts(1, 50, "ASC");
   
@@ -19,6 +21,10 @@ const Home = async () => {
           />
         </div>
         <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-36">
+          <Categories
+          title="Productos disponibles"
+          items={products.products || []}
+          />
           <ProductList
             title="Productos disponibles"
             items={products.products || []}
