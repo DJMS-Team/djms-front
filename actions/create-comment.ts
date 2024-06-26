@@ -1,5 +1,3 @@
-'use server';
-
 import * as z from 'zod';
 import axios from 'axios';
 import { CommentSchema } from '../schemas';
@@ -15,7 +13,7 @@ export const createComment = async (values: z.infer<typeof CommentSchema>) => {
 
    try {
 
-        const response = await axios.post(process.env.NEXT_PUBLIC_API_BASE_URL + `comments`,{
+        const response = await axios.post(process.env.NEXT_PUBLIC_API_BASE_URL + `/comments`,{
            description,
             is_question,
             user_id,
@@ -23,16 +21,16 @@ export const createComment = async (values: z.infer<typeof CommentSchema>) => {
         })
 
         if (response.status === 201) {
-            return { success: 'Comment submitted' };
+            return { success: 'Comentario enviado!' };
         } else {
-            return { error: 'Failed to send comment' };
+            return { error: 'Hubo un fallo al enviar el comentario' };
         }
 
    }    catch(error){
     if (axios.isAxiosError(error)) {
-        return { error: error.response?.data?.message || 'Failed to send comment' };
+        return { error: error.response?.data?.message || 'Hubo un fallo al enviar el comentario' };
     } else {
-        return { error: 'An unexpected error occurred' };
+        return { error: 'Un error inesperado ha ocurrido' };
     }
    }
 
