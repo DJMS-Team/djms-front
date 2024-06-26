@@ -102,6 +102,7 @@ export const Navbar = () => {
             <SheetContent side="left" className="px-4 bg-[#1c1c3c] text-white border-none">
               <nav className="flex flex-col gap-y-8 pt-6 text-xl">
                 <FormSearch />
+                <button onClick={() => router.push("/")} className={`${styles.navLink} text-left`}>Inicio</button>
                 <ProductCategories categories={categories}>
                 </ProductCategories>
                 <NavbarRole isMobile={true} section='vender' currentUser={currentUser} idUser={null} />
@@ -131,6 +132,7 @@ export const Navbar = () => {
             </div>
           </div>
           <div className="flex items-center justify-center flex-grow space-x-4">
+            <button onClick={() => router.push("/")} className={`${styles.navLink}`}>Inicio</button>
             <ProductCategories categories={categories}></ProductCategories>
             <NavbarRole isMobile={false} section='vender' currentUser={currentUser} idUser={null} />
           </div>
@@ -139,10 +141,10 @@ export const Navbar = () => {
               onClick={() => router.push("/cart")}
               className="flex items-center relative px-5 py-2"
             >
-              <ShoppingCart size={28} className="z-10" />
-              <span className="absolute bg-purple-dark text-white  z-[-10] rounded-full px-2 top-0 right-0">
+              <ShoppingCart size={28} className="text-[#cecece] hover:text-white z-10" />
+              <span className="absolute bg-purple-dark text-[#cecece] hover:text-white z-[-10] rounded-full px-2 top-0 right-0">
                 {cart.items.length}
-              </span>
+              </span> 
             </button>
             <NavbarRole isMobile={false} section='userButton' currentUser={currentUser} idUser={null} />
           </div>

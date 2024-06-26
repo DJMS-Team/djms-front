@@ -52,3 +52,10 @@ export const UserSchema = z.object({
     status: z.string()
     
 })
+
+export const OrderSchema = z.object({
+    status: z.string(),
+    date: z.date(),
+    customer_id: z.string(),
+    payment_method_id: z.string(),
+})
