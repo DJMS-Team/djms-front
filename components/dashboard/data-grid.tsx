@@ -2,18 +2,22 @@
 
 import { formatDateRange } from "@/lib/utils"
 import { useSearchParams } from "next/navigation"
-import { FaPiggyBank } from "react-icons/fa"
-import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6"
+import { FaArrowTrendUp, FaAddressBook, FaArrowUpRightDots } from "react-icons/fa6"
 
 import { DataCard } from "./data-card"
+import { DataCardRegistrations } from "./data-card-registrations"
 
 interface DataGridProps {
     currentPeriod: number
     incomeChange: number
     orderDays: []
+    registerChange: number
+    registerPeriod: number
+    orders: number
+    ordersPercentage: number
 }
 
-export const DataGrid = ({currentPeriod, incomeChange, orderDays}:DataGridProps) => {
+export const DataGrid = ({currentPeriod, incomeChange, orderDays, registerChange, registerPeriod, orders, ordersPercentage}:DataGridProps) => {
 
 
     const params = useSearchParams()
@@ -23,25 +27,27 @@ export const DataGrid = ({currentPeriod, incomeChange, orderDays}:DataGridProps)
     const dateRangeLabel = formatDateRange({to, from})
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-2 mb-8">
-            {/* <DataCard
-             title="Remaining"
-             value={currentPeriod}
-             icon={FaPiggyBank}
+            <DataCard
+            title="Ingresos"
+            value={currentPeriod}
+            icon={FaArrowTrendUp}
+            percentage={incomeChange}
+            variant='default'
+            dateRange={dateRangeLabel} />
+             <DataCardRegistrations
+             title="Usuarios Registrados"
+             value={registerPeriod}
+             icon={FaAddressBook}
+             percentage={registerChange}
              variant='default'
-             dateRange={dateRangeLabel} /> */}
-             <DataCard
-             title="Income"
-             value={currentPeriod}
-             icon={FaArrowTrendUp}
-             percentage={incomeChange}
+             dateRange={dateRangeLabel} /> 
+             <DataCardRegistrations
+             title="Órdenes Realizadas"
+             value={orders}
+             icon={FaArrowUpRightDots}
+             percentage={ordersPercentage}
              variant='default'
-             dateRange={dateRangeLabel} />
-             {/* <DataCard
-             title="Expenses"
-             value={currentPeriod}
-             icon={FaArrowTrendDown}
-             variant='default'
-             dateRange={dateRangeLabel} /> */}
+             dateRange={dateRangeLabel} /> 
         </div>
     )
 }

@@ -2,11 +2,11 @@
 
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import styles from "../navbar.module.css";
 
 interface LogoutButtonProps {
     children?: React.ReactNode;
 }
-
 
 export const LogoutButton = ({
     children
@@ -18,7 +18,7 @@ export const LogoutButton = ({
         router.push("/");
     }
     return (
-        <span onClick={onClick} className="cursor-pointer">
+        <span onClick={onClick} className={`${styles.navLink} cursor-pointer`}>
             {children}
         </span>
     )

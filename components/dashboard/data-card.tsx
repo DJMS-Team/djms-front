@@ -102,7 +102,7 @@ export const DataCard = ({
                 'text-muted-foreground text-sm line-clamp-1',
                 percentage > 0 ? 'text-emerald-500' : 'text-rose-500'
             )}>
-                {formatPercentage(percentage)} from last period
+                {formatPercentage(percentage)} desde el último periodo
             </p>
         </CardContent>
      </Card>

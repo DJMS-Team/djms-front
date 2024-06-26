@@ -5,6 +5,7 @@ import ProductCard from '@/components/profile/productCard';
 import { userApi } from '@/APIS';
 import { Product } from '@/interfaces/product';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 interface Props {
     params: { id: string }
@@ -19,7 +20,7 @@ const ProductPage = ({params}:Props) => {
         const fetchData = async () =>{
             const res = await userApi.findOneUser(params.id)
             setProduct(res.products)
-            console.log(res.products)
+            
         }
 
         fetchData();
@@ -36,11 +37,13 @@ const ProductPage = ({params}:Props) => {
             <Button variant="contained" color="primary" onClick={onAddProduct}>Añadir</Button>
           </Box>
           {product?.map((product,index) => (
+            
             <Grid container spacing={2} key={index}>
             <Grid item xs={12}>
-              <ProductCard {...product} />
+              <ProductCard products = {product}  user = {params.id}/>
             </Grid>
           </Grid>
+          
           ))}
           
         </Container>

@@ -10,11 +10,10 @@ import { ProductCategory } from "@/interfaces/product-category.interface";
 import { getCategories } from "@/actions/get-categories";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useMedia } from "react-use";
-import Link from "next/link";
-import { LogoutButton } from "./dashboard/logout-button";
 import Cookies from "js-cookie";
 import { FormSearch } from "./form-search";
 import { ProductCategories } from "./product-categories";
+import { NavbarRole } from "./navbar-role";
 
 export const Navbar = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -45,6 +44,10 @@ export const Navbar = () => {
     };
     
     fetchCategories();
+  }, []);
+
+  
+  useEffect(() => {
     setIsMounted(true);
 
     const handleScroll = () => {
@@ -99,29 +102,11 @@ export const Navbar = () => {
             <SheetContent side="left" className="px-4 bg-[#1c1c3c] text-white border-none">
               <nav className="flex flex-col gap-y-8 pt-6 text-xl">
                 <FormSearch />
+                <button onClick={() => router.push("/")} className={`${styles.navLink} text-left`}>Inicio</button>
                 <ProductCategories categories={categories}>
                 </ProductCategories>
-                {currentUser ? 
-                  <a href="/" className={`${styles.navLink} text-white`}>
-                    Vender
-                  </a>:
-                  <a href="/auth/login" className={`${styles.navLink} text-white`}>
-                    Vender
-                  </a>
-                }
-                {currentUser ? 
-                <>
-                <Link href={`/account/${id}`} className="flex items-center">
-                  Perfil
-                  </Link>
-                  <LogoutButton>Log Out</LogoutButton>
-                </>: 
-                <Button className={`bg-purple-dark ${styles.navLink} `}>
-                  <Link href='/auth/login'>
-                    Log In
-                  </Link>
-                </Button>
-                }
+                <NavbarRole isMobile={true} section='vender' currentUser={currentUser} idUser={null} />
+                <NavbarRole isMobile={true} section='userButton' currentUser={currentUser} idUser={id} />
               </nav>
             </SheetContent>
           </Sheet>
@@ -147,34 +132,21 @@ export const Navbar = () => {
             </div>
           </div>
           <div className="flex items-center justify-center flex-grow space-x-4">
+            <button onClick={() => router.push("/")} className={`${styles.navLink}`}>Inicio</button>
             <ProductCategories categories={categories}></ProductCategories>
-            {currentUser ? 
-              <a href="/" className={`${styles.navLink} text-white`}>
-                Vender
-              </a>:
-              <a href="/auth/login" className={`${styles.navLink} text-white`}>
-                Vender
-              </a>
-            }
+            <NavbarRole isMobile={false} section='vender' currentUser={currentUser} idUser={null} />
           </div>
           <div className="flex items-center space-x-4">
             <button
               onClick={() => router.push("/cart")}
               className="flex items-center relative px-5 py-2"
             >
-              <ShoppingCart size={28} className="z-10" />
-              <span className="absolute bg-purple-dark text-white  z-[-10] rounded-full px-2 top-0 right-0">
+              <ShoppingCart size={28} className="text-[#cecece] hover:text-white z-10" />
+              <span className="absolute bg-purple-dark text-[#cecece] hover:text-white z-[-10] rounded-full px-2 top-0 right-0">
                 {cart.items.length}
-              </span>
+              </span> 
             </button>
-            {currentUser ? 
-                <UserButton />: 
-                <Button className={`bg-purple-dark ${styles.navLink}`}>
-                  <Link href='/auth/login'>
-                    Log In
-                  </Link>
-                </Button>
-            }
+            <NavbarRole isMobile={false} section='userButton' currentUser={currentUser} idUser={null} />
           </div>
         </div>
       </div>

@@ -1,10 +1,10 @@
 // components/Sidebar.js
 import React from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Person, ShoppingBag, ShoppingCart } from '@mui/icons-material';
+import { User, ShoppingBag, ShoppingCart, BookText, Book } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-
+import { FaUser } from 'react-icons/fa';
 const Sidebar = () => {
 
   const router = useRouter();
@@ -31,24 +31,30 @@ const Sidebar = () => {
       }}
       className='mt-20 hidden md:block'
     >
-      <List>
-        <ListItem onClick={() => router.push("/account/" + id)}>
+      <List className='cursor-pointer ml-3'>
+        <ListItem sx={{ mb: 3}} onClick={() => router.push("/account/" + id)}>
           <ListItemIcon >
-            <Person sx={{ color: 'white' }} />
+            <User className='size-6 text-white' />
           </ListItemIcon>
           <ListItemText primary="Perfil" />
         </ListItem>
-        <ListItem onClick={() => router.push("/account/" + id + "/record")}>
+        <ListItem sx={{ mb: 4}} onClick={() => router.push("/account/" + id + "/record")}>
           <ListItemIcon>
-            <ShoppingCart sx={{ color: 'white' }} />
+            <ShoppingCart className='size-6 text-white' />
           </ListItemIcon>
           <ListItemText primary="Historia de Compras" />
         </ListItem>
-        <ListItem onClick={() => router.push("/account/" + id + "/products")}>
+        <ListItem sx={{ mb: 4}} onClick={() => router.push("/account/" + id + "/products")}>
           <ListItemIcon>
-            <ShoppingBag sx={{ color: 'white' }} />
+            <ShoppingBag className='size-6 text-white' />
           </ListItemIcon>
           <ListItemText primary="Mis productos" />
+        </ListItem>
+        <ListItem onClick={() => router.push("/account/" + id + "/orders")}>
+          <ListItemIcon>
+            <BookText className='size-6 text-white' />
+          </ListItemIcon>
+          <ListItemText primary="Mis ordenes" />
         </ListItem>
       </List>
     </Drawer>

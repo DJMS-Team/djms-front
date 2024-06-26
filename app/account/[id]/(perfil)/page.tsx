@@ -4,14 +4,13 @@ import {
   Container,
   Typography,
   TextField,
-  Button,
   Card,
   CardContent,
   Grid,
   IconButton,
 } from "@mui/material";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Button } from "@/components/ui/button";
+import style from '../../../../components/navbar.module.css';
 import { useEffect, useState } from "react";
 import { User } from "@/interfaces/user";
 import { Address } from "@/interfaces/address";
@@ -25,7 +24,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Trash, Edit } from "lucide-react";
+import { Trash, Edit, Plus, MoreVertical } from "lucide-react";
+import Link from "next/link";
 interface Props {
   params: { id: string };
 }
@@ -79,20 +79,24 @@ const ProfilePage = ({ params }: Props) => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 2 }}>
-      <Typography variant="h4" gutterBottom>
-        Perfil
-      </Typography>
+      <h3 className="font-bold text-3xl">Perfil</h3>
 
-      <Typography variant="h6" gutterBottom>
-        Información personal
-      </Typography>
+      <h5 className="mt-3 font-semibold text-xl">Información personal</h5>
 
       <TextField
         fullWidth
         value={updateName}
+        className="border focus:border-[#0ff]"
         margin="normal"
         variant="outlined"
         onChange={(e) => setUpdateName(e.target.value)}
+        sx={{
+          "& .MuiOutlinedInput-root": {
+            "&.Mui-focused fieldset": {
+              borderColor: "#1c1c3c",
+            },
+          },
+        }}
       />
 
       <TextField
@@ -101,40 +105,27 @@ const ProfilePage = ({ params }: Props) => {
         margin="normal"
         variant="outlined"
         onChange={(e) => setUpdateEmail(e.target.value)}
+        sx={{
+            "& .MuiOutlinedInput-root": {
+              "&.Mui-focused fieldset": {
+                borderColor: "#1c1c3c",
+              },
+            },
+          }}
       />
 
       <Button
-        variant="contained"
-        color="primary"
-        sx={{ mt: 2 }}
+        className={`${style.primaryBtn} mt-3`}
         onClick={onUpdateUser}
       >
         Actualizar
       </Button>
 
-      <Typography variant="h6" gutterBottom sx={{ mt: 4 }}>
-        Direcciones
-      </Typography>
 
-      <Grid
-        container
-        onClick={onAddAddress}
-        spacing={2}
-        alignItems="center"
-        sx={{ mb: 2 }}
-      >
-        <Grid item xs>
-          <p className="border bg-gray-100 border-gray-400 rounded-md p-2">
-            Agregar dirección
-          </p>
-        </Grid>
-        <Grid item>
-          <IconButton color="primary">
-            <AddCircleIcon />
-          </IconButton>
-        </Grid>
-      </Grid>
-
+      <div className="mt-10 flex items-center justify-between mb-3 w-full">
+        <h5 className="font-semibold text-xl">Direcciones</h5>
+        <Button className={`${style.secondaryBtn} ml-auto`} onClick={onAddAddress}>Añadir</Button>
+      </div>
       <Grid container spacing={2} mt={2}>
         {addresses?.map((address) => (
           <Grid item xs={12} sm={6} md={4} key={address.id}>
@@ -145,7 +136,7 @@ const ProfilePage = ({ params }: Props) => {
                 <Typography variant="body2">{user?.name}</Typography>
                 <DropdownMenu>
                   <DropdownMenuTrigger className="absolute top-0 right-0 mt-2 mr-2">
-                    <MoreVertIcon />
+                    <MoreVertical className="size-4"/>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
                     <DropdownMenuItem

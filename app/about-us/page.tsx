@@ -8,13 +8,13 @@ const AboutUs = () => {
     const teamMembers = [
         { name: "Juan Jose Lopez", image: "/images/juan.png" },
         { name: "Dylan Bermudez", image: "/images/dylan.png" },
-        { name: "Mateo Silve", image: "/images/mateo.png" },
+        { name: "Mateo Silva", image: "/images/mateo.png" },
         { name: "Diego Mueses", image: "/images/diego.png" },
         { name: "Sara Cardona", image: "/images/sara.png" },
     ];
 
     return (
-        <>
+        <div className="bg-[#F8F8F8]">
             <Navbar />
             <main className="px-3 lg:px-14 mx-auto max-w-4xl my-40">
                 <div className="text-center">
@@ -48,7 +48,7 @@ const AboutUs = () => {
                     </p>
                 </div>
             </main>
-        </>
+        </div>
     );
 };
 

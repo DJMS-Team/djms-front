@@ -7,6 +7,7 @@ import { IconSearch } from "@tabler/icons-react";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { ProductCategory } from "@/interfaces/product-category.interface";
+import { useCategories } from "@/hooks/use-categories";
 
 interface ProductCategoriesProps {
     categories: ProductCategory[];
@@ -14,21 +15,7 @@ interface ProductCategoriesProps {
 
 export const ProductCategories: React.FC<ProductCategoriesProps> = ({categories}) => {
     const router = useRouter();
-
-    const handleCategoryClick = async (categoryF: string) => {
-        const filter = { category: categoryF }
-        filterProducts(filter);
-    }   
-
-    const filterProducts = async (filter: any) => {
-        await getProductsFiltered(filter);
-    
-        const currentPath = window.location.pathname;
-    
-        if (!(currentPath === "/product/filter")) {
-          router.push("/product/filter");
-        }
-    }
+    const { handleCategoryClick } = useCategories({ router })
 
     return (
         <DropdownMenu>
@@ -38,7 +25,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({categories}
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="px-4 bg-[#2A2A5A] text-white border-none">
                     {categories.map((category) => (
-                      <DropdownMenuItem onClick={() => handleCategoryClick(category.category)} key={category.id}>
+                      <DropdownMenuItem className={`${styles.navLink} cursor-pointer`} onClick={() => handleCategoryClick(category.category)} key={category.id}>
                         {category.category}
                       </DropdownMenuItem>
                     ))}

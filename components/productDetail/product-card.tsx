@@ -18,12 +18,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="mt-4 w-1/4">
       <Card>
         <CardHeader>
-          <CardTitle>{product?.product_name ? product.product_name : 'Loading...'}</CardTitle>
+          <CardTitle>{product?.product_name ? product.product_name : 'Cargando...'}</CardTitle>
         </CardHeader>
         <CardContent>
           <Image
-            src={product?.photo_url ? product.photo_url : ""}
-            alt={product?.product_name ? product.product_name : "Empty product!"}
+            src={product?.photo_url[0] ? product.photo_url[0] : ""}
+            alt={product?.product_name ? product.product_name : "Producto vacío"}
             width={100}
             height={100}
             className="rounded-lg"

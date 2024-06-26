@@ -1,10 +1,7 @@
 "use client"
-import { IconUser } from "@tabler/icons-react";
-import { Review } from "@/interfaces/review.interface";
 import { useEffect, useState } from "react";
 import { productApi } from "@/APIS";
-import { useStartTyping } from "react-use";
-import {Button, Rate} from "antd"
+import { Rating } from "@mui/material";
 
 interface ReviewCardProps {
 
@@ -13,9 +10,9 @@ interface ReviewCardProps {
   
 const ReviewTotalCard: React.FC<ReviewCardProps> = ({ product_id }) => {
 
-    const [totalReviews, setTotalReviews]= useState<number>(0)
+    const [totalReviews, setTotalReviews]= useState<number>(0.0)
 
-    const displayValue = totalReviews.toFixed(1);
+    const displayValue = Number.isNaN(totalReviews) ? 0 : parseFloat(totalReviews.toFixed(1));
 
     useEffect(()=>{
         const fetchData = async () =>{
@@ -37,11 +34,12 @@ const ReviewTotalCard: React.FC<ReviewCardProps> = ({ product_id }) => {
         <div className="mx-auto p-4">
             <div className="text-8xl font-bold flex-col flex text-center">{displayValue}</div>
             <div>
-            <Rate 
+            { <Rating 
                 style={{color : "#2A2A5A"}} 
-                value={totalReviews}
-                disabled
-            />
+                value={displayValue}
+                readOnly
+                precision={0.1}
+            />}
             </div>
         </div>
       </div>
