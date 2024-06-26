@@ -141,4 +141,15 @@ export class OrderApi {
             throw err
         }
     }
+
+    findSellerOrders = async (id:string) =>{
+        try{
+            const res = await this.instance
+                .get(`/orders/seller/${id}`)
+            
+            return res.data;
+        }catch(error){
+            throw error
+        }
+    }
 }

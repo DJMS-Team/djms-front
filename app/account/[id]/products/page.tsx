@@ -19,7 +19,7 @@ const ProductPage = ({params}:Props) => {
         const fetchData = async () =>{
             const res = await userApi.findOneUser(params.id)
             setProduct(res.products)
-            console.log(res.products)
+            
         }
 
         fetchData();
