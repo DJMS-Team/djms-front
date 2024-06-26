@@ -28,7 +28,6 @@ export default function RootLayout({
           <CssBaseline />
           <ToastProvider />
           <ModalProvider />
-          <Navbar />
           <div className="min-h-[90vh]">{children}</div>
           <Footer />
         </ThemeProvider>
