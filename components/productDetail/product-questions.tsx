@@ -21,7 +21,7 @@ const ProductQuestions: React.FC<ProductQuestionsProps> = ({
       <h2 className="text-2xl font-bold">Questions</h2>
       <form onSubmit={handleSubmitComment} className="flex gap-5">
         <Input name="description" placeholder="Ask a question" />
-        <Button>Send</Button>
+        <Button type="submit">Send</Button>
       </form>
       {errorComment && (
         <div className="text-white font-bold bg-red-500 rounded-lg px-2 py-1 flex gap-2">

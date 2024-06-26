@@ -37,7 +37,7 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
     };
 
     fetchData();
-  }, [id]);
+  }, [currentUser, id]);
 
   const handleSubmitComment: React.FormEventHandler<HTMLFormElement> = (
     event
@@ -45,7 +45,7 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
     event.preventDefault();
 
     if (!currentUser) {
-      setErrorComment("You must be logged in to comment!");
+      setErrorComment("Debes iniciar sesión para comentar!");
       return;
     }
 
@@ -61,8 +61,9 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
 
     setIsPendingComment(() => {
       createComment(values).then((data: any) => {
-        setErrorComment(data.error);
-        setSuccessComment(data.success);
+        console.log(data);
+        setErrorComment(data?.error);
+        setSuccessComment(data?.success);
       });
     });
   };
