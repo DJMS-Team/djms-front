@@ -67,6 +67,36 @@ describe('Browsing Filtering Test', function() {
     
     })
 
+    it('Should add product to cart', async function() {
+        let driver;
+        try {
+            
+    
+            driver = await new Builder().forBrowser('chrome').build();
+            await driver.get('http://localhost:3000/');
+            
+    
+            await driver.wait(until.elementLocated(By.xpath("/html/body/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div/div")), 10000);
+            let categoryInput = await driver.findElement(By.xpath('/html/body/div[2]/div/div/div[2]/div[2]/div/div[2]/div/div/div'));
+            await categoryInput.click()
+    
+            await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]')), 10000);
+            let appleButton = await driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]"))
+            assert.equal(await appleButton.getText(), 'Añadir al carrito')
+            
+    
+
+    
+           
+        }catch(error){
+            
+            throw error
+        }finally{
+            await driver.quit();
+        }
+    })
+
+    
     
 })
 
