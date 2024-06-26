@@ -38,7 +38,7 @@ export const ProductCategories: React.FC<ProductCategoriesProps> = ({categories}
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="px-4 bg-[#2A2A5A] text-white border-none">
                     {categories.map((category) => (
-                      <DropdownMenuItem onClick={() => handleCategoryClick(category.category)} key={category.id}>
+                      <DropdownMenuItem className={`${styles.navLink}`} onClick={() => handleCategoryClick(category.category)} key={category.id}>
                         {category.category}
                       </DropdownMenuItem>
                     ))}
