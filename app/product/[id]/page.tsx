@@ -51,7 +51,6 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
 
     const values = {
       description: event.currentTarget.description.value,
-      is_question: true,
       user_id: currentUser.id,
       product_id: id,
     };

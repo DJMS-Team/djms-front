@@ -9,13 +9,12 @@ export const createComment = async (values: z.infer<typeof CommentSchema>) => {
         return {  error: validatedValues.error.errors[0].message };
     }
 
-    const { description, is_question, user_id, product_id  } = validatedValues.data;
+    const { description, user_id, product_id  } = validatedValues.data;
 
    try {
 
         const response = await axios.post(process.env.NEXT_PUBLIC_API_BASE_URL + `/comments`,{
            description,
-            is_question,
             user_id,
             product_id
         })

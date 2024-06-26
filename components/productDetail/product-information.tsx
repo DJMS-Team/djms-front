@@ -45,7 +45,12 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
   }
 
   const handleOpen = () => {
-    setOpen(true);
+    if(user){
+      setOpen(true);
+    }else{
+      toast.error("Necesitas estar logueado para comprar")
+    }
+    
   };
 
   const handleClose = () => {

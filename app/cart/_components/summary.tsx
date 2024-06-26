@@ -12,13 +12,14 @@ import { orderApi, userApi } from "@/APIS"
 import Cookies from "js-cookie";
 import { Address } from "@/interfaces/address"
 import { OrderApi } from "@/APIS/order.api"
+import { User } from "@/interfaces/user"
 
 const SummaryContent = () => {
     
     const searchParams = useSearchParams()
     const items = useCart((state) => state.items)
     const removeAll = useCart((state) => state.removeAll)
-    const [user, setUser] = useState<any | null>()
+    const [user, setUser] = useState<User | null>()
 
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string>('');
@@ -60,7 +61,12 @@ const SummaryContent = () => {
     }
 
     const handleOpen = () => {
-        setOpen(true);
+        if(user){
+            setOpen(true);
+        }else{
+            toast.error('Necesita estar logueado para comprar')
+        }
+        
     };
 
     const handleClose = () => {
@@ -72,17 +78,19 @@ const SummaryContent = () => {
     //};
 
     const handleConfirm = async () => {
-        
-        const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
-        console.log(order)
-        for (const item of items) {
-            const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
-            console.log(res);
+        if(user){
+            const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
+            console.log(order)
+            for (const item of items) {
+                const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
+                console.log(res);
+            }
+            
+            window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
+            localStorage.removeItem('cart-storage')
+            setOpen(false);
         }
         
-        window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
-        localStorage.removeItem('cart-storage')
-        setOpen(false);
         
     };
 
