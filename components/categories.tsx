@@ -11,10 +11,10 @@ interface Categories {
 
 const Categories: React.FC<Categories> = ({ title, items }) => {
   return (
-    <div className="space-y-4">
+    <div className="w-full space-y-10 mt-5">
       <h3 className="font-bold text-3xl">{title}</h3>
         
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols">
+        <div className="flex gap-5 flex-wrap justify-evenly items-center">
             {
                 items.map((item) => <CategoryCard data={item} key={item.id} /> )
             }
