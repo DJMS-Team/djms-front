@@ -35,8 +35,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
   return (
     <div className="space-y-4 pb-8">
       <h3 className="font-bold text-3xl">{title}</h3>
-
-      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols">
+      <div className="flex flex-wrap gap-5 justify-center">
         {currentItems.map((item) => (
           <ProductCard key={item.id} data={item} />
         ))}
@@ -45,7 +44,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
       <Pagination>
         <PaginationContent>
           {
-            <PaginationItem>
+            <PaginationItem className="cursor-pointer">
               {currentPage > 1 ? (
                 <PaginationPrevious
                   onClick={() => handlePageChange(currentPage - 1)}
@@ -56,7 +55,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
             </PaginationItem>
           }
           {[...Array(totalPages)].map((_, index) => (
-            <PaginationItem key={index}>
+            <PaginationItem key={index} className="cursor-pointer">
               <PaginationLink
                 onClick={() => handlePageChange(index + 1)}
                 isActive={currentPage === index + 1}
@@ -66,7 +65,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
             </PaginationItem>
           ))}
           {
-            <PaginationItem>
+            <PaginationItem className="cursor-pointer">
               {currentPage < totalPages ? (
                 <PaginationNext
                   onClick={() => handlePageChange(currentPage + 1)}

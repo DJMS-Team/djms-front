@@ -1,6 +1,5 @@
 .navbar {
-  background-color: #1c1c3c; /* Dark blue background */
-  border-bottom: 2px solid #0ff; /* Neon border */
+  background-color: #1c1c3c;
   transition: transform 0.3s ease-in-out;
   position: fixed;
   width: 100%;
@@ -26,12 +25,17 @@
 }
 
 .searchButton {
-  background-color: #0ff; /* Neon button background */
+  background-color: #cecece; /* Neon button background */
   color: black;
   padding: 5px 10px;
   border: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.searchButton:hover {
+  background-color: white; /* Neon button background */
 }
 
 .bottomBar {

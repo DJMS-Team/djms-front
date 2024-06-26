@@ -1,32 +1,36 @@
-'use client'
-import Image from "next/image"
+"use client";
+
+import Image from "next/image";
+import React, { MouseEventHandler } from "react";
+import { CardBody, CardContainer, CardItem } from "../ui/3d-card";
+import Link from "next/link";
 import { Product } from "../../interfaces/product.interface"
 import IconButton from "./icon-button"
-import {  Expand, ShoppingCart } from "lucide-react"
+import { Expand, ShoppingCart } from "lucide-react"
 import Currency from "./currency"
 import { toast } from 'react-hot-toast'
-import { MouseEventHandler } from "react"
 import { useCart } from "@/hooks/cart/use-cart"
-
 import { useRouter } from "next/navigation"
-import { getProductById } from "@/actions/get-product"
 import { usePreviewModal } from "@/hooks/cart/use-preview-modal"
 
 interface ProductCard {
     data: Product
 }
 
-const ProductCard: React.FC<ProductCard> = ({
-    data
-}) => {
+const truncateText = (text: string, maxLength: number) => {
+    if (text.length > maxLength) {
+        return text.slice(0, maxLength) + '...';
+    }
+    return text;
+};
 
-
+export const ProductCard: React.FC<ProductCard> = ({data}: ProductCard) => {
     const cart = useCart()
 
     const onAddToCart: MouseEventHandler<HTMLButtonElement> = async (event) => {
-       event?.stopPropagation()
+        event?.stopPropagation()
 
-       const product = cart.items.find((item) => item.id == data.id);
+        const product = cart.items.find((item) => item.id == data.id);
         
         if (product) {
             if (Number(data.quantity) - product.quantity > 0) {
@@ -40,6 +44,7 @@ const ProductCard: React.FC<ProductCard> = ({
     }
 
     const router = useRouter();
+
     const handleClick = () => {
         router.push(`/product/${data?.id}`)
     }
@@ -48,47 +53,56 @@ const ProductCard: React.FC<ProductCard> = ({
 
     const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
         event.stopPropagation()
-        
         previewModal.onOpen(data)
     }
 
-
     return (
-          <div  onClick ={handleClick}className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4 my-4 mx-2 scale-90 hover:scale-100 transition-all ease-out">
-           <div className="aspect-square rounded-xl bg-gray-100 relative">
-
-                 <Image
-                  src={data.photo_url[0]}
-                  fill
-                  alt="Image"
-                  className="aspect-square object-cover rounded-md"
-
-                /> 
-                <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-2 bottom-2">
-                    <div className="gap-2 flex flex-row">
-                        <IconButton 
-                          onClick={onPreview}
-                          icon = {<Expand size={20} className="text-gray-600" />}
-                           />
-                        <IconButton 
-                          onClick={onAddToCart}
-                          icon = {<ShoppingCart size={20} className="text-gray-600" />}
-                        />
-                    </div>
+        <div onClick={handleClick} className="cursor-pointer">
+            <CardContainer className="inter-var h-96"> 
+            <CardBody className="bg-gray-50 h-full group/card border-black/[0.1] w-[20rem] rounded-xl p-6 border flex flex-col justify-between"> 
+                <CardItem
+                    translateZ="50"
+                    className="text-xl font-bold min-h-[3rem]" 
+                >
+                    {truncateText(data.product_name, 40)}
+                </CardItem>
+                <CardItem
+                    as="p"
+                    translateZ="60"
+                    className="text-sm max-w-sm mt-2"
+                >
+                    <Currency value={data.price} />
+                </CardItem>
+                <CardItem translateZ="100" className="w-full mt-4 flex-grow flex items-center justify-center"> 
+                    <Image
+                        src={data.photo_url[0]}
+                        height="500"
+                        width="500"
+                        className="h-40 w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                        alt="thumbnail"
+                    />
+                </CardItem>
+                <div className="flex justify-between items-center mt-5">
+                    <CardItem
+                        translateZ={20}
+                        className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white w-full flex justify-between"
+                    >
+                        <div className="gap-2 flex flex-row">
+                            <IconButton 
+                                onClick={onPreview}
+                                icon={<Expand size={20} className="text-gray-600" />}
+                            />
+                            <IconButton 
+                                onClick={onAddToCart}
+                                icon={<ShoppingCart size={20} className="text-gray-600" />}
+                            />
+                        </div>
+                    </CardItem>
                 </div>
-            </div> 
-            <div>
-                <p className="font-semibold text-lg">
-                {data.product_name}
-                </p>
-                
-            </div>
-            <div className="flex items-center justify-between"> 
-                <Currency value={data.price} />
-            </div>
-           
-        </div>
-    )
+            </CardBody>
+        </CardContainer>
+        </div> 
+    );
 }
 
 export default ProductCard;

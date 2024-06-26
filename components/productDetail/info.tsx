@@ -1,4 +1,4 @@
-
+import styles from "../navbar.module.css";
 import { Product } from '@/interfaces/product.interface'
 import Currency from '../ui/currency'
 import { Button } from '../ui/button'
@@ -45,7 +45,7 @@ export const Info = ({data}: InfoProps) => {
             <div className='flex flex-col gap-y-6'>
                 <div className='flex items-center gap-x-4'>
                     <h3 className='font-semibold text-black'>
-                        Categoria:
+                        Categoría:
                     </h3>
                     <div>
                         {data.product_category.category}
@@ -53,9 +53,8 @@ export const Info = ({data}: InfoProps) => {
                 </div>
             </div>
             <div className='mt-10 flex items-center gap-x-3'>
-                <Button onClick={onAddToCart} className='flex items-center gap-x-2'>
+                <Button onClick={onAddToCart} className={`${styles.primaryBtn} flex items-center gap-x-2`}>
                     Añadir al carrito
-                    <ShoppingCart />
                 </Button>
             </div>
         
