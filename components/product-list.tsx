@@ -44,7 +44,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
       <Pagination>
         <PaginationContent>
           {
-            <PaginationItem>
+            <PaginationItem className="cursor-pointer">
               {currentPage > 1 ? (
                 <PaginationPrevious
                   onClick={() => handlePageChange(currentPage - 1)}
@@ -55,7 +55,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
             </PaginationItem>
           }
           {[...Array(totalPages)].map((_, index) => (
-            <PaginationItem key={index}>
+            <PaginationItem key={index} className="cursor-pointer">
               <PaginationLink
                 onClick={() => handlePageChange(index + 1)}
                 isActive={currentPage === index + 1}
@@ -65,7 +65,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
             </PaginationItem>
           ))}
           {
-            <PaginationItem>
+            <PaginationItem className="cursor-pointer">
               {currentPage < totalPages ? (
                 <PaginationNext
                   onClick={() => handlePageChange(currentPage + 1)}
