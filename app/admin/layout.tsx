@@ -10,7 +10,7 @@ const DashboardLayout = ({children}: Props) => {
     return (
         <>
         <Header/>
-        <main className="px-3 lg:px-14 bg-[#F8F8F8]">
+        <main className="px-3 lg:px-14">
             <SheetProvider/>
             {children}
         </main>

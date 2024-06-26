@@ -11,8 +11,7 @@ export const Footer = () => {
 
   if (pathname) {
     if (
-      pathname === "/auth/login" ||
-      pathname === "/auth/register" ||
+      
       pathname.includes("account")
     ) {
       return null;
@@ -24,13 +23,16 @@ export const Footer = () => {
       <div className="text-gray-300 py-12">
         <div className="px-4 sm:px-6 lg:px-36 mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           <div className="flex flex-col items-center m-5">
+          <Link href="/" passHref>
             <Image
               src="/images/logo-no-slogan.png"
               alt="DMajorStore Logo"
               width={96}
               height={96}
-              className="w-24 h-24"
+              className="w-20 h-24"
             />
+          </Link>
+
           </div>
           <div className="flex flex-col items-center space-y-3 m-5">
             <p className="text-lg font-semibold text-white">Información</p>
