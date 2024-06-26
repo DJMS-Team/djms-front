@@ -25,7 +25,7 @@ const ContactUs = () => {
     };
 
     return (
-        <>
+        <div className="bg-[#F8F8F8]">
             <Navbar />
 
             <main className="px-3 lg:px-14 mx-auto max-w-4xl my-40">
@@ -100,7 +100,7 @@ const ContactUs = () => {
                     </div>
                 </form>
             </main>
-        </>
+        </div>
     );
 };
 

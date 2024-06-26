@@ -64,16 +64,16 @@ const ProductCard: React.FC<ProductCard> = ({
                   className="aspect-square object-cover rounded-md"
 
                 /> 
-                <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
-                    <div className="flex-gap-x-6 justify-center">
+                <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-2 bottom-2">
+                    <div className="gap-2 flex flex-row">
                         <IconButton 
                           onClick={onPreview}
                           icon = {<Expand size={20} className="text-gray-600" />}
                            />
-                           <IconButton 
+                        <IconButton 
                           onClick={onAddToCart}
                           icon = {<ShoppingCart size={20} className="text-gray-600" />}
-                           />
+                        />
                     </div>
                 </div>
             </div> 

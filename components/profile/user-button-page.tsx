@@ -1,7 +1,6 @@
 'use client'
 
 import styles from "../navbar.module.css";
-//import { ExitIcon, ReaderIcon, InfoCircledIcon } from '@radix-ui/react-icons'; 
 import {
     DropdownMenu,
     DropdownMenuItem,
@@ -18,8 +17,16 @@ import Link from 'next/link';
 import { LogOut, User } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { IconUser } from '@tabler/icons-react';
+import { useRouter } from "next/navigation";
 
 export const UserButton = () => {
+    const router = useRouter()
+
+    const onLogout = () => {
+        Cookies.remove("currentUser");
+        router.push("/");
+    }
+
     let id = null;
     const currentUser = Cookies.get('currentUser');
     
@@ -47,7 +54,7 @@ export const UserButton = () => {
                 <DropdownMenuItem className={`${styles.navLink}`}>
                     {id ? (
                         <Link href={`/account/${id}`} className='flex items-center'>
-                            <User className='size-4 mr-2' />
+                            
                             Perfil
                         </Link>
                     ) : (
@@ -57,12 +64,9 @@ export const UserButton = () => {
                         </span>
                     )}
                 </DropdownMenuItem>
-                <LogoutButton>
-                    <DropdownMenuItem className={`${styles.navLink} cursor-pointer`}>
-                        <LogOut className='size-4 mr-2' />
-                        Logout
+                    <DropdownMenuItem onClick={onLogout} className={`${styles.navLink} cursor-pointer`}>
+                        Cerrar sesión
                     </DropdownMenuItem>
-                </LogoutButton>
             </DropdownMenuContent>
         </DropdownMenu>
         </div>
