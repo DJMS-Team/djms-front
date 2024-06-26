@@ -14,9 +14,9 @@ const Home = async () => {
   const categories = await getCategories();
 
   return (
-    <>
+    <div>
       <Navbar />
-      <div className="bg-white w-full">
+      <div className="bg-[#F8F8F8] w-full">
         <div className="py-12">
           <Billboard
             title="Los mejores productos"
@@ -25,7 +25,7 @@ const Home = async () => {
             photoUrl="https://images.unsplash.com/photo-1495954222046-2c427ecb546d?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           />
         </div>
-        <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-36">
+        <div className="flex space-y-10 flex-col gap-y-8 px-4 sm:px-6 lg:px-36">
           <Categories
           title="Categorías"
           items={categories}
@@ -37,7 +37,7 @@ const Home = async () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

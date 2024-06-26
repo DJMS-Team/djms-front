@@ -1,7 +1,6 @@
 'use client'
 
-import { FaUser } from 'react-icons/fa';
-//import { ExitIcon, ReaderIcon, InfoCircledIcon } from '@radix-ui/react-icons'; 
+import styles from "../navbar.module.css";
 import {
     DropdownMenu,
     DropdownMenuItem,
@@ -18,8 +17,16 @@ import Link from 'next/link';
 import { LogOut, User } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { IconUser } from '@tabler/icons-react';
+import { useRouter } from "next/navigation";
 
 export const UserButton = () => {
+    const router = useRouter()
+
+    const onLogout = () => {
+        Cookies.remove("currentUser");
+        router.push("/");
+    }
+
     let id = null;
     const currentUser = Cookies.get('currentUser');
     
@@ -38,16 +45,16 @@ export const UserButton = () => {
             <DropdownMenuTrigger>
                 <Avatar>
                     <AvatarImage/>
-                    <AvatarFallback className='bg-purple-dark hover:bg-[#00FFFF33]'>
-                        <User className='text-white'/>
+                    <AvatarFallback className='bg-purple-dark'>
+                        <User className='text-[#cecece]'/>
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className='w-40 px-4 bg-[#2a2a5a] text-white border-none' align='end'>
-                <DropdownMenuItem>
+            <DropdownMenuContent className="px-4 bg-[#2A2A5A] text-white border-none" align='end'>
+                <DropdownMenuItem className={`${styles.navLink}`}>
                     {id ? (
                         <Link href={`/account/${id}`} className='flex items-center'>
-                            <User className='size-4 mr-2' />
+                            
                             Perfil
                         </Link>
                     ) : (
@@ -57,12 +64,9 @@ export const UserButton = () => {
                         </span>
                     )}
                 </DropdownMenuItem>
-                <LogoutButton>
-                    <DropdownMenuItem>
-                        <LogOut className='size-4 mr-2' />
-                        Logout
+                    <DropdownMenuItem onClick={onLogout} className={`${styles.navLink} cursor-pointer`}>
+                        Cerrar sesión
                     </DropdownMenuItem>
-                </LogoutButton>
             </DropdownMenuContent>
         </DropdownMenu>
         </div>

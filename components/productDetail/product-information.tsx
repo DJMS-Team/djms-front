@@ -11,6 +11,8 @@ import { User } from "@/interfaces/user";
 import { Address } from "@/interfaces/address";
 import { Dialog, DialogActions, DialogContent, DialogTitle, MenuItem, Select } from "@mui/material";
 import { orderApi, productApi } from "@/APIS";
+import styles from "../navbar.module.css";
+
 interface ProductInformationProps {
   product: Product | null;
   user: User | null;
@@ -43,7 +45,12 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
   }
 
   const handleOpen = () => {
-    setOpen(true);
+    if(user){
+      setOpen(true);
+    }else{
+      toast.error("Necesitas estar logueado para comprar")
+    }
+    
   };
 
   const handleClose = () => {
@@ -78,15 +85,15 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
         <Card className="border-none shadow-none">
           <CardHeader>
             <CardTitle className="text-3xl font-bold">{product?.product_name}</CardTitle>
-            <p className="text-gray-600">Sold by: {product?.seller? product.seller.name : "Uknown"}</p>
+            <p className="text-gray-600">Vendido por: {product?.seller? product.seller.name : "Uknown"}</p>
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">${product?.price ? product.price : 0.0} USD</p>
             <p>Stock: {product?.quantity}</p>
           </CardContent>
-          <CardFooter className="flex gap-5">
-            <Button onClick={handleBuyNow}>Buy now</Button>
-            <Button onClick={onAddToCart}>Add to cart</Button>
+          <CardFooter className="flex flex-row gap-5">
+            <Button className={`${styles.primaryBtn} w-1/2`} onClick={handleBuyNow}>Comprar</Button>
+            <Button className={`${styles.secondaryBtn} w-1/2`} onClick={onAddToCart}>Añadir al carrito</Button>
           </CardFooter>
           <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Selecciona la direccion a enviar</DialogTitle>
@@ -102,10 +109,10 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
                     </Select>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="secondary">
+                    <Button className={`${styles.secondaryBtn}`} onClick={handleClose} color="secondary">
                         Cancela
                     </Button>
-                    <Button onClick={handleConfirm} color="primary">
+                    <Button className={`${styles.primaryBtn}`} onClick={handleConfirm} color="primary">
                         Confirma
                     </Button>
                 </DialogActions>
