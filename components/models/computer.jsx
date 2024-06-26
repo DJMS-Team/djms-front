@@ -88,6 +88,7 @@ export default function Model(props) {
           material={materials['MYBOTTLE-0']}
         />
       </group>
+      
       <mesh
         castShadow
         receiveShadow

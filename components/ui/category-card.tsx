@@ -25,7 +25,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ data }) => {
   return (
     <div
       onClick={() => handleCategoryClick(data.category)}
-      className="w-[140px] h-[140px] border-[#1C1C3C] border rounded-full flex items-center justify-center cursor-pointer hover:bg-[#1C1C3C] hover:text-white transition-all duration-300 ease-in-out"
+      className="w-[140px] h-[140px] border-[#bebee8] border rounded-full flex items-center justify-center cursor-pointer  font-bold bg-[#bebee8] hover:bg-[#1C1C3C] hover:text-white transition-all duration-300 ease-in-out"
     >
       {data.category}
     </div>
