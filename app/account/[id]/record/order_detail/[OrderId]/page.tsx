@@ -8,14 +8,13 @@ import { useRouter } from "next/navigation";
 
 
 interface Props {
-    params: { id:string, OrderId:string }
+    params: { id: string, OrderId: string }
 }
 
-const OrderDetailPage = ({params}: Props) => {
-    //Console.log puta vida
+const OrderDetailPage = ({ params }: Props) => {
     const router = useRouter();
-    const [order, setOrder] = useState<Order>()
-    const [ratings, setRatings] = useState<{ [key: string]: number | null }>({})
+    const [order, setOrder] = useState<Order>();
+    const [ratings, setRatings] = useState<{ [key: string]: number | null }>({});
     const [open, setOpen] = useState(false);
     const [comment, setComment] = useState<string | null>(null);
     const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
@@ -23,18 +22,18 @@ const OrderDetailPage = ({params}: Props) => {
     useEffect(() => {
         const fetchData = async () => {
             const res = await orderApi.findOneOrders(params.OrderId);
-            setOrder(res)
-            console.log(res)
+            setOrder(res);
+            console.log(res);
         }
 
         fetchData();
-    }, [])
+    }, [params.OrderId]);
 
     const onGiveReview = async (product_id: string) => {
         if (ratings[product_id]) {
             const res = await resourceApi.createReview(ratings[product_id]!, comment, params.id, product_id);
             console.log(res);
-            router.push(`/account/${params.id}`)
+            router.push(`/account/${params.id}`);
         }
     }
 
@@ -61,7 +60,7 @@ const OrderDetailPage = ({params}: Props) => {
             <div className="flex flex-col gap-4">
 
                 {order?.order_details.map((order_detail) => (
-                    <Card className="bg-white/99 shadow-md rounded-lg p-4 flex-col" key={order_detail.product.id}>
+                    <Card className="bg-stone-200 shadow-md rounded-lg p-4 flex-col" key={order_detail.product.id}>
                         <CardContent className="flex items-center">
                             <img
                                 src={order_detail.product.photo_url[0]}
@@ -82,7 +81,7 @@ const OrderDetailPage = ({params}: Props) => {
                         </CardFooter>
                         <Button className="flex-col" onClick={() => handleOpen(order_detail.product.id)}>Hacer reseña</Button>
                         <Dialog open={open && selectedProductId === order_detail.product.id} onClose={handleClose}>
-                            <DialogTitle> <h6>Haga un comentario a su reseña (opcional)</h6> </DialogTitle>
+                            <DialogTitle><h6>Haga un comentario a su reseña (opcional)</h6></DialogTitle>
                             <DialogContent>
                                 <TextField
                                     fullWidth
@@ -105,9 +104,17 @@ const OrderDetailPage = ({params}: Props) => {
                         </Dialog>
                     </Card>
                 ))}
+                <Card className="bg-white/50 shadow-md rounded-lg p-4">
+                    <CardHeader title={
+                        <h5>La orden con Fecha {order?.date.toString()} fue entregada</h5>
+                    } />
+                    <CardContent>
+                        La orden fue entregada en la dirección {`${order?.address.street} # ${order?.address.avenue}-${order?.address.house_number}`}
+                    </CardContent>
+                </Card>
             </div>
         </Container>
     );
 }
 
-export default OrderDetailPage
+export default OrderDetailPage;
