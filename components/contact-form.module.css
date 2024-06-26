@@ -1,0 +1,64 @@
+.contactForm {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 1rem;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .contactForm h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .contactForm label {
+    display: block;
+    margin: 0.5rem 0 0.25rem;
+    color: #555;
+  }
+  
+  .contactForm input,
+  .contactForm textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .contactForm input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+  }
+  
+  .contactForm .terms {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .contactForm .terms a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .contactForm .terms a:hover {
+    text-decoration: underline;
+  }
+  
+  .contactForm button {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    background: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .contactForm button:hover {
+    background: #005bb5;
+  }
+  
