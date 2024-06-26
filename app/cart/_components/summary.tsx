@@ -1,5 +1,5 @@
 'use client'
-
+import style from '../../../components/navbar.module.css';
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -89,17 +89,17 @@ const SummaryContent = () => {
     return (
         <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
             <h2 className="text-lg font-medium text-gray-900">
-                Order Summary
+                Resumen de orden
             </h2>
             <div className="mt-6 space-y-4">
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                     <div className="text-base font-medium text-gray-900">
-                        Order Total
+                        Order total
                     </div>
                     <Currency value={totalPrice} />
                 </div>
             </div>
-            <Button className="w-full mt-6" onClick={handleOpen}>
+            <Button className={`${style.primaryBtn} w-full mt-6`} onClick={handleOpen}>
                 Checkout
             </Button>
 
@@ -117,10 +117,10 @@ const SummaryContent = () => {
                     </Select>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="secondary">
+                    <Button onClick={handleClose} className={`${style.secondaryBtn}`}>
                         Cancela
                     </Button>
-                    <Button onClick={handleConfirm} color="primary">
+                    <Button  onClick={handleConfirm} className={`${style.primaryBtn}`}>
                         Confirma
                     </Button>
                 </DialogActions>
