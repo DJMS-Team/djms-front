@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Box, Button, IconButton } from "@mui/material";
-import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { Gallery } from "./gallery";
 
 interface ProductImageProps {

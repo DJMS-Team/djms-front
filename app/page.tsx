@@ -8,8 +8,7 @@ import Categories from "@/components/categories";
 import { getCategories } from "@/actions/get-categories";
 import { useState, useEffect } from "react";
 import { ProductCategory } from "@/interfaces/product-category.interface";
-import RenderModel from "@/components/RenderModel";
-import Computer from "@/components/models/computer";
+
 
 const Home = async () => {
   const products = await getProducts(1, 50, "ASC");
@@ -35,11 +34,7 @@ const Home = async () => {
           title="Categorías"
           items={categories}
           />
-            <div className="w-full h-full">
-                        <RenderModel children={undefined} className={undefined}>
-                            <Computer/>
-                        </RenderModel>
-                    </div>
+          
           <ProductList
             title="Productos disponibles"
             items={products.products || []} 
