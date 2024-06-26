@@ -3,7 +3,7 @@ import bg from "../../public/background/contact-us-bg.png";
 import { Form } from "react-hook-form";
 import { Navbar } from "@/components/navbar";
 import RenderModel from "../../components/RenderModel";
-import Jinx from "../../components/models/jinx"
+import Walle from "../../components/models/walle"
 
 export default function ContactUs() {
     return (
@@ -12,7 +12,7 @@ export default function ContactUs() {
 
         <div className="w-full h-screen">
             <RenderModel>
-                <Jinx/>
+                <Walle/>
             </RenderModel>
         </div>
       </main>

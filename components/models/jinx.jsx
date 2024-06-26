@@ -5,18 +5,17 @@ import { useFrame } from '@react-three/fiber'
 
 export default function Jinx(props) {
   const group = useRef()
-  const { nodes, materials, animations } = useGLTF('/models/Jinx.gltf')
+  const { nodes, materials, animations } = useGLTF('/models/Jinx/Jinx.gltf')
   const { actions } = useAnimations(animations, group)
 
-
   useFrame((state, delta) => {
-    group.current.position.y = -3 + Math.sin(state.clock.elapsedTime) * 0.15;
+    group.current.position.y = Math.sin(state.clock.elapsedTime) * 0.15;
   })
 
   return (
-    <group ref={group} {...props} dispose={null} position={[0.6, -3, 0]}>
+    <group ref={group} {...props} dispose={null} position={[0, -3, 0]}>
       <group name="Sketchfab_Scene">
-        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={4}>
+        <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={3}>
           <group name="root">
             <group name="GLTF_SceneRootNode" rotation={[Math.PI / 2, 0, 0]}>
               <group name="Armature_124" scale={0.0075}>
@@ -121,4 +120,4 @@ export default function Jinx(props) {
   )
 }
 
-useGLTF.preload('/models/jinx.gltf')
+useGLTF.preload('/models/Jinx/jinx.gltf')

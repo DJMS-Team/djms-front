@@ -26,6 +26,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Trash, Edit, Plus, MoreVertical } from "lucide-react";
 import Link from "next/link";
+import RenderModel from "@/components/RenderModel";
+import Laputa from "@/components/models/laputa";
 interface Props {
   params: { id: string };
 }
@@ -158,7 +160,13 @@ const ProfilePage = ({ params }: Props) => {
           </Grid>
         ))}
       </Grid>
+      <div >
+                        <RenderModel children={undefined} className={undefined}>
+                            <Laputa/>
+                        </RenderModel>
+                    </div>
     </Container>
+    
   );
 };
 

@@ -7,8 +7,8 @@ import "./render.module.css"
 const RenderModel = ({ children, className }) => {
   return (
 
-    <div style={{ width: '500px', height: '900px', position: 'relative' }}>
-    <Canvas className={clsx("w-full h-screen ", className)}>
+    <div style={{ width: '100%', height: '450px', position: 'relative' }}>
+    <Canvas className={clsx("w-full h-full ", className)}>
       <Suspense fallback={null}>
         {children}
       </Suspense>
