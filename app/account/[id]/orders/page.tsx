@@ -29,7 +29,7 @@ const OrdersPage = ({params}:Props) => {
         setReload(!reload);
     };
     return (
-        <div>
+        <div className="px-10">
             <DataTable
                 filterKey="date"
                 columns={columns}

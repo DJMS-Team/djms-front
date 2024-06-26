@@ -31,8 +31,8 @@ const Sidebar = () => {
       }}
       className='mt-20 hidden md:block'
     >
-      <List className='cursor-pointer'>
-        <ListItem sx={{ mb: 4}} onClick={() => router.push("/account/" + id)}>
+      <List className='cursor-pointer ml-3'>
+        <ListItem sx={{ mb: 3}} onClick={() => router.push("/account/" + id)}>
           <ListItemIcon >
             <User className='size-6 text-white' />
           </ListItemIcon>

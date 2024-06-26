@@ -20,7 +20,7 @@ interface ProductListProps {
 
 const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
