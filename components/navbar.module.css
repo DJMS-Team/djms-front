@@ -69,23 +69,23 @@
 
 .primaryBtn {
   transition: background-color 0.3s;
-  background-color: #2a2a5a;
+  background-color: #1c1c3c;
 }
 
 .primaryBtn:hover {
-  background-color: #1c1c3c;
+  background-color: #14142c;
 }
 
 .secondaryBtn {
   transition: background-color 0.3s;
   background-color: #fff;
-  color: #2a2a5a;
-  border: 1.5px solid #2a2a5a;
+  color: #1c1c3c;
+  border: 1.5px solid #1c1c3c;
   border-radius: 5px;
 }
 
 .secondaryBtn:hover {
-  background-color: rgb(231, 231, 231)
+  background-color: #e7e7e7
 }
 
 .navLink:hover {

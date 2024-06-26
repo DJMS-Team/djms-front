@@ -1,5 +1,5 @@
 'use client'
-
+import style from '../../../components/navbar.module.css';
 import { useState, useEffect, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -12,13 +12,14 @@ import { orderApi, userApi } from "@/APIS"
 import Cookies from "js-cookie";
 import { Address } from "@/interfaces/address"
 import { OrderApi } from "@/APIS/order.api"
+import { User } from "@/interfaces/user"
 
 const SummaryContent = () => {
     
     const searchParams = useSearchParams()
     const items = useCart((state) => state.items)
     const removeAll = useCart((state) => state.removeAll)
-    const [user, setUser] = useState<any | null>()
+    const [user, setUser] = useState<User | null>()
 
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string>('');
@@ -60,7 +61,12 @@ const SummaryContent = () => {
     }
 
     const handleOpen = () => {
-        setOpen(true);
+        if(user){
+            setOpen(true);
+        }else{
+            toast.error('Necesita estar logueado para comprar')
+        }
+        
     };
 
     const handleClose = () => {
@@ -72,34 +78,36 @@ const SummaryContent = () => {
     //};
 
     const handleConfirm = async () => {
-        
-        const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
-        console.log(order)
-        for (const item of items) {
-            const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
-            console.log(res);
+        if(user){
+            const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
+            console.log(order)
+            for (const item of items) {
+                const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
+                console.log(res);
+            }
+            
+            window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
+            localStorage.removeItem('cart-storage')
+            setOpen(false);
         }
         
-        window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
-        localStorage.removeItem('cart-storage')
-        setOpen(false);
         
     };
 
     return (
         <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
             <h2 className="text-lg font-medium text-gray-900">
-                Order Summary
+                Resumen de orden
             </h2>
             <div className="mt-6 space-y-4">
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
                     <div className="text-base font-medium text-gray-900">
-                        Order Total
+                        Order total
                     </div>
                     <Currency value={totalPrice} />
                 </div>
             </div>
-            <Button className="w-full mt-6" onClick={handleOpen}>
+            <Button className={`${style.primaryBtn} w-full mt-6`} onClick={handleOpen}>
                 Checkout
             </Button>
 
@@ -117,10 +125,10 @@ const SummaryContent = () => {
                     </Select>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose} color="secondary">
+                    <Button onClick={handleClose} className={`${style.secondaryBtn}`}>
                         Cancela
                     </Button>
-                    <Button onClick={handleConfirm} color="primary">
+                    <Button  onClick={handleConfirm} className={`${style.primaryBtn}`}>
                         Confirma
                     </Button>
                 </DialogActions>

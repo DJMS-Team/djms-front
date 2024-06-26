@@ -14,9 +14,9 @@ const Home = async () => {
   const categories = await getCategories();
 
   return (
-    <>
+    <div>
       <Navbar />
-      <div className="bg-white w-full">
+      <div className="bg-[#F8F8F8] w-full">
         <div className="py-12">
           <Billboard
             title="Los mejores productos"
@@ -37,7 +37,7 @@ const Home = async () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

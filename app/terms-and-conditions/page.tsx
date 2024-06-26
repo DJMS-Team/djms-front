@@ -4,7 +4,7 @@ import { Navbar } from "@/components/navbar";
 
 const TermsAndConditions = () => {
     return (
-        <>
+        <div className="#F8F8F8">
             <Navbar />
             
             <main className="px-3 lg:px-14 mx-auto max-w-4xl my-40">
@@ -87,7 +87,7 @@ const TermsAndConditions = () => {
                     Para cualquier pregunta o inquietud relacionada con estos Términos y Condiciones, por favor contáctanos a través de [correo electrónico de contacto].
                 </p>
             </main>
-        </>
+        </div>
     );
 };
 

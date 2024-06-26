@@ -36,13 +36,9 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
         }
 
             {section == 'userButton' && !currentUser? 
-            <Button className={`bg-purple-dark ${styles.navLink} `}>
-                <Link href='/auth/login'>
-                    Log In
-                </Link>
-            </Button>
-                :
-                    <></>
+            <a href="/auth/login" className={`${styles.navLink} text-white`}>
+            Iniciar sesión
+                </a>: <></>
             }
             
             {section == 'userButton' && currentUser ?
@@ -82,11 +78,9 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
         }
 
         {section == 'userButton' && !currentUser? 
-            <Button className={`bg-purple-dark ${styles.navLink}`}>
-            <Link href='/auth/login'>
-              Log In
-            </Link>
-            </Button>: <></>
+            <a href="/auth/login" className={`${styles.navLink} text-white`}>
+                Iniciar sesión
+            </a>: <></>
         }
     </>
   );
