@@ -61,8 +61,8 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
 
     setIsPendingComment(() => {
       createComment(values).then((data: any) => {
-        setErrorComment(data.error);
-        setSuccessComment(data.success);
+        setErrorComment(data?.error);
+        setSuccessComment(data?.success);
       });
     });
   };
