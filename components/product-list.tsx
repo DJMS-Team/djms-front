@@ -12,7 +12,7 @@ const ProductList: React.FC<ProductListProps> = ({ title, items }) => {
     <div className="space-y-4">
       <h3 className="font-bold text-3xl">{title}</h3>
         
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols">
+        <div className="flex flex-wrap gap-5 justify-center">
           {items.map((item) => (
             <ProductCard key={item.id} data={item} />
           ))}
