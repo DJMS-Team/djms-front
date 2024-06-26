@@ -48,19 +48,16 @@ const RecordPage = ({params}: Props) =>{
     return (
         <Container maxWidth="md" sx={{ mt: -2 }}>
           <Box my={4}>
-            <Typography variant="h4" gutterBottom>
-              Historial de compras
-            </Typography>
+            <h3 className="font-bold text-3xl">Historial de compras</h3>
             <Grid spacing={4} gap={5} className='mt-10 flex flex-wrap flex-'>
             {order?.map((order, index) => (
               <Link href={`/account/${params.id}/record/order_detail/${order.id}`} key={index}>
                 <PurchaseCard
-                    
-                    title={`Order ${index + 1}`} // Ejemplo de título, podrías usar algo relevante del objeto Order
-                    quantity={order.order_details.reduce((acc, detail) => acc + +detail.quantity, 0)} // Ejemplo de cantidad, podrías obtener esto de los detalles de la orden
+                    title={`Orden ${index + 1}`} 
+                    quantity={order.order_details.reduce((acc, detail) => acc + +detail.quantity, 0)} 
                     price={calculatePrice(order)}
-                    address={order.address.street} // Ejemplo de dirección, adaptado a tu estructura Address
-                    status={order.status} // Estado de la orden
+                    address={order.address.street} 
+                    status={order.status}
                 />
               </Link>
                 

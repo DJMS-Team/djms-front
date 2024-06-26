@@ -5,7 +5,7 @@ import ProductCard from '@/components/profile/productCard';
 import { userApi } from '@/APIS';
 import { Product } from '@/interfaces/product';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import styles from '../../../../components/navbar.module.css';
 
 interface Props {
     params: { id: string }
@@ -33,8 +33,8 @@ const ProductPage = ({params}:Props) => {
     return (
         <Container maxWidth="md" sx={{ mt: 2 }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-            <Typography variant="h4">Mis productos</Typography>
-            <Button variant="contained" color="primary" onClick={onAddProduct}>Añadir</Button>
+          <h3 className="font-bold text-3xl">Mis productos</h3>
+            <Button variant="contained" className={`${styles.primaryBtn}`} sx={{textTransform: 'none'}} onClick={onAddProduct}>Añadir</Button>
           </Box>
           {product?.map((product,index) => (
             

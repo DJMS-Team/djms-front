@@ -2,8 +2,8 @@ import React from 'react';
 import { Container, Card, CardMedia, CardContent, Typography, Button, Grid, Box } from '@mui/material';
 import { Product } from '@/interfaces/product';
 import { productApi } from '@/APIS';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import styles from '../../components/navbar.module.css';
 
 interface productProps {
   products : Product,
@@ -11,8 +11,6 @@ interface productProps {
 }
 
 const ProductCard = (props: productProps) => {
-    const router = useRouter();
-
     const onDelete= async() =>{
         await productApi.deleteProduct(props.products.id)
     }
@@ -34,19 +32,23 @@ const ProductCard = (props: productProps) => {
             $ {props.products.price}
           </Typography>
         </CardContent>
-        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-          <Button variant="contained" color="primary" sx={{ mr: 1 }}>
-            Editar
+        <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1}}>
+          <Button variant="contained" className={`${styles.primaryBtn}`} sx={{ mr: 1,  textTransform: 'none' }}>
+            <Link
+                href= {`/account/${props.user}/products/update_product/${props.products.id}`}
+              >
+              Editar
+            </Link>
           </Button>
-          <Button variant="contained" className='bg-red-500' onClick={onDelete} sx={{ mr: 1 }}>
+          <Button variant="contained" className={`${styles.secondaryBtn}`} onClick={onDelete} sx={{ mr: 1, textTransform: 'none' }}>
             Eliminar
           </Button>
-          <Button variant="contained" style={{background : '#2a2a5a'}}>
-          <Link
-              href= {`/account/${props.user}/products/questions_section/${props.products.id}`}
-            >
-            Ver preguntas
-          </Link>
+          <Button variant="contained" className={`${styles.secondaryBtn}`} sx={{textTransform: 'none'}}>
+            <Link
+                href= {`/account/${props.user}/products/questions_section/${props.products.id}`}
+              >
+              Ver preguntas
+            </Link>
           </Button>
         </Box>
       </Box>
