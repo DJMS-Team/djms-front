@@ -27,17 +27,18 @@ export const Actions = ({id}: Props) => {
         <>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <Button variant='ghost' className='size-8 p-0'>
+                    <Button variant='ghost' className='size-8 p-0 cursor-pointer'>
                         <MoreHorizontal className="size-4" />
                     </Button>   
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align='end'>
                     <DropdownMenuItem
+                    className='cursor-pointer'
                         disabled={false}
                         onClick= {()=>onOpen(id)}
                     >
                         <Edit className="size-4 mr-2" />
-                        Edit
+                        Editar
                     </DropdownMenuItem>
                     
                 </DropdownMenuContent>

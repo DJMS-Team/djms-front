@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
-
+import styles from "../components/navbar.module.css"
 import { cn } from "@/lib/utils"
 
 
@@ -18,8 +18,7 @@ export const NavButton = ({href, label, isActive}:Props) => {
         size="sm"
         variant="outline"
         className={cn(
-            "w-full lg:w-auto justify-between font-normal hover:bg-[#00FFFF33] hover:text-white border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none text-white focus:bg-white/30 transition",
-            isActive ? "bg-[#00FFFF33] text-white" : "bg-transparent",
+            "text-[#cecece] hover:text-white text-base border-none hover:bg-transparent transition-all duration-300 font-medium hover:font-semibold"
         )}
         >
             <Link href={href}>

@@ -1,3 +1,25 @@
+.sidebarItem {
+  color: #1c1c3c;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.sidebarItem:hover {
+  color: #14142c;
+  font-weight: 600;
+}
+
+.textSidebar {
+  color: #1c1c3c;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.textSidebar:hover {
+  color: #14142c;
+  font-weight: 600;
+}
+
 .navbar {
   background-color: #1c1c3c;
   transition: transform 0.3s ease-in-out;
@@ -68,8 +90,20 @@
   padding: 10px;
   border-radius: 5px;
   color: #cecece;
-  transition: color 0.3s;
+  transition: all 0.3s;
 }
+
+.navLinkSecondary {
+  color: #1c1c3c;
+  transition: all 0.3s;
+}
+
+.navLinkSecondary {
+  color:14142c;
+  background-color: transparent;
+  font-weight: 600;
+}
+
 
 .primaryBtn {
   transition: background-color 0.3s;
@@ -95,6 +129,7 @@
 .navLink:hover {
   color:white;
   background-color: transparent;
+  font-weight: 600;
 }
 
 .seeProducts {

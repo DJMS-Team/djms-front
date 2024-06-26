@@ -46,7 +46,7 @@ export const UserButton = () => {
                 <Avatar>
                     <AvatarImage/>
                     <AvatarFallback className='bg-purple-dark'>
-                        <User className='text-[#cecece]'/>
+                        <User className='text-[#cecece] hover:text-white transition-all duration-300'/>
                     </AvatarFallback>
                 </Avatar>
             </DropdownMenuTrigger>
