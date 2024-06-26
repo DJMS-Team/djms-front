@@ -29,8 +29,7 @@ describe('Login Test', function() {
     
     
             
-            let welcome = await driver.findElement(By.xpath('/html/body/div[2]/nav/div/div/div[1]/div[1]/a'))
-    
+            let welcome = await driver.findElement(By.className("text-white text-2xl font-bold"))
             assert.equal(await welcome.getText(), 'DMajorStore')
             console.log("Test passed")
         }catch(error){

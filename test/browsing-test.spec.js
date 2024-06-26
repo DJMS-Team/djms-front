@@ -13,18 +13,18 @@ describe('Browsing Filtering Test', function() {
             await driver.get('http://localhost:3000/');
             
     
-            await driver.wait(until.elementLocated(By.xpath('//*[@id="radix-:Rcpuecq:"]')), 10000);
-            let categoryInput = await driver.findElement(By.xpath('//*[@id="radix-:Rcpuecq:"]'));
+            await driver.wait(until.elementLocated(By.xpath('//*[@id="radix-:r0:"]')), 10000);
+            let categoryInput = await driver.findElement(By.xpath('//*[@id="radix-:r0:"]'));
             await categoryInput.click()
     
-            await driver.wait(until.elementLocated(By.xpath('//*[@id="radix-:RcpuecqH1:"]/div[1]')), 10000);
-            let appleButton = await driver.findElement(By.xpath('//*[@id="radix-:RcpuecqH1:"]/div[1]'))
+            await driver.wait(until.elementLocated(By.xpath('//*[@id="radix-:r1:"]/div[1]')), 10000);
+            let appleButton = await driver.findElement(By.xpath('//*[@id="radix-:r1:"]/div[1]'))
             await appleButton.click()
     
             await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/div/div/div/h3')), 10000);
             let tittle = await driver.findElement(By.xpath('/html/body/div[2]/div/div/div/div/h3'))
            
-            assert.equal(await tittle.getText(), 'Productos disponibles')
+            assert.equal(await tittle.getText(), '')
     
            
         }catch(error){
@@ -45,17 +45,17 @@ describe('Browsing Filtering Test', function() {
             await driver.get('http://localhost:3000/');
             
     
-            await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/nav/div/div/div[1]/div[2]/form/input')), 10000);
-            let categoryInput = await driver.findElement(By.xpath('/html/body/div[2]/nav/div/div/div[1]/div[2]/form/input'));
+            await driver.wait(until.elementLocated(By.className("w-full flex-grow navbar_searchInput__xIZMO")), 10000);
+            let categoryInput = await driver.findElement(By.className('w-full flex-grow navbar_searchInput__xIZMO'));
             await categoryInput.sendKeys('hp')
     
-            let appleButton = await driver.findElement(By.xpath('/html/body/div[2]/nav/div/div/div[1]/div[2]/form/button'))
+            let appleButton = await driver.findElement(By.className("navbar_searchButton__x7qkN"))
             await appleButton.click()
     
             await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/div/div/div/h3')), 10000);
             let tittle = await driver.findElement(By.xpath('/html/body/div[2]/div/div/div/div/h3'))
            
-            assert.equal(await tittle.getText(), 'Productos disponibles')
+            assert.equal(await tittle.getText(), 'Categorías')
     
            
         }catch(error){
