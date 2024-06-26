@@ -32,7 +32,6 @@ export const CommentSchema = z.object({
     description: z.string().min(1,{
         message: 'Comment is required'
     }),
-    is_question: z.boolean(),
     user_id: z.string(),
     product_id: z.string()
 })
