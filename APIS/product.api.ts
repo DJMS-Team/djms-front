@@ -15,7 +15,7 @@ export class ProductApi {
         });
     }
 
-    createProduct = async (product_name:string, description:string, price:number, quantity:number, photo_url:string,product_category_id:string, seller_id:string)=>{
+    createProduct = async (product_name:string, description:string, price:number, quantity:number, photo_url:string[],product_category_id:string, seller_id:string)=>{
         try{
             const res = await this.instance
                 .post(`/products`,{

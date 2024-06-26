@@ -63,11 +63,34 @@
 .navLink {
   padding: 10px;
   border-radius: 5px;
+  color: #cecece;
+  transition: color 0.3s;
+}
+
+.primaryBtn {
   transition: background-color 0.3s;
+  background-color: #2a2a5a;
+}
+
+.primaryBtn:hover {
+  background-color: #1c1c3c;
+}
+
+.secondaryBtn {
+  transition: background-color 0.3s;
+  background-color: #fff;
+  color: #2a2a5a;
+  border: 1.5px solid #2a2a5a;
+  border-radius: 5px;
+}
+
+.secondaryBtn:hover {
+  background-color: rgb(231, 231, 231)
 }
 
 .navLink:hover {
-  background-color: rgba(0, 255, 255, 0.2);
+  color:white;
+  background-color: transparent;
 }
 
 .seeProducts {

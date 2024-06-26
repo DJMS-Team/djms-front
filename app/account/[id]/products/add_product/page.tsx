@@ -1,13 +1,11 @@
 "use client"
 
 import { orderApi, productApi } from "@/APIS";
-
 import { Box, Button, Container, Grid, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { uploadImageCloudinaryProduct } from "@/cloudinary";
 import { ProductCategory } from "@/interfaces/product-category.interface";
-
 
 interface Props {
     params: { id: string }
@@ -17,7 +15,7 @@ const AddProductPage = ({params}: Props) =>{
 
     const router = useRouter();
 
-    const [selectedImage, setSelectedImage] = useState<string  | null | undefined>(null);
+    const [selectedImages, setSelectedImages] = useState<string[]>([]);
     const [name, setName] = useState<string>('')
     const [description, setDescription] = useState<string>('')
     const [price, setPrice] = useState<number>(0)
@@ -35,29 +33,37 @@ const AddProductPage = ({params}: Props) =>{
     },[]) 
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files && event.target.files.length > 0){
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    setSelectedImage(reader.result?.toString());
-                };
-                reader.readAsDataURL(file);
-            }
+        if (event.target.files) {
+            const files = Array.from(event.target.files);
+            const readers = files.map(file => {
+                return new Promise<string | ArrayBuffer | null>((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onloadend = () => {
+                        resolve(reader.result);
+                    };
+                    reader.onerror = reject;
+                    reader.readAsDataURL(file);
+                });
+            });
+
+            Promise.all(readers).then((results) => {
+                const images = results.map(result => result?.toString() || "");
+                setSelectedImages(images);
+            });
         }
-       
     };
 
     const handleSubmit = async () => {
+        const uploadPromises = selectedImages.map(image => uploadImageCloudinaryProduct(image));
 
-      let [status, data] = [false, ""];
+        const uploadResults = await Promise.all(uploadPromises);
 
-      if (selectedImage) {
-        [status, data] = await uploadImageCloudinaryProduct(selectedImage);
-      }
+        const uploadedUrls = uploadResults
+            .filter(([status, url]) => status)
+            .map(([status, url]) => url);
 
-        const product = await productApi.createProduct(name, description,price,quantity, data || '', category ,params.id)
-        router.push(`/account/${params.id}/products`)
+        const product = await productApi.createProduct(name, description, price, quantity, uploadedUrls, category, params.id);
+        router.push(`/account/${params.id}/products`);
     };
 
     return (
@@ -87,28 +93,35 @@ const AddProductPage = ({params}: Props) =>{
                     id="upload-button-file"
                     type="file"
                     onChange={handleImageChange}
+                    multiple
                 />
                 <label htmlFor="upload-button-file">
                     <Button variant="contained" color="primary" component="span">
-                    Seleccionar Imagen
+                    Seleccionar Imágenes
                     </Button>
                 </label>
-                {selectedImage && (
+                {selectedImages.length > 0 && (
                     <Box mt={2}>
                     <Typography variant="subtitle1" gutterBottom>
-                        Vista previa de la imagen:
+                        Vista previa de las imágenes:
                     </Typography>
-                    <Box
-                        component="img"
-                        sx={{
-                        height: 200,
-                        width: 'auto',
-                        borderRadius: '8px',
-                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                        }}
-                        src={selectedImage}
-                        alt="Selected"
-                    />
+                    <Grid container spacing={2}>
+                        {selectedImages.map((image, index) => (
+                        <Grid item key={index}>
+                            <Box
+                            component="img"
+                            sx={{
+                                height: 200,
+                                width: 'auto',
+                                borderRadius: '8px',
+                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+                            }}
+                            src={image}
+                            alt={`Selected ${index + 1}`}
+                            />
+                        </Grid>
+                        ))}
+                    </Grid>
                     </Box>
                 )}
                 </Box>
@@ -174,7 +187,7 @@ const AddProductPage = ({params}: Props) =>{
                         Cantidad
                     </Typography>
                     <TextField
-                        label = "Ingrese precio del producto"
+                        label = "Ingrese cantidad del producto"
                         variant="outlined"
                         fullWidth
                         margin="dense"
