@@ -79,9 +79,9 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-        <div className="flex items-center py-4">
+        <div className="flex items-center py-4 ">
             <Input
-            placeholder={`Filter ${filterKey}...`}
+            placeholder={`Filtrar por fecha`}
             value={(table.getColumn(filterKey)?.getFilterValue() as string) ?? ""}
             onChange={(event) =>
                 table.getColumn(filterKey)?.setFilterValue(event.target.value)
@@ -95,7 +95,7 @@ export function DataTable<TData, TValue>({
                     variant='outline'
                     className='ml-auto font-normal text-xs'>
                     <Trash className='h-4 w-4 mr-2' />
-                    Delete ({table.getFilteredSelectedRowModel().rows.length})
+                    Eliminar ({table.getFilteredSelectedRowModel().rows.length})
                 </Button>
             )}
         </div>
@@ -137,7 +137,7 @@ export function DataTable<TData, TValue>({
             ) : (
                 <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center">
-                    No results.
+                    No hay resultados.
                 </TableCell>
                 </TableRow>
             )}
@@ -146,8 +146,8 @@ export function DataTable<TData, TValue>({
         </div>
         <div className="flex items-center justify-end space-x-2 py-4">
             <div className="flex-1 text-sm text-muted-foreground">
-                {table.getFilteredSelectedRowModel().rows.length} of{" "}
-                {table.getFilteredRowModel().rows.length} row(s) selected.
+                {table.getFilteredSelectedRowModel().rows.length} de{" "}
+                {table.getFilteredRowModel().rows.length} columna(s) seleccioada.
             </div>
             <Button
             variant="outline"
@@ -155,7 +155,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
             >
-            Previous
+            Antes
             </Button>
             <Button
             variant="outline"
@@ -163,7 +163,7 @@ export function DataTable<TData, TValue>({
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
             >
-            Next
+            Siguiente
             </Button>
       </div>
     </div>

@@ -1,5 +1,5 @@
 "use client"
-
+import styles from "../../../../../components/navbar.module.css";
 import { orderApi, productApi } from "@/APIS";
 import { Box, Button, Container, Grid, MenuItem, Select, TextField, Typography } from "@mui/material";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -71,7 +71,7 @@ const AddProductPage = ({params}: Props) =>{
           <Grid
             container
             direction="column"
-            style={{ minHeight: '90vh' }} // Para centrar verticalmente
+            style={{ minHeight: '90vh' }} 
           >
             <Grid item>
               <Box
@@ -82,9 +82,7 @@ const AddProductPage = ({params}: Props) =>{
                 style={{ width: '100%', maxWidth: '900px' }}
                 className="mx-auto"
               >
-                <Typography variant="h5" gutterBottom>
-                  Agregar producto
-                </Typography>
+                <h4 className="font-bold text-3xl">Añadir producto</h4>
                 <form noValidate autoComplete="off" className="mt-5 mx-auto">
                 <Box sx={{ textAlign: 'center', p: 2, border: '1px dashed gray', borderRadius: '8px', bgcolor: '#f9f9f9', mb: 2 }}>
                 <input
@@ -96,7 +94,7 @@ const AddProductPage = ({params}: Props) =>{
                     multiple
                 />
                 <label htmlFor="upload-button-file">
-                    <Button variant="contained" color="primary" component="span">
+                    <Button variant="contained" className={`${styles.secondaryBtn}`} component="span" sx={{textTransform: 'none'}}>
                     Seleccionar Imágenes
                     </Button>
                 </label>
@@ -143,10 +141,10 @@ const AddProductPage = ({params}: Props) =>{
                   </Box>
                   <Box mb={2}>
                     <Typography variant="body1" gutterBottom>
-                        Descripcion
+                        Descripción
                     </Typography>
                     <TextField
-                        label = "Ingrese descripcion del producto"
+                        label = "Ingrese descripción del producto"
                         variant="outlined"
                         fullWidth
                         margin="dense"
@@ -157,7 +155,7 @@ const AddProductPage = ({params}: Props) =>{
                     
                   </Box>
                   <Box mb={2}>
-                    <p className="block w-full truncate whitespace-nowrap overflow-hidden">Categoria</p>
+                    <p className="block w-full truncate whitespace-nowrap overflow-hidden">Categoría</p>
                     <Select
                       fullWidth
                       onChange={(e)=>setCategory(e.target.value)}
@@ -197,7 +195,7 @@ const AddProductPage = ({params}: Props) =>{
                     
                   </Box>
                   <Box mt={2}>
-                    <Button variant="contained" color="primary" fullWidth onClick={handleSubmit}>
+                    <Button variant="contained" className={`${styles.primaryBtn}`} sx={{textTransform: 'none'}} fullWidth onClick={handleSubmit}>
                       Agregar producto
                     </Button>
                   </Box>
