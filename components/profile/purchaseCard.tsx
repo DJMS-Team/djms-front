@@ -9,13 +9,31 @@ interface Info {
     status:string
 }
 
+const translateStatus = (status: string) => {
+  if (status == 'RECEIVED') {
+    return 'Recibido';
+  }
+
+  if (status == 'PENDING') {
+    return 'Pendiente';
+  }
+
+  if (status == 'CANCELLED') {
+    return 'Cancelado';
+  }
+
+  if (status == 'SENDED') {
+    return 'Enviado';
+  }
+}
+
 const PurchaseCard = ({ title, quantity, price, address, status }: Info) => {
   return (
     <Card className='w-full lg:w-72'>
       <CardContent>
         <Grid container spacing={2}>
           <Grid item>
-            <Avatar style={{ backgroundColor: '#3f51b5' }}>
+            <Avatar style={{ backgroundColor: '#1c1c3c' }}>
               <ShoppingCart/>
             </Avatar>
           </Grid>
@@ -24,15 +42,32 @@ const PurchaseCard = ({ title, quantity, price, address, status }: Info) => {
               <Grid item xs>
                 <Typography variant="h6">{title}</Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Cant: {quantity} &nbsp; $ {price.toLocaleString()}
+                  Cantidad: {quantity} &nbsp; $ {price.toLocaleString()}
                 </Typography>
-                <Typography variant="body2" color="textSecondary">{address}</Typography>
+                <Typography variant="body2" color="textSecondary">Dirección: {address}</Typography>
               </Grid>
             </Grid>
             <Grid item>
-              <Typography variant="body2" style={{ color: '#3f51b5', fontWeight: 'bold' }}>
-                {status}
-              </Typography>
+              {translateStatus(status) == 'Recibido' ? 
+                <Typography variant="body2" style={{ color: '#0ea800', fontWeight: 'bold' }}>
+                {translateStatus(status)}
+                </Typography> :
+                <></>
+              } 
+
+              {translateStatus(status) == 'Cancelado' ? 
+                <Typography variant="body2" style={{ color: '#a10000', fontWeight: 'bold' }}>
+                {translateStatus(status)}
+                </Typography> :
+                <></>
+              }      
+
+              {translateStatus(status) == 'Pendiente' || translateStatus(status) == 'Enviado' ? 
+                <Typography variant="body2" style={{ color: '#ee8700', fontWeight: 'bold' }}>
+                {translateStatus(status)}
+                </Typography> :
+                <></>
+              }     
             </Grid>
           </Grid>
         </Grid>
