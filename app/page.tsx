@@ -30,6 +30,7 @@ const Home = async () => {
         </div>
       
         <div className="flex space-y-10 flex-col gap-y-8 px-4 sm:px-6 lg:px-36 ">
+          
           <Categories
           title="Categorías"
           items={categories}
