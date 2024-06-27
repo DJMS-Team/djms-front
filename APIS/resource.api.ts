@@ -52,6 +52,20 @@ export class ResourceApi {
             .delete(`/comments/${id}`)
     }
 
+    answerQuestion = async(comment_id:string, product_id:string, user_id:string, comment:string)=>{
+        try{
+            const res = await this.instance
+            .post(`/comments/${comment_id}/${product_id}/${user_id}`,{
+                comment
+            })  
+
+            return res.data
+        }catch(err){
+            throw err
+        }
+        
+    }
+
     createReview = async (score: number, comment:string | null, user_id:string, product_id: string ) =>{
         try{
             if(comment){

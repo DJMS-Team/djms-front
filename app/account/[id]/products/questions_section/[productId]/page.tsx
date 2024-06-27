@@ -16,15 +16,22 @@ import {
   TextField,
 } from "@mui/material";
 import { Order } from "@/interfaces/order";
-import { productApi } from "@/APIS";
+import { productApi, resourceApi } from "@/APIS";
 import { Comment } from "@/interfaces/comment.interface";
 import { SendIcon } from "lucide-react";
 import styles from "../../../../../../components/navbar.module.css";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
+import toast from "react-hot-toast";
 
 interface Props {
   params: { id: string; productId: string };
 }
+
+const getCurrentUserFromCookies = (): string | null => {
+  const userCookie = Cookies.get("currentUser");
+  return userCookie ? JSON.parse(userCookie).id : null;
+};
 
 const QuestionsPage = ({ params }: Props) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -32,7 +39,10 @@ const QuestionsPage = ({ params }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [comments, setComments] = useState<Comment[]>();
   const [commentary, setComment] = useState<string>("");
+  const [user, setUser] = useState<string | null>(getCurrentUserFromCookies)
   const router = useRouter();
+
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -51,7 +61,16 @@ const QuestionsPage = ({ params }: Props) => {
     setOpen(false);
   };
 
-  const handleMessage = () => {};
+  const handleMessage = async (comment_id:string) => {
+    if(user){
+      await resourceApi.answerQuestion(comment_id,params.productId,user, commentary)
+      toast.success('Comentario respondido')
+      router.push(`/account/${params.id}/products`)
+    }else{
+      toast.error('usuario no logueado')
+    }
+    
+  };
 
   return (
     <Container maxWidth="md" sx={{ mt: 2 }}>
@@ -68,7 +87,12 @@ const QuestionsPage = ({ params }: Props) => {
       </div>
       <div className="mt-5 flex gap-5 flex-col">
         {comments?.map((comment) => (
-          <Card key={comment.id}>
+          <Card key={comment.id} sx={{
+            transition: "transform 0.3s ease-in-out", // Transición para el efecto de escala
+            "&:hover": {
+              transform: "scale(1.03)", // Escala al hacer hover
+            }
+          }}>
             <CardContent className="flex justify-between items-center p-4">
               <h4>{comment.description}</h4>
               <Button
@@ -100,7 +124,7 @@ const QuestionsPage = ({ params }: Props) => {
                 <DialogActions>
                   <Button
                     onClick={() => {
-                      handleMessage();
+                      handleMessage(comment.id);
                       handleClose();
                     }}
                     color="primary"
