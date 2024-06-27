@@ -23,6 +23,10 @@ const Register = () => {
         ¿Aun no tienes cuenta?{" "}
         <span className="text-success hover:underline">Registrarse</span>
       </a>
+      <Link href={"/auth/checkEmail"}>
+          ¿Olvidaste tu contraseña?{" "}
+          <span className="text-success hover:underline">Recuperar contraseña</span>
+      </Link>
     </>
   );
 };
