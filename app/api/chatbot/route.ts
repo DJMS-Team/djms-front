@@ -21,4 +21,13 @@ export async function POST(req: NextRequest) {
     ]
   };
 
+  try {
+    const response = await axios.post(api_url, data, { headers });
+    const responseData = response.data;
+
+    return NextResponse.json(responseData);
+  } catch (error) {
+
+    return NextResponse.json({ error: 'Error connecting to the API'}, { status: 500 });
+  }
 }
