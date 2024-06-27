@@ -26,13 +26,32 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
     
   const cart = useCart()
   const router = useRouter()
-  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
-     event?.stopPropagation()
-     
-     if (product) {
-       cart.addItem(product);
-     }
-  }
+
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = async (event) => {
+    event?.stopPropagation()
+
+    const productoncart = cart.items.find((item) => item.id == product?.id);
+    
+    if (product) {
+      if (productoncart) {
+        if (Number(product.quantity == 0)) {
+            toast.error('No hay suficiente stock.')
+        } /*else if (Number(product.quantity) - Number(productoncart?.quantity) > 0) {
+          cart.incrementQuantity(product.id);
+        }*/ else {
+            toast.error('Producto ya en el carrito, puedes aumentar la cantidad desde allí.', {icon: '⚠️'})
+        }
+      } else {
+        if (Number(product.quantity == 0)) {
+            toast.error('No hay suficiente stock.')
+        } else {
+            cart.addItem(product);
+        }
+      }
+    } else {
+      toast.error('Error al cargar el producto.')
+    }
+}
 
   const handleBuyNow = () => {
     if (product) {
@@ -75,6 +94,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
     if (product) {
       cart.addItem(product);
     }
+    
     router.push('/cart')
  }
  
@@ -85,7 +105,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
         <Card className="border-none shadow-none">
           <CardHeader>
             <CardTitle className="text-3xl font-bold">{product?.product_name}</CardTitle>
-            <p className="text-gray-600">Vendido por: {product?.seller? product.seller.name : "Uknown"}</p>
+            <p className="text-gray-600">Vendido por: {product?.seller? product.seller.name : "Desconocido"}</p>
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">${product?.price ? product.price : 0.0} USD</p>
@@ -96,7 +116,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
             <Button className={`${styles.secondaryBtn} w-1/2`} onClick={onAddToCart}>Añadir al carrito</Button>
           </CardFooter>
           <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Selecciona la direccion a enviar</DialogTitle>
+                <DialogTitle>Selecciona la dirección a enviar</DialogTitle>
                 <DialogContent>
                     <Select
                         value={selectedValue}

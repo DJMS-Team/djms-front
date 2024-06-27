@@ -20,10 +20,15 @@ const SummaryContent = () => {
     const items = useCart((state) => state.items)
     const removeAll = useCart((state) => state.removeAll)
     const [user, setUser] = useState<User | null>()
-
+    const [totalPrice, setTotalPrice] = useState<number>(0);
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string>('');
     const [Addreses, setAdresses] = useState<Address[]>();
+    const [productsOnCart] = useState(localStorage.getItem('cart-storage'));
+
+    useEffect(() => {
+        setTotalPrice(calculateTotalPrice);
+    })
 
     useEffect(() => {
         if (searchParams.get('success')) {
@@ -50,7 +55,7 @@ const SummaryContent = () => {
         fetchData();
     },[])
 
-    const totalPrice = items.reduce((acc, item) => {
+    const calculateTotalPrice = items.reduce((acc, item) => {
         return acc + Number(item.price)
     }, 0)
 

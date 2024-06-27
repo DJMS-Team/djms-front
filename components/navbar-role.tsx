@@ -1,8 +1,6 @@
 'use client';
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styles from "./navbar.module.css";
-import { useCart } from "@/hooks/cart/use-cart";
-import { Button } from "./ui/button";
 import { UserButton } from "./profile/user-button-page";
 import Link from "next/link";
 import { LogoutButton } from "./dashboard/logout-button";
@@ -25,7 +23,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
     return (
         <>
             {section == 'vender' && currentUser? 
-            <a className={`${styles.navLink} text-white`}>
+            <a href={`/account/${idUser}/products/add_product`} className={`${styles.navLink} text-white`}>
                 Vender
             </a>
         :
@@ -63,7 +61,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
   return (
     <>
         {section == 'vender' && currentUser? 
-            <a href="/product" className={`${styles.navLink} text-white`}>
+            <a href={`/account/${idUser}/products/add_product`} className={`${styles.navLink} text-white`}>
                 Vender
             </a>
         :

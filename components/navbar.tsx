@@ -120,7 +120,7 @@ export const Navbar = () => {
                   isMobile={true}
                   section="vender"
                   currentUser={currentUser}
-                  idUser={null}
+                  idUser={id}
                 />
                 <NavbarRole
                   isMobile={true}
