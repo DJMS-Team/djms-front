@@ -33,7 +33,8 @@ const Sidebar = () => {
           backgroundColor: 'transparent',
           color: '#1c1c3c',
           marginTop: '80px',
-          borderRight: '2px solid #e0e0e0', // Aumenta el grosor de la línea
+          borderRight: '2px solid #e0e0e0',
+          zIndex: 0 // Aumenta el grosor de la línea
         },
       }}
       className='mt-5 hidden md:block'
