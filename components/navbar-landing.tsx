@@ -125,6 +125,12 @@ export const NavbarLanding = () => {
                   currentUser={currentUser}
                   idUser={null}
                 />
+                <button
+                  onClick={() => router.push("/guides")}
+                  className={`${styles.navLink}`}
+                >
+                  Guias
+                </button>
                 <NavbarRole
                   isMobile={true}
                   section="userButton"
@@ -171,11 +177,18 @@ export const NavbarLanding = () => {
                   idUser={null}
                 />
                 <button
+                  onClick={() => router.push("/guides")}
+                  className={`${styles.navLink}`}
+                >
+                  Guias
+                </button>
+                <button
                   onClick={() => setSearchVisible(!searchVisible)}
                   className={`flex items-center px-5 py-2 -mr-3 ${styles.navLink}`}
                 >
                   <IconSearch />
                 </button>
+                
                 <button
                   onClick={() => router.push("/cart")}
                   className="flex items-center relative px-5 py-2 mr-2"

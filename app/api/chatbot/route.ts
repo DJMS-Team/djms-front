@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(responseData);
   } catch (error) {
-    console.error("Error connecting to the API:", error.response ? error.response.data : error.message);
-    return NextResponse.json({ error: 'Error connecting to the API', details: error.response ? error.response.data : error.message }, { status: 500 });
+
+    return NextResponse.json({ error: 'Error connecting to the API'}, { status: 500 });
   }
 }
