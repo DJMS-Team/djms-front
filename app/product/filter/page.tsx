@@ -12,16 +12,13 @@ const FilteredProductsPage = () => {
   const updateFilteredProducts = () => {
     const storedProducts = getFilteredProductsFromCookie();
     setFilteredProducts(storedProducts);
-    console.log('Stored products:', storedProducts);
   };
 
   const updateQueryType = () => {
-    console.log('query type actualizandose: ' + getQueryTypeFromCookie()?.queryType)
     setQueryType(getQueryTypeFromCookie()?.queryType);
   }
 
   const updateQueryValue = () => {
-    console.log('query value actualizandose: ' + getQueryTypeFromCookie()?.value)
     setQueryValue(getQueryTypeFromCookie()?.value);
   }
 

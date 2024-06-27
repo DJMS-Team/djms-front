@@ -31,7 +31,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         photoUrl={product?.photo_url}
         productName={product?.product_name}
       />
-      <ProductDescription description={product?.description ? product.description : 'There is not a description of the product'} />
+      <ProductDescription description={product?.description ? product.description : 'No hay descripción del producto'} />
       <ProductQuestions
         handleSubmitComment={handleSubmitComment}
         errorComment={errorComment}

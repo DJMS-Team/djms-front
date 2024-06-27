@@ -15,9 +15,9 @@ export const AscDesc: React.FC<AscDescProps> = ({ title, handleSort }) => {
                     <p>{title}</p>
                     <AiOutlineCaretDown size={12} className="mt-[1px]" />
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="px-4 bg-[#2A2A5A] text-white border-none">
+                  <DropdownMenuContent className="px-4 bg-white text-[#1c1c3c] border-none">
                     {ascDesc.map((opt) => (
-                      <DropdownMenuItem onClick={() => handleSort('price'+opt.type)} key={opt.id}>
+                      <DropdownMenuItem className="hover:text-[#14142c] cursor-pointer" onClick={() => handleSort('price'+opt.type)} key={opt.id}>
                         {opt.type}
                       </DropdownMenuItem>
                     ))}

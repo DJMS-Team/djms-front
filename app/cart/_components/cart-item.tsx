@@ -37,10 +37,10 @@ export const CartItem = ({ data }: CartItemProps) => {
             if (Number(product.quantity) - item.quantity > 0) {
                 incrementQuantity();
             } else {
-                toast.error('There is not enough stock')
+                toast.error('No hay suficiente stock')
             }
         } else {
-            toast.error('Error loading item')
+            toast.error('Error cargando el producto')
         }
     }
 
