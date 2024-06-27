@@ -78,7 +78,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
         }
 
         {section == 'userButton' && !currentUser? 
-            <a href="/auth/login" className={`${styles.navLink} text-white`}>
+            <a href="/auth/login" className={`${styles.navLinkTwo} bg-white`}>
                 Iniciar sesión
             </a>: <></>
         }

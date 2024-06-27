@@ -93,9 +93,19 @@
   transition: all 0.3s;
 }
 
+.navLinkTwo {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #cecece;
+}
+
 .navLinkSecondary {
   color: #1c1c3c;
   transition: all 0.3s;
+}
+
+.navLinkTwo:hover {
+  background-color: #fefefe;
 }
 
 .navLinkSecondary {

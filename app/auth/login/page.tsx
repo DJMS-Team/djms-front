@@ -1,7 +1,7 @@
 import FormLogin from "@/components/form-login";
-import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
 import Image from "next/image";
 import Link from "next/link";
+
 const Register = () => {
   return (
     <>
@@ -19,9 +19,9 @@ const Register = () => {
 
       <h1 className="text-4xl text-center w-full font-bold">Iniciar sesión</h1>
       <FormLogin />
-      <a href="/auth/register">
+      <a href="/auth/register" className="mx-auto">
         ¿Aun no tienes cuenta?{" "}
-        <span className="text-success hover:underline">Registrarse</span>
+        <span className="text-success underline">Registrarse</span>
       </a>
     </>
   );
