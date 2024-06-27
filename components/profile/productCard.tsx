@@ -19,6 +19,13 @@ interface productProps {
   user: string;
 }
 
+const truncateText = (text: string, maxLength: number) => {
+  if (text.length > maxLength) {
+    return text.substring(0, maxLength) + "...";
+  }
+  return text;
+};
+
 const ProductCard = (props: productProps) => {
   const onDelete = async () => {
     await productApi.deleteProduct(props.products.id);
@@ -27,58 +34,70 @@ const ProductCard = (props: productProps) => {
   return (
     <Card
       sx={{
-        display: "flex",
-        mb: 2,
         boxShadow: "0 4px 8px rgba(0,0,0,0.1)", // Sombra suave
+        borderRadius: 2, // Bordes redondeados
+        overflow: "hidden", // Asegura que los bordes redondeados se apliquen correctamente a la imagen
+        transition: "transform 0.3s ease-in-out", // Transición para el efecto de escala
+        "&:hover": {
+          transform: "scale(1.03)", // Escala al hacer hover
+        },
+        display: "flex",
+        flexDirection: "column",
       }}
-      className="w-full"
+      className="w-full lg:w-[350px]"
     >
-      <CardMedia
-        component="img"
-        sx={{ width: 150 }}
-        image={props.products.photo_url[0]}
-        alt={props.products.product_name}
-        className="object-cover"
-      />
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <CardContent sx={{ flex: "1 0 auto" }}>
-          <Typography component="div" variant="h6" className="font-semibold">
-            {props.products.product_name}
+      <div className="flex gap-5">
+        <CardMedia
+          component="img"
+          sx={{
+            width: 100,
+            height: 100,
+            objectFit: "cover",
+            backgroundColor: "#fff",
+          }} // Ajustar imagen y fondo blanco
+          image={props.products.photo_url[0]}
+          alt={props.products.product_name}
+          className="my-auto"
+        />
+        <CardContent sx={{ flexGrow: 1, textAlign: "left" }}>
+          <Typography variant="h6" className="font-semibold">
+            {truncateText(props.products.product_name, 20)}
           </Typography>
           <Typography
-            variant="subtitle1"
-            color="text.secondary"
+            variant="h6"
+            className="text-[#1c1c3c]"
             component="div"
+            sx={{ mt: 1 }}
           >
             $ {props.products.price}
           </Typography>
         </CardContent>
-        <Box sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}>
-          <Button
-            variant="contained"
-            className={`${styles.primaryBtn}`}
-            sx={{ mr: 1, textTransform: "none" }}
-            href={`/account/${props.user}/products/update_product/${props.products.id}`}
-          >
-            Editar
-          </Button>
-          <Button
-            variant="contained"
-            className={`${styles.secondaryBtn}`}
-            onClick={onDelete}
-            sx={{ mr: 1, textTransform: "none" }}
-          >
-            Eliminar
-          </Button>
-          <Button
-            variant="contained"
-            className={`${styles.secondaryBtn}`}
-            sx={{ textTransform: "none" }}
-            href={`/account/${props.user}/products/questions_section/${props.products.id}`}
-          >
-            Ver preguntas
-          </Button>
-        </Box>
+      </div>
+      <Box sx={{ display: "flex", justifyContent: "left", paddingBottom: 2, paddingX: 2 }}>
+        <Button
+          variant="contained"
+          className={`${styles.primaryBtn} max-h-[40px]`}
+          sx={{ mr: 1, textTransform: "none" }}
+          href={`/account/${props.user}/products/update_product/${props.products.id}`}
+        >
+          Editar
+        </Button>
+        <Button
+          variant="contained"
+          className={`${styles.secondaryBtn} max-h-[40px]`}
+          onClick={onDelete}
+          sx={{ mr: 1, textTransform: "none" }}
+        >
+          Eliminar
+        </Button>
+        <Button
+          variant="contained"
+          className={`${styles.secondaryBtn} max-h-[40px]`}
+          sx={{ textTransform: "none" }}
+          href={`/account/${props.user}/products/questions_section/${props.products.id}`}
+        >
+          Preguntas
+        </Button>
       </Box>
     </Card>
   );
