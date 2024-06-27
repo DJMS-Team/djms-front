@@ -23,7 +23,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ review }) => {
             <IconUser size={40} />
           )}
         </div>
-        <div>Rating: {review.score}</div>
+        <div>Nota: {review.score}</div>
       </div>
       <p className="flex-grow">
         {review.comment ? review.comment : "No hay reseña para este producto."}
