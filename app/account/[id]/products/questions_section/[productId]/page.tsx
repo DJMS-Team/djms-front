@@ -1,111 +1,129 @@
-"use client"
-import React, { useEffect, useState } from "react"
-import { styled, alpha } from '@mui/material/styles';
-import Menu, { MenuProps } from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import {Button, Card, CardContent, CardHeader, Container, Dialog, DialogActions, DialogContent, DialogTitle, TextField} from "@mui/material"
+"use client";
+import React, { use, useEffect, useState } from "react";
+import { styled, alpha } from "@mui/material/styles";
+import Menu, { MenuProps } from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  Container,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  TextField,
+} from "@mui/material";
 import { Order } from "@/interfaces/order";
 import { productApi } from "@/APIS";
 import { Comment } from "@/interfaces/comment.interface";
 import { SendIcon } from "lucide-react";
-
+import styles from "../../../../../../components/navbar.module.css";
+import { useRouter } from "next/navigation";
 
 interface Props {
-    params: { id:string, productId:string }
+  params: { id: string; productId: string };
 }
 
-const QuestionsPage = ({params}:Props) =>{
+const QuestionsPage = ({ params }: Props) => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const opened = Boolean(anchorEl);
+  const [open, setOpen] = useState<boolean>(false);
+  const [comments, setComments] = useState<Comment[]>();
+  const [commentary, setComment] = useState<string>("");
+  const router = useRouter();
 
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const opened = Boolean(anchorEl);
-    const [open, setOpen] = useState<boolean>(false)
-    const [comments, setComments] = useState<Comment[]>()
-    const [commentary, setComment] = useState<string>("")
-
-    useEffect(()=>{
-        const fetchData = async() =>{
-            const res = await productApi.findOneProduct(params.productId);
-            console.log(res.comments)
-            setComments(res.comments)
-        }
-
-        fetchData();
-
-    },[])
-
-    const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setOpen(true)
-    };
-    const handleClose = () => {
-        setOpen(false)
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await productApi.findOneProduct(params.productId);
+      console.log(res.comments);
+      setComments(res.comments);
     };
 
-    const handleMessage = () =>{
+    fetchData();
+  }, []);
 
-    }
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
-    return (
-        <Container className="p-8">
-           <Card className="mb-4">
-                <CardHeader 
-                title = "Preguntas y comentarios"
-                />
-            </Card> 
-            <div className="divide-y-2 divide-gray-400 hover:divide-y-4">
-            {comments?.map((comment)=>(
-            <Card className="" key={comment.id}>
-                
-                    <CardContent className="flex justify-between items-center p-4">
-                    <h4>{comment.description}</h4>
-                    <Button
-                        id="demo-customized-button"
-                        aria-controls={opened ? 'demo-customized-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={opened ? 'true' : undefined}
-                        variant="contained"
-                        disableElevation
-                        style={{background : '#1c1c3c'}}
-                        onClick={handleClick}
-                        endIcon = {<SendIcon fontSize="small"  />}
-                    >
-                        Responder
-                    </Button>
-                    <Dialog open={open} onClose={handleClose}>
-                        <DialogTitle>Pon la respuesta en esta campo</DialogTitle>
-                        <DialogContent>
-                            <TextField
-                                        fullWidth
-                                        margin="dense"
-                                        value={commentary}
-                                        onChange={(e) => setComment(e.target.value)}
-                                        autoFocus = {false}
-                            />
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={handleClose} color="secondary">
-                                Cancelar
-                            </Button>
-                            <Button 
-                                onClick={() => {
-                                    handleMessage();
-                                    handleClose();
-                                }} 
-                                color="primary"
-                            >
-                                    Confirmar
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
+  const handleMessage = () => {};
 
-                   
-                </CardContent>
-                
-                
-            </Card>
-            ))}
-            </div>
-        </Container>
-    )
-}
+  return (
+    <Container maxWidth="md" sx={{ mt: 2 }}>
+      <div className="flex justify-between items-center">
+        <h3 className="font-bold text-3xl">Preguntas y comentarios</h3>
+        <Button
+          variant="contained"
+          className={`${styles.secondaryBtn}`}
+          sx={{ textTransform: "none" }}
+          onClick={() => router.back()}
+        >
+          Volver
+        </Button>
+      </div>
+      <div className="mt-5 flex gap-5 flex-col">
+        {comments?.map((comment) => (
+          <Card key={comment.id}>
+            <CardContent className="flex justify-between items-center p-4">
+              <h4>{comment.description}</h4>
+              <Button
+                id="demo-customized-button"
+                aria-controls={opened ? "demo-customized-menu" : undefined}
+                aria-haspopup="true"
+                aria-expanded={opened ? "true" : undefined}
+                variant="contained"
+                disableElevation
+                style={{ background: "#1c1c3c" }}
+                onClick={handleClick}
+                endIcon={<SendIcon size={18} />}
+                className={`${styles.primaryBtn} ml-auto text-white px-6 mt-2 mr-2`}
+                sx={{ textTransform: "none" }}
+              >
+                Responder
+              </Button>
+              <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Responder al comentario</DialogTitle>
+                <DialogContent className="w-[500px]">
+                  <TextField
+                    fullWidth
+                    margin="dense"
+                    value={commentary}
+                    onChange={(e) => setComment(e.target.value)}
+                    autoFocus={false}
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    onClick={() => {
+                      handleMessage();
+                      handleClose();
+                    }}
+                    color="primary"
+                    className={`${styles.primaryBtn} ml-auto text-white px-6 mt-2 mr-2`}
+                    sx={{ textTransform: "none" }}
+                  >
+                    Confirmar
+                  </Button>
+                  <Button
+                    className={`${styles.secondaryBtn} ml-auto text-white px-6 mt-2`}
+                    sx={{ textTransform: "none" }}
+                    onClick={handleClose}
+                  >
+                    Cancelar
+                  </Button>
+                </DialogActions>
+              </Dialog>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </Container>
+  );
+};
 
-export default QuestionsPage
+export default QuestionsPage;

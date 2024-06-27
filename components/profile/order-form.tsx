@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { OrderSchema, } from '@/schemas'
+import style from '@/components/navbar.module.css'
 
 import{
     Form,
@@ -44,14 +45,14 @@ export const OrderForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Pro
     return(
         <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSubmit)}
-             className='space-y-4 pt-4'>
+             className='space-y-4 pt-4 z-50'>
                 <FormField
                  name="status"
                  control={form.control}
                  render={({ field }) => (
                     <FormItem>
                         <FormLabel>
-                            Status
+                            Estado
                         </FormLabel>
                         <FormControl>
                             <Input disabled={disabled} 
@@ -62,8 +63,8 @@ export const OrderForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Pro
                  )}
                  />
                  
-                <Button className='w-full' disabled={disabled}>
-                    Save Changes
+                <Button className={`${style.primaryBtn} w-full`} disabled={disabled}>
+                    Guardar cambios
                 </Button>
                 
             </form>

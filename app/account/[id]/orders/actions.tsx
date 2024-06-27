@@ -37,7 +37,7 @@ export const Actions = ({id}: Props) => {
                         onClick= {()=>onOpen(id)}
                     >
                         <Edit className="size-4 mr-2" />
-                        Edit
+                        Editar
                     </DropdownMenuItem>
                     
                 </DropdownMenuContent>

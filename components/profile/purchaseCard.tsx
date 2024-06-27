@@ -29,9 +29,9 @@ const translateStatus = (status: string) => {
 
 const PurchaseCard = ({ title, quantity, price, address, status }: Info) => {
   return (
-    <Card className='w-full lg:w-72'>
+    <Card className='w-full lg:w-72 relative h-full border rounded-md shadow-lg scale-95 hover:scale-100 transition-transform duration-300 ease-in-out'>
       <CardContent>
-        <Grid container spacing={2}>
+        <Grid container spacing={2} alignItems={"center"}>
           <Grid item>
             <Avatar style={{ backgroundColor: '#1c1c3c' }}>
               <ShoppingCart/>
@@ -39,10 +39,13 @@ const PurchaseCard = ({ title, quantity, price, address, status }: Info) => {
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={1}>
-              <Grid item xs>
-                <Typography variant="h6">{title}</Typography>
+              <Grid item xs alignItems={"center"} justifyContent={"space-beetwen"}>
+                <Typography variant="h6" className='font-semibold'>{title}</Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Cantidad: {quantity} &nbsp; $ {price.toLocaleString()}
+                  Cantidad: {quantity}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Precio: $ {price.toLocaleString()}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">Dirección: {address}</Typography>
               </Grid>
