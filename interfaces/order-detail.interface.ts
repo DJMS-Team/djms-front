@@ -3,7 +3,7 @@ import { Product } from "./product.interface";
 
 export interface OrderDetail {
   id: string;
-  quantity: string;
+  quantity: number;
   order: Order;
   product: Product;
 }
