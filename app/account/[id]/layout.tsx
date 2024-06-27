@@ -58,7 +58,7 @@ const AccountLayout = ({ children }: Props) => {
             </div>
           </div>
         </div>
-        <main className="md:ml-60 mt-20 px-2 pt-4 pb-32 md:px-4 flex-1">
+        <main className="md:ml-60 pt-16 px-2 pb-4 md:px-4 flex-1 min-h-screen">
           {children}
         </main>
       </div>

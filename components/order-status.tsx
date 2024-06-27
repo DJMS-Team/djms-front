@@ -53,7 +53,7 @@ export const OrderHistory = ({ order }: OrderHistoryProps) => {
   const currentStatusIndex = determineCurrentStatusIndex(order.status);
 
   return (
-    <div className="space-y-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+    <div className="space-y-6 rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800 ">
       <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Historial de Orden</h3>
       <ol className="relative ms-3 border-s border-gray-200 dark:border-gray-700">
         {orderHistory.map((item, index) => (

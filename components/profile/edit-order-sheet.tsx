@@ -47,8 +47,8 @@ export const EditOrderSheet = ({ onOrderUpdate }: Props) => {
     if (error) return <div>Error: {error.message}</div>;
   
     return (
-        <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="space-y-4">
+        <Sheet open={isOpen} onOpenChange={onClose} className="z-50">
+            <SheetContent className="space-y-4 bg-white">
                 <SheetHeader>
                     <SheetTitle>
                         Edit User
