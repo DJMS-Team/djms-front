@@ -39,7 +39,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
       if (product?.quantity > 0) {
         handleOpen();
       } else {
-        toast.error('There is not enough stock')
+        toast.error('No hay suficiente stock.')
       }
     }
   }
@@ -48,7 +48,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
     if(user){
       setOpen(true);
     }else{
-      toast.error("Necesitas estar logueado para comprar")
+      toast.error('Necesitas estar logueado para realizar esta acción.')
     }
     
   };

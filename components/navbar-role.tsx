@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { UserButton } from "./profile/user-button-page";
 import Link from "next/link";
 import { LogoutButton } from "./dashboard/logout-button";
+import toast from "react-hot-toast";
 
 interface NavbarRoleProps {
     isMobile: boolean;
@@ -14,13 +15,17 @@ interface NavbarRoleProps {
     idUser : number | null;
 }
 
+const handleNoLogin = () => {
+    toast.error('Necesitas estar logueado para realizar esta acción.')
+}
+
 export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, currentUser, idUser}: NavbarRoleProps) => {
 
   if (isMobile) {
     return (
         <>
             {section == 'vender' && currentUser? 
-            <a href="/" className={`${styles.navLink} text-white`}>
+            <a className={`${styles.navLink} text-white`}>
                 Vender
             </a>
         :
@@ -28,7 +33,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
         }
 
         {section == 'vender' && !currentUser? 
-            <a href="/auth/login" className={`${styles.navLink} text-white`}>
+            <a onClick={handleNoLogin} className={`${styles.navLink} text-white cursor-pointer`}>
                 Vender
             </a>
         :
@@ -58,7 +63,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
   return (
     <>
         {section == 'vender' && currentUser? 
-            <a href="/" className={`${styles.navLink} text-white`}>
+            <a href="/product" className={`${styles.navLink} text-white`}>
                 Vender
             </a>
         :
@@ -66,7 +71,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
         }
 
         {section == 'vender' && !currentUser? 
-            <a href="/auth/login" className={`${styles.navLink} text-white`}>
+            <a onClick={handleNoLogin} className={`${styles.navLink} text-white cursor-pointer`}>
                 Vender
             </a>
         :

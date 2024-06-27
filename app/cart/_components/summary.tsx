@@ -42,10 +42,8 @@ const SummaryContent = () => {
             const currentUser = Cookies.get("currentUser");
             if (currentUser) {
               setUser(JSON.parse(currentUser));
-             // console.log(JSON.parse(currentUser)?.id)
               const res = await userApi.findOneUser(JSON.parse(currentUser)?.id)
               setAdresses(res?.addresses)
-              //console.log(res)
             }
         }
 
@@ -64,7 +62,7 @@ const SummaryContent = () => {
         if(user){
             setOpen(true);
         }else{
-            toast.error('Necesita estar logueado para comprar')
+            toast.error('Necesitas estar logueado para realizar esta acción.')
         }
         
     };
@@ -95,13 +93,13 @@ const SummaryContent = () => {
     };
 
     return (
-        <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
-            <h2 className="text-lg font-medium text-gray-900">
+        <div className="sticky top-24 mt-16 rounded-lg bg-white shadow-md px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+            <h2 className="text-lg font-semibold text-gray-900">
                 Resumen de orden
             </h2>
             <div className="mt-6 space-y-4">
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                    <div className="text-base font-medium text-gray-900">
+                    <div className="text-base font-semibold text-gray-900">
                         Order total
                     </div>
                     <Currency value={totalPrice} />
@@ -139,7 +137,7 @@ const SummaryContent = () => {
 
 export const Summary = () => {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Cargando...</div>}>
             <SummaryContent />
         </Suspense>
     )

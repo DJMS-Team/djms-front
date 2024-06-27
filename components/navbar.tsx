@@ -198,8 +198,8 @@ export const Navbar = () => {
         <div
           className={`transition-transform duration-500 ease-in-out ${
             searchVisible ? "translate-y-0" : "-translate-y-20"
-          } w-full py-5 absolute top-0 left-0 right-0 mx-auto px-4 sm:px-6 lg:px-36 flex gap-5 bg-[#1c1c3c] items-center`}
-        >
+            } w-full py-5 absolute top-0 left-0 right-0 mx-auto px-4 sm:px-6 lg:px-36 flex gap-5 bg-[#1c1c3c] items-center`}
+          >
           <FormSearch />
           <IconX
             onClick={() => setSearchVisible(false)}
