@@ -31,17 +31,17 @@ export const useCart = create(
                             : item
                     )
                 });
-                return toast('Quantity updated', { icon: '🛒' });
+                return toast('Cantidad actualizada', { icon: '🛒' });
             }
 
             set({ items: [...get().items, { ...data, quantity: 1 }] });
-            toast.success('Product added to cart', { icon: '🛒' });
+            toast.success('Producto añadido al carrito');
         },
         removeItem: (id: string) => {
             set({ 
                 items: [...get().items.filter((item) => item.id !== id)] 
             });
-            toast.success('Product removed from cart', { icon: '🛒' });
+            toast.success('Producto eliminado del carrito', { icon: '🛒' });
         },
         removeAll: () => set({ items: [] }),
         incrementQuantity: (id: string) => {
@@ -72,7 +72,7 @@ export const useCart = create(
                 });
             } else {
                 set({ items: [...currentItems.filter((item) => item.id !== id)] });
-                toast.success('Product removed from cart', { icon: '🛒' });
+                toast.success('Product eliminado del carrito', { icon: '🛒' });
             }
         }
     }), {

@@ -20,15 +20,21 @@ export const Info = ({data}: InfoProps) => {
 
        const product = cart.items.find((item) => item.id == data.id);
         
-        if (product) {
-            if (Number(data.quantity) - product.quantity > 0) {
-                cart.addItem(data);
-            } else {
-                toast.error('There is not enough stock')
-            }
+       if (product) {
+        if (Number(data.quantity == 0)) {
+            toast.error('No hay suficiente stock.')
+        } /*else if (Number(data.quantity) - Number(product.quantity) > 0) {
+            cart.incrementQuantity(product.id);
+        } */else {
+            toast.error('Producto ya en el carrito, puedes aumentar la cantidad desde allí.', {icon: '⚠️'})
+        }
+    } else {
+        if (Number(data.quantity == 0)) {
+            toast.error('No hay suficiente stock.')
         } else {
             cart.addItem(data);
         }
+    }
     }
     
     return (
