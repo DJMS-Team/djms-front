@@ -18,7 +18,7 @@ type Props = {
 }
 
 export const SpendingPie = ({data = []}:Props) => {
-    console.log(data.length)
+    
     return (
         <Card className="border-none drop-shadow-sm">
             <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row
