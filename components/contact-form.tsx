@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './contact-form.module.css';
 
@@ -39,6 +40,7 @@ const ContactForm: React.FC = () => {
       const result = await response.json();
       if (result.success) {
         alert('Your feedback has been sent successfully!');
+        setFormData({ name: '', email: '', subject: '', message: '' }); 
       } else {
         alert('Failed to send your feedback.');
       }
@@ -50,26 +52,24 @@ const ContactForm: React.FC = () => {
 
   return (
     <form className={styles.contactForm} onSubmit={handleSubmit}>
-      <h2>Send an email</h2>
-
-      <label htmlFor="name">Enter Your Name (Required)</label>
+      <label htmlFor="name" className="text-white">Digita tu nombre (Requerido)</label>
       <input type="text" id="name" name="name" placeholder="Enter Name" value={formData.name} onChange={handleChange} required />
 
-      <label htmlFor="email">Enter Your Email (Required)</label>
+      <label htmlFor="email" className="text-white">Digita tu email (Requerido)</label>
       <input type="email" id="email" name="email" placeholder="Enter Email" value={formData.email} onChange={handleChange} required />
 
-      <label htmlFor="subject">Subject (Required)</label>
+      <label htmlFor="subject" className="text-white">Asunto (Requerido)</label>
       <input type="text" id="subject" name="subject" placeholder="Enter Subject" value={formData.subject} onChange={handleChange} required />
 
-      <label htmlFor="message">Your message (Required)</label>
+      <label htmlFor="message" className="text-white">Tu mensaje (Requerido)</label>
       <textarea id="message" name="message" placeholder="Enter Message" value={formData.message} onChange={handleChange} required />
 
       <div className={styles.terms}>
         <input type="checkbox" id="privacyTerms" name="privacyTerms" required />
-        <label htmlFor="privacyTerms">I accept the <a href="/privacy-terms" target="_blank">Privacy Terms</a></label>
+        <label htmlFor="privacyTerms" className="text-white">Yo acepto los <a href="/privacy-terms" target="_blank">terminos de privacidad</a></label>
       </div>
 
-      <button type="submit">Send</button>
+      <button type="submit">Enviar</button>
     </form>
   );
 }

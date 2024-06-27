@@ -73,7 +73,6 @@ const FAQPage: React.FC = () => {
             <p>Si no sabes que se adecua a tus necesidades siéntete libre de chatear con nuestra asesora personalizada, ¡haz todas las preguntas que necesites!</p>
           </div>
         </div>
-        
         <div className="chatbot">
           <h1 className='font-bold m-4'>Chatea con DMAJORAI</h1>
           <div className="chat-window">
@@ -97,14 +96,14 @@ const FAQPage: React.FC = () => {
       <style jsx>{`
         .relative {
           position: relative;
-          z-index: 1; /* Asegura que todo el contenido esté por encima del fondo */
+          z-index: 1; 
         }
         .container {
           display: flex;
           justify-content: center;
           align-items: flex-start;
           max-width: 1200px;
-          margin: 40px auto 0 auto; /* Adjusted to move the content down */
+          margin: 40px auto 0 auto;
           padding: 20px;
           color: white;
         }
@@ -118,7 +117,7 @@ const FAQPage: React.FC = () => {
           flex-direction: column;
           border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 10px;
-          height: 800px; /* Adjust according to need */
+          height: 800px; 
           background-color: rgba(28, 28, 59, 0.8); 
         }
         .chat-window {
@@ -145,14 +144,14 @@ const FAQPage: React.FC = () => {
         .chat-input button {
           padding: 10px 20px;
           border: none;
-          background-color: #6F00FF; /* Fuchsia */
+          background-color: #6F00FF; 
           color: white;
           border-radius: 5px;
           cursor: pointer;
           transition: background-color 0.3s;
         }
         .chat-input button:hover {
-          background-color: #6F00FF; /* Darker fuchsia */
+          background-color: #6F00FF; 
         }
         .message {
           margin-bottom: 10px;
@@ -161,7 +160,7 @@ const FAQPage: React.FC = () => {
           color: #fff;
         }
         .message.user {
-          background-color: #6F00FF; /* Fuchsia */
+          background-color: #6F00FF; 
           text-align: right;
         }
         .message.bot {
@@ -169,13 +168,13 @@ const FAQPage: React.FC = () => {
           color: white;
         }
         .powered-by {
-          color: rgba(255, 255, 255, 0.5); /* Lighten the text color */
-          font-size: 0.9rem; /* Smaller font size */
+          color: rgba(255, 255, 255, 0.5);
+          font-size: 0.9rem; 
           text-align: center;
           margin-bottom: 10px;
         }
         .guia-title {
-          font-size: 2.5rem; /* Larger font size */
+          font-size: 2.5rem; 
           text-align: center;
           
           color: #fff;
@@ -207,7 +206,7 @@ const FAQPage: React.FC = () => {
             margin: 10px 0;
           }
           .chatbot {
-            height: auto; /* Let it grow with content */
+            height: auto; 
           }
         }
         @media (max-width: 480px) {
