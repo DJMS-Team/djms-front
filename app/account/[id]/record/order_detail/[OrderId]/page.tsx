@@ -5,6 +5,7 @@ import { Order } from "@/interfaces/order";
 import { Card, CardContent, CardHeader, CardMedia, Container, Typography, Button, Rating, Dialog, DialogTitle, DialogContent, DialogActions, TextField } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { OrderHistory,  } from "@/components/order-status";
 
 
 interface Props {
@@ -54,6 +55,10 @@ const OrderDetailPage = ({ params }: Props) => {
             [product_id]: newValue
         }));
     }
+    if (!order) {
+        return <p>Loading...</p>; 
+    }
+    
 
     return (
         <Container className="mx-auto p-4">
@@ -104,16 +109,12 @@ const OrderDetailPage = ({ params }: Props) => {
                         </Dialog>
                     </Card>
                 ))}
-                <Card className="bg-white/50 shadow-md rounded-lg p-4">
-                    <CardHeader title={
-                        <h5>La orden con Fecha {order?.date.toString()} fue entregada</h5>
-                    } />
-                    <CardContent>
-                        La orden fue entregada en la dirección {`${order?.address.street} # ${order?.address.avenue}-${order?.address.house_number}`}
-                    </CardContent>
-                </Card>
+                
+               <OrderHistory order={order} />
+                    
             </div>
         </Container>
+        
     );
 }
 
