@@ -85,7 +85,7 @@ export const Navbar = () => {
             className="text-white flex items-center relative px-5 py-2"
           >
             <ShoppingCart size={28} className="z-10" />
-            <span className="absolute bg-purple-dark text-white z-[-10] rounded-full px-2 top-0 right-0">
+            <span className="absolute bg-purple-dark text-white z-[-10] rounded-full px-2 top-0 right-0 text-[#cecece] hover:text-white transition-all duration-300">
               {cart.items.length}
             </span>
           </button>
@@ -141,8 +141,8 @@ export const Navbar = () => {
               onClick={() => router.push("/cart")}
               className="flex items-center relative px-5 py-2"
             >
-              <ShoppingCart size={28} className="text-[#cecece] hover:text-white z-10" />
-              <span className="absolute bg-purple-dark text-[#cecece] hover:text-white z-[-10] rounded-full px-2 top-0 right-0">
+              <ShoppingCart size={28} className="font-medium hover:font-semibold z-10 text-[#cecece] hover:text-white transition-all duration-300" />
+              <span className="absolute bg-purple-dark text-[#cecece] hover:text-white transition-all duration-300 z-[-10] rounded-full px-2 top-0 right-0 text-medium hover:text-semibold">
                 {cart.items.length}
               </span> 
             </button>
