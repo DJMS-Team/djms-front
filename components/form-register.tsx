@@ -96,12 +96,12 @@ const FormRegister = () => {
           style={{ backgroundImage: `url(${imagePreview})` }}
         ></div>
         {imagePreview ? (
-          <p className="text-black text-center mt-5 py-2 bg-white rounded-3xl w-auto">
-            Click para cambiar la imagen
+          <p className="cursor-pointer text-black text-center mt-5 py-2 bg-white rounded-3xl w-auto">
+            Cambiar imagen
           </p>
         ) : (
-          <p className="text-black text-center mt-5 py-2 bg-white rounded-3xl w-auto">
-            Click para subir una imagen
+          <p className="cursor-pointer text-black text-center mt-5 py-2 bg-white rounded-3xl w-auto">
+            Subir imagen
           </p>
         )}
       </label>
@@ -115,7 +115,7 @@ const FormRegister = () => {
         disabled={isPending}
         required
       />
-      <label htmlFor="email">Correo electronico</label>
+      <label htmlFor="email">Correo electrónico</label>
       <input
         id="email"
         name="email"
@@ -147,7 +147,7 @@ const FormRegister = () => {
       )}
       <button
         type="submit"
-        className="mt-2 bg-[#0FF] hover:bg-[#0FF]/60 text-black font-bold transition-all w-full p-[10px] rounded-3xl"
+        className="mt-2 bg-white/80 hover:bg-white text-[#1c1c3c] font-bold transition-all w-full p-[10px] rounded-3xl"
         disabled={isPending}
       >
         Crear cuenta

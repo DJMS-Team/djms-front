@@ -12,7 +12,7 @@ interface User {
 }
 
 export const useUserData = (id: string, token: string) => {
-    console.log('useUserData')
+    
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<any>(null);

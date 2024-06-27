@@ -44,7 +44,7 @@ export const ProductFilteredList: React.FC<ProductListProps> = ({ title, items, 
     <div className="space-y-4">
       <h3 className="font-bold text-3xl">{title}</h3>
     <div className='flex justify-between'>
-        <Badge>{`Resultados de ${productFilteredBadge?.queryType}: ${productFilteredBadge?.queryValue}`}</Badge>
+        <Badge style={{ backgroundColor: '#1c1c3c' }}>{`Resultados de ${productFilteredBadge?.queryType}: ${productFilteredBadge?.queryValue}`}</Badge>
         <div className='flex gap-3'>
         <AscDesc title="Precio" handleSort={handleSort}/>
         <AscDesc title="Stock" handleSort={handleSort}/>

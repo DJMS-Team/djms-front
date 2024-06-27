@@ -16,7 +16,7 @@ import { ProductCategories } from "./product-categories";
 import { NavbarRole } from "./navbar-role";
 import { IconCancel, IconSearch, IconX } from "@tabler/icons-react";
 
-export const Navbar = () => {
+export const NavbarLanding = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -59,6 +59,9 @@ export const Navbar = () => {
       } else {
         setShowNavbar(false);
       }
+
+      setIsTransparent(currentScrollY <= 50); 
+
       setLastScrollY(currentScrollY);
     };
 
@@ -74,9 +77,9 @@ export const Navbar = () => {
   if (isMobile) {
     return (
       <nav
-        className={`${styles.navbar} px-4 z-10 bg-[#1c1c3c] flex justify-between items-center h-20 ${
+        className={`${styles.navbar} px-4 z-10 flex justify-between items-center h-20 ${
           showNavbar ? styles.show : styles.hide
-        }`}
+        } ${isTransparent ? "bg-transparent" : "bg-[#1c1c3c]"}`}
       >
         <div className="flex-shrink-0">
           <a href="/" className="text-white text-2xl font-bold">
@@ -120,7 +123,7 @@ export const Navbar = () => {
                   isMobile={true}
                   section="vender"
                   currentUser={currentUser}
-                  idUser={id}
+                  idUser={null}
                 />
                 <NavbarRole
                   isMobile={true}
@@ -138,9 +141,9 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`${styles.navbar} z-50 bg-[#1C1C3C] ${
+      className={`${styles.navbar} z-50 ${
         showNavbar ? styles.show : styles.hide
-      }`}
+      } ${isTransparent ? "bg-transparent" : "bg-[#1c1c3c]"}`}
     >
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-36">
         <div className="flex items-center justify-between h-20 text-white">
@@ -198,8 +201,8 @@ export const Navbar = () => {
         <div
           className={`transition-transform duration-500 ease-in-out ${
             searchVisible ? "translate-y-0" : "-translate-y-20"
-            } w-full py-5 absolute top-0 left-0 right-0 mx-auto px-4 sm:px-6 lg:px-36 flex gap-5 bg-[#1c1c3c] items-center`}
-          >
+          } w-full py-5 absolute top-0 left-0 right-0 mx-auto px-4 sm:px-6 lg:px-36 flex gap-5 bg-[#1c1c3c] items-center`}
+        >
           <FormSearch />
           <IconX
             onClick={() => setSearchVisible(false)}
