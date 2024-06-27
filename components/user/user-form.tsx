@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
 import { Input } from '@/components/ui/input'
 import { RegisterSchema, UserSchema } from '@/schemas'
+import styles from "../../components/navbar.module.css"
 
 import{
     Form,
@@ -51,7 +52,7 @@ export const UserForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Prop
                  render={({ field }) => (
                     <FormItem>
                         <FormLabel>
-                            Name
+                            Nombre
                         </FormLabel>
                         <FormControl>
                             <Input disabled={disabled} 
@@ -83,7 +84,7 @@ export const UserForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Prop
                  render={({ field }) => (
                     <FormItem>
                         <FormLabel>
-                            Role
+                            Rol
                         </FormLabel>
                         <FormControl>
                             <Input disabled={disabled} 
@@ -99,7 +100,7 @@ export const UserForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Prop
                  render={({ field }) => (
                     <FormItem>
                         <FormLabel>
-                            Status
+                            Estado
                         </FormLabel>
                         <FormControl>
                             <Input disabled={disabled} 
@@ -109,8 +110,8 @@ export const UserForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Prop
                     </FormItem>
                  )}
                  />
-                <Button className='w-full' disabled={disabled}>
-                    Save Changes
+                <Button className={`${styles.primaryBtn} w-full`} disabled={disabled}>
+                    Guardar cambios
                 </Button>
                 {!!id && <Button
                  type='button'
@@ -119,7 +120,7 @@ export const UserForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Prop
                  className='w-full'
                  variant='outline'>
                     <Trash className='size-4 mr-2' />
-                    Delete User
+                    Eliminar usuario
                 </Button>}
             </form>
         </Form>

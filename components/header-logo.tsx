@@ -3,11 +3,10 @@ import Image from "next/image"
 
 export const HeaderLogo = () => {
     return(
-        <Link href="/">
+        <Link href="/admin">
             <div className="items-center hidden lg:flex">
-                {/* <Image src="/logo.png" alt="Logo" width={150} height={50} /> */}
                 <p className="font-semibold text-white text-2xl ml-2.5">
-                    Admin Dashboard
+                    Administrador
                 </p>
             </div>
         </Link>

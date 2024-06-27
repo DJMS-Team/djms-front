@@ -88,7 +88,7 @@ export const Navbar = () => {
             className="text-white flex items-center relative px-5 py-2"
           >
             <ShoppingCart size={28} className="z-10" />
-            <span className="absolute bg-purple-dark text-white z-[-10] rounded-full px-2 top-0 right-0">
+            <span className="absolute bg-purple-dark text-white z-[-10] rounded-full px-2 top-0 right-0 text-[#cecece] hover:text-white transition-all duration-300">
               {cart.items.length}
             </span>
           </button>

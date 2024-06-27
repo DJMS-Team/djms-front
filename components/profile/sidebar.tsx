@@ -1,12 +1,12 @@
 // components/Sidebar.js
 import React from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { User, ShoppingBag, ShoppingCart, BookText, Book } from 'lucide-react';
+import { User, ShoppingBag, ShoppingCart, BookText } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { FaUser } from 'react-icons/fa';
-const Sidebar = () => {
+import styles from "../../components/navbar.module.css";
 
+const Sidebar = () => {
   const router = useRouter();
   let id = null;
   const currentUser = Cookies.get("currentUser");
@@ -27,34 +27,42 @@ const Sidebar = () => {
       sx={{
         width: 240,
         flexShrink: 0,
-        [`& .MuiDrawer-paper`]: { width: 240, boxSizing: 'border-box', backgroundColor: '#1c1c3c', color: 'white', marginTop: '80px'},
+        [`& .MuiDrawer-paper`]: {
+          width: 240,
+          boxSizing: 'border-box',
+          backgroundColor: 'transparent',
+          color: '#1c1c3c',
+          marginTop: '80px',
+          borderRight: '2px solid #e0e0e0', // Aumenta el grosor de la línea
+        },
       }}
-      className='mt-20 hidden md:block'
+      className='mt-5 hidden md:block'
     >
       <List className='cursor-pointer ml-3'>
-        <ListItem sx={{ mb: 3}} onClick={() => router.push("/account/" + id)}>
-          <ListItemIcon >
-            <User className='size-6 text-white' />
-          </ListItemIcon>
-          <ListItemText primary="Perfil" />
-        </ListItem>
-        <ListItem sx={{ mb: 4}} onClick={() => router.push("/account/" + id + "/record")}>
+        <ListItem sx={{ mt: 1 }}></ListItem>
+        <ListItem sx={{ mb: 3 }} onClick={() => router.push("/account/" + id)} className={`${styles.sidebarItem}`}>
           <ListItemIcon>
-            <ShoppingCart className='size-6 text-white' />
+            <User className={`${styles.textSidebar} size-6`} />
           </ListItemIcon>
-          <ListItemText primary="Historia de Compras" />
+          <p className={`${styles.textSidebar}`}>Perfil</p>
         </ListItem>
-        <ListItem sx={{ mb: 4}} onClick={() => router.push("/account/" + id + "/products")}>
+        <ListItem sx={{ mb: 4 }} onClick={() => router.push("/account/" + id + "/record")} className={`${styles.sidebarItem}`}>
           <ListItemIcon>
-            <ShoppingBag className='size-6 text-white' />
+            <ShoppingCart className={`${styles.textSidebar} size-6`} />
           </ListItemIcon>
-          <ListItemText primary="Mis productos" />
+          <p className={`${styles.textSidebar}`}>Historial de compras</p>
         </ListItem>
-        <ListItem onClick={() => router.push("/account/" + id + "/orders")}>
+        <ListItem sx={{ mb: 4 }} onClick={() => router.push("/account/" + id + "/products")} className={`${styles.sidebarItem}`}>
           <ListItemIcon>
-            <BookText className='size-6 text-white' />
+            <ShoppingBag className={`${styles.textSidebar} size-6`} />
           </ListItemIcon>
-          <ListItemText primary="Mis ordenes" />
+          <p className={`${styles.textSidebar}`}>Mis productos</p>
+        </ListItem>
+        <ListItem onClick={() => router.push("/account/" + id + "/orders")} className={`${styles.sidebarItem}`}>
+          <ListItemIcon>
+            <BookText className='size-6 text-sidebar' />
+          </ListItemIcon>
+          <p className={`${styles.textSidebar}`}>Mis ordenes</p>
         </ListItem>
       </List>
     </Drawer>

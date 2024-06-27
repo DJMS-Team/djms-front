@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation"
 import { NavButton } from "@/components/nav-button"
 import { useMedia } from "react-use"
-
+import styles from "../components/navbar.module.css"
 import {
     Sheet,
     SheetContent,
@@ -18,7 +18,7 @@ import { UserButton } from "./dashboard/user-button"
 const routes = [
     {
         href: "/admin",
-        label: "Dashboard"
+        label: "Panel"
     },
     {
         href: "/admin/users",
@@ -48,17 +48,17 @@ export const Navigation = () => {
                       size="sm"
                       className="font-normal bg-white/10 hover:bg-white/202 hover:text-white border-none focus-visible:ring-offset-0 focus-visible:ring-transparent outline-none text-white focus:bg-white/30 transition"
                     >
-                        <Menu className="h4- w-4"/>
+                    <Menu className="h4- w-4"/>
                     </Button>
                 </SheetTrigger>
-                <SheetContent side="left" className="px-2">
+                <SheetContent side="left" className="bg-white px-2">
                     <nav className="flex flex-col gap-y-2 pt-6">
                         {routes.map((route)=>(
                             <Button
                                 key={route.href}
                                 variant={route.href === pathname ? "secondary" : "ghost"}
                                 onClick={() => onClick(route.href)}
-                                className="w-full justify-start"
+                                className={`${styles.navLinkSecondary} w-full justify-start `}
                             >
                                 {route.label}
                             </Button>
@@ -70,7 +70,7 @@ export const Navigation = () => {
     }
 
     return (
-        <nav className="hidden lg:flex items-center gap-x-2 overflow-x-auto">
+        <nav className="mr-3 hidden lg:flex items-center gap-x-2 overflow-x-auto">
             {routes.map((route)=>(
               <NavButton
               key={route.href}
