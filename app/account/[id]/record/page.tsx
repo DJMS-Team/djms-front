@@ -44,12 +44,12 @@ const RecordPage = ({ params }: Props) => {
     <Container maxWidth="md" sx={{ mt: -2 }}>
       <Box my={4}>
         <h3 className="font-bold text-3xl">Historial de compras</h3>
-        <Grid spacing={4} gap={5} className="mt-10 flex flex-wrap flex-">
+        <Grid spacing={4} gap={2} className="mt-10 flex flex-wrap justify-center items-center">
           {order?.map((order, index) => (
             <Link
               href={`/account/${params.id}/record/order_detail/${order.id}`}
               key={index}
-              className="block"
+              className="block md:w-72 w-full"
             >
               <PurchaseCard
                 title={`Orden ${index + 1}`}

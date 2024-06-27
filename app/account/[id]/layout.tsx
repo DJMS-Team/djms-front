@@ -3,11 +3,11 @@
 
 import { Navbar } from "@/components/navbar";
 import Sidebar from "@/components/profile/sidebar";
-import { ShoppingBag, ShoppingCart, User } from "lucide-react";
+import { BookText, ShoppingBag, ShoppingCart, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { ThemeProvider, CssBaseline } from "@mui/material";
-import theme from "../../theme"; 
+import theme from "../../theme";
 
 type Props = {
   children: React.ReactNode;
@@ -56,9 +56,16 @@ const AccountLayout = ({ children }: Props) => {
               <ShoppingCart className="size-4 text-white" />
               <span>Compras</span>
             </div>
+            <div
+              onClick={() => router.push("/account/" + id + "/orders")}
+              className="flex flex-col flex-grow  justify-center gap-2 items-center text-white cursor-pointer"
+            >
+              <BookText className="size-4 text-white" />
+              <span>Mis ordenes</span>
+            </div>
           </div>
         </div>
-        <main className="md:ml-60 pt-16 px-2 pb-4 md:px-4 flex-1 min-h-screen">
+        <main className="md:ml-60 pt-20 px-2 pb-28 md:pb-10 md:px-4 flex-1 h-full min-h-screen">
           {children}
         </main>
       </div>

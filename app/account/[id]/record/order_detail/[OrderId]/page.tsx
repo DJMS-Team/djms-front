@@ -89,7 +89,17 @@ const OrderDetailPage = ({ params }: Props) => {
 
   return (
     <Container maxWidth="md" className="mx-auto p-4">
-      <h3 className="font-bold text-3xl">Detalles de orden</h3>
+      <div className="flex justify-between items-center">
+        <h3 className="font-bold text-3xl">Detalles de orden</h3>
+        <Button
+          variant="contained"
+          className={`${styles.secondaryBtn}`}
+          sx={{ textTransform: "none" }}
+          onClick={() => router.back()}
+        >
+          Volver
+        </Button>
+      </div>
       <div className="flex flex-col gap-4 flex-wrap mt-5">
         {order?.order_details.map((order_detail) => (
           <Card

@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { styled, alpha } from "@mui/material/styles";
 import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -20,6 +20,7 @@ import { productApi } from "@/APIS";
 import { Comment } from "@/interfaces/comment.interface";
 import { SendIcon } from "lucide-react";
 import styles from "../../../../../../components/navbar.module.css";
+import { useRouter } from "next/navigation";
 
 interface Props {
   params: { id: string; productId: string };
@@ -31,6 +32,7 @@ const QuestionsPage = ({ params }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [comments, setComments] = useState<Comment[]>();
   const [commentary, setComment] = useState<string>("");
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,7 +55,17 @@ const QuestionsPage = ({ params }: Props) => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 2 }}>
-      <h3 className="font-bold text-3xl">Preguntas y comentarios</h3>
+      <div className="flex justify-between items-center">
+        <h3 className="font-bold text-3xl">Preguntas y comentarios</h3>
+        <Button
+          variant="contained"
+          className={`${styles.secondaryBtn}`}
+          sx={{ textTransform: "none" }}
+          onClick={() => router.back()}
+        >
+          Volver
+        </Button>
+      </div>
       <div className="mt-5 flex gap-5 flex-col">
         {comments?.map((comment) => (
           <Card key={comment.id}>
