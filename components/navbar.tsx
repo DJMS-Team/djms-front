@@ -122,6 +122,12 @@ export const Navbar = () => {
                   currentUser={currentUser}
                   idUser={id}
                 />
+                <button
+                  onClick={() => router.push("/guides")}
+                  className={`${styles.navLink} text-left`}
+                >
+                  Guias
+                </button>
                 <NavbarRole
                   isMobile={true}
                   section="userButton"
@@ -167,6 +173,12 @@ export const Navbar = () => {
                   currentUser={currentUser}
                   idUser={null}
                 />
+                 <button
+                  onClick={() => router.push("/guides")}
+                  className={`${styles.navLink}`}
+                >
+                  Guias
+                </button>
                 <button
                   onClick={() => setSearchVisible(!searchVisible)}
                   className={`flex items-center px-5 py-2 -mr-3 ${styles.navLink}`}
