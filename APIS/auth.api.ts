@@ -28,4 +28,28 @@ protected readonly instance: AxiosInstance;
     }
   }
 
+  forgot = async(email:string) =>{
+    try{
+      const res = await this.instance
+        .post('/auth/forgot',{
+          email
+        })
+    }catch(err){
+      throw err;
+    }
+  }
+
+  changePassword = async(id:string, password:string) =>{
+    try{
+      const res = await this.instance
+        .post(`/auth/change/${id}`,{
+          password
+        })
+
+      return res
+    }catch(err){
+      throw err
+    }
+  }
+
 }

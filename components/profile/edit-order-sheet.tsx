@@ -48,13 +48,13 @@ export const EditOrderSheet = ({ onOrderUpdate }: Props) => {
   
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="space-y-4">
+            <SheetContent className="space-y-4 bg-white">
                 <SheetHeader>
                     <SheetTitle>
-                        Edit User
+                        Editar usuario
                     </SheetTitle>
                     <SheetDescription>
-                        Edit user details
+                        Editar detalles de usuario
                     </SheetDescription>
                 </SheetHeader>
                 {loading 
