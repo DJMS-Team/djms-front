@@ -96,6 +96,7 @@
 .navLinkTwo {
   padding: 10px;
   border-radius: 5px;
+  color: #1c1c3c;
   background-color: #cecece;
 }
 
@@ -109,7 +110,7 @@
 }
 
 .navLinkSecondary {
-  color:14142c;
+  color: #14142c;
   background-color: transparent;
   font-weight: 600;
 }
