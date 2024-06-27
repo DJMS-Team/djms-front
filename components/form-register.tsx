@@ -115,7 +115,7 @@ const FormRegister = () => {
         disabled={isPending}
         required
       />
-      <label htmlFor="email">Correo electronico</label>
+      <label htmlFor="email">Correo electrónico</label>
       <input
         id="email"
         name="email"

@@ -75,7 +75,7 @@ export const Navbar = () => {
   if (isMobile) {
     return (
       <nav
-        className={`${styles.navbar} px-4 flex justify-between items-center h-20`}
+        className={`${styles.navbar} px-4 z-10 flex justify-between items-center h-20 ${showNavbar ? styles.show : styles.hide}`}
       >
         <div className="flex-shrink-0">
           <a href="/" className="text-white text-2xl font-bold">
@@ -137,9 +137,9 @@ export const Navbar = () => {
 
   return (
     <nav
-      className={`${styles.navbar} ${
+      className={`${styles.navbar} z-50 ${
         showNavbar ? styles.show : styles.hide
-      } z-10`}
+      }`}
     >
       <div className="w-full mx-auto px-4 sm:px-6 lg:px-36">
         <div className="flex items-center justify-between h-20 text-white">
