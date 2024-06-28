@@ -22,7 +22,7 @@ const Home = async () => {
           <Billboard
             title="Tecnología"
             subtitle="Explora y llega al siguiente nivel"
-            btnText="Comprar ahora"
+            btnText="Prueba DMaJorAI"
             photoUrl="https://res.cloudinary.com/dbcdnlxle/image/upload/v1719460143/mouselogitechDH_iavvyp.png"
           />      
         <div className="flex space-y-10 flex-col gap-y-8 px-4 sm:px-6 lg:px-36 ">

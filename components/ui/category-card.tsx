@@ -20,17 +20,18 @@ interface CategoryCardProps {
 const CategoryCard: React.FC<CategoryCardProps> = ({ data }) => {
   const router = useRouter();
   const { handleCategoryClick } = useCategories({ router });
+  const iconSize = 32;
 
   return (
     <div
       onClick={() => handleCategoryClick(data.category)}
       className="flex-col w-[140px] h-[140px] border-[#1c1c3c] border rounded-full flex items-center justify-center cursor-pointer font-bold bg-white hover:shadow-[0_0_0_4px_#1c1c3c] transition-all ease-in-out"
     >
-      {data.category === 'Computadores' ? <Computer /> : null}
-      {data.category === 'Monitores' ? <Monitor /> : null}
-      {data.category === 'Accesorios' ? <Webcam /> : null}
-      {data.category === 'Periféricos' ? <Mouse /> : null}
-      {data.category === 'Componentes' ? <HardDrive /> : null}
+      {data.category === 'Computadores' ? <Computer size={`${iconSize}`} /> : null}
+      {data.category === 'Monitores' ? <Monitor size={`${iconSize}`} /> : null}
+      {data.category === 'Accesorios' ? <Webcam size={`${iconSize}`} /> : null}
+      {data.category === 'Periféricos' ? <Mouse size={`${iconSize}`} /> : null}
+      {data.category === 'Componentes' ? <HardDrive size={`${iconSize}`} /> : null}
       {data.category}
     </div>
   );
