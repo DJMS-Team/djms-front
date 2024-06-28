@@ -160,13 +160,6 @@ const ProfilePage = ({ params }: Props) => {
                       <Edit className="size-4 mr-2 text-gray-500" />
                       Editar
                     </DropdownMenuItem>
-                    <DropdownMenuItem
-                      onClick={() => addressApi.deleteAddress(address.id)}
-                      className="flex items-center px-4 py-2 hover:bg-gray-100 transition-colors duration-200"
-                    >
-                      <Trash className="size-4 mr-2 text-gray-500" />
-                      Eliminar
-                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </CardContent>

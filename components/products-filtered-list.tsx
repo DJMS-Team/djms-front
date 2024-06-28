@@ -27,7 +27,9 @@ export const ProductFilteredList: React.FC<ProductListProps> = ({ title, items, 
     setSortCriteria(criteria);
   };
 
-  const sortedItems = [...items].sort((a, b) => {
+  const filteredItems = items.filter(item => item.quantity > 0);
+
+  const sortedItems = [...filteredItems].sort((a, b) => {
     if (sortCriteria === 'priceAscendente') {
       return a.price - b.price;
     } else if (sortCriteria === 'priceDescendente') {
