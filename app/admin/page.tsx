@@ -3,6 +3,7 @@ import { getOrders } from "@/actions/orders-report";
 import { getRegister } from "@/actions/register-report";
 import { DataCharts } from "@/components/dashboard/data-charts";
 import { DataGrid } from "@/components/dashboard/data-grid";
+import { Footer } from "@/components/footer";
 import { Suspense } from "react";
 const AdminPage = async () => {
     let data;
@@ -38,6 +39,7 @@ const AdminPage = async () => {
     const totalOrders = orders?.totalOrders ?? 0;
     const ordersChange = orders?.ordersChange ?? 0;
     return (
+        <>
         <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
             <Suspense fallback={<div>Loading...</div>}>
                 <DataGrid
@@ -55,6 +57,7 @@ const AdminPage = async () => {
              orderDays={orderDays}
              topCategories={topCategories}/>
         </div> 
+        </>
     )
 }
 

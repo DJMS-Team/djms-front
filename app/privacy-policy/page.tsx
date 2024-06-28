@@ -1,12 +1,14 @@
 
 'use client'
 
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 
 const PrivacyPolicy = () => {
 
 
     return (
+        <>
         <div className="bg-[#F8F8F8]">
             <Navbar />
             
@@ -48,6 +50,8 @@ const PrivacyPolicy = () => {
                 
             </main>
         </div>
+        <Footer/>
+        </>
     );
 };
 

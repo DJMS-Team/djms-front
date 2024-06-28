@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import { CartItem } from "./_components/cart-item"
 import { Summary } from "./_components/summary"
 import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer"
 
 const CartPage = () => {
     const cart = useCart()
@@ -32,7 +33,8 @@ const CartPage = () => {
                         <Summary/>
                     </div>
                 </div>
-        </div>    
+        </div>   
+        <Footer/> 
         </>
     )
 }

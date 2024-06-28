@@ -1,23 +1,9 @@
 import styles from "./footer.module.css";
 import Image from "next/image";
-import { headers } from "next/headers"; // to get actual url
 import Link from "next/link";
 import { IconBrandFacebook, IconBrandInstagram, IconBrandTwitter } from "@tabler/icons-react";
 
 export const Footer = () => {
-  const headerList = headers();
-  const pathname = headerList.get("x-current-path");
-  console.log("actual url " + pathname);
-
-  if (pathname) {
-    if (
-      
-      pathname.includes("account")
-    ) {
-      return null;
-    }
-  }
-
   return (
     <footer className={styles.footer}>
       <div className="text-gray-300 py-12">
@@ -68,19 +54,7 @@ export const Footer = () => {
             <p className="text-lg font-semibold text-white">Síguenos</p>
             <div className="flex space-x-4 mt-2">
               <Link
-                href="#"
-                className="hover:text-white transition-colors duration-300"
-              >
-                <IconBrandFacebook />
-              </Link>
-              <Link
-                href="#"
-                className="hover:text-white transition-colors duration-300"
-              >
-                <IconBrandTwitter />
-              </Link>
-              <Link
-                href="#"
+                href="https://www.instagram.com/dmajorstore/"
                 className="hover:text-white transition-colors duration-300"
               >
                 <IconBrandInstagram />

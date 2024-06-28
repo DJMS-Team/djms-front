@@ -29,7 +29,7 @@ export default function RootLayout({
           <ToastProvider />
           <ModalProvider />
           <div className="min-h-[90vh]">{children}</div>
-          <Footer />
+          
         </ThemeProvider>
       </body>
     </html>

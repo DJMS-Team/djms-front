@@ -7,6 +7,7 @@ import { createContext } from "react";
 const AuthLayout = ({ children }: { children: React.ReactNode }) => {
   
   return (
+    <>
     <div className="relative min-h-screen flex flex-col overflow-x-hidden">
       <div className="absolute inset-0 z-0">
         <BackgroundGradientAnimation />
@@ -17,6 +18,8 @@ const AuthLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       </div>
     </div>
+    <Footer/>
+    </>
   );
 };
 

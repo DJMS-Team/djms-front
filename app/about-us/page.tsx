@@ -1,5 +1,6 @@
 'use client'
 
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 import Image from 'next/image';
 
@@ -14,6 +15,7 @@ const AboutUs = () => {
     ];
 
     return (
+        <>
         <div className="bg-[#F8F8F8]">
             <Navbar />
             <main className="px-3 lg:px-14 mx-auto max-w-4xl my-40">
@@ -49,6 +51,8 @@ const AboutUs = () => {
                 </div>
             </main>
         </div>
+        <Footer/>
+        </>
     );
 };
 

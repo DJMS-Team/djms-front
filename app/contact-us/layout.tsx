@@ -6,6 +6,7 @@ import Image from "next/image";
 
 const GuidesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
+    <>
     <div className="relative min-h-screen flex flex-col overflow-x-hidden">
       <Navbar />
       <div className="flex-grow flex justify-center bg-[#f8f8f8] items-center w-full h-auto px-4 py-10 relative z-10">
@@ -35,6 +36,8 @@ const GuidesLayout = ({ children }: { children: React.ReactNode }) => {
         }
       `}</style>
     </div>
+    <Footer/>
+    </>
   );
 };
 

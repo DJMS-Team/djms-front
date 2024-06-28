@@ -9,6 +9,7 @@ import { getCategories } from "@/actions/get-categories";
 import { useState, useEffect } from "react";
 import { ProductCategory } from "@/interfaces/product-category.interface";
 import { NavbarLanding } from "@/components/navbar-landing";
+import { Footer } from "@/components/footer";
 
 
 const Home = async () => {
@@ -38,6 +39,7 @@ const Home = async () => {
           />
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

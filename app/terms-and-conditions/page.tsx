@@ -1,9 +1,11 @@
 'use client'
 
+import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
 
 const TermsAndConditions = () => {
     return (
+        <>
         <div className="#F8F8F8">
             <Navbar />
             
@@ -88,6 +90,8 @@ const TermsAndConditions = () => {
                 </p>
             </main>
         </div>
+        <Footer />
+        </>
     );
 };
 

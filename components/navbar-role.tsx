@@ -49,7 +49,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
             <Link href={`/account/${idUser}`} className={`${styles.navLink} flex items-center`}>
                 Perfil
               </Link>
-            <LogoutButton>Log Out</LogoutButton>
+            <LogoutButton>Cerrar sesión</LogoutButton>
             </>
                 :
             <></>
