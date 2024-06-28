@@ -45,11 +45,11 @@ export const ProductFilteredList: React.FC<ProductListProps> = ({ title, items, 
   return (
     <div className="space-y-4">
       <h3 className="font-bold text-3xl">{title}</h3>
-    <div className='flex justify-between'>
+    <div className='flex justify-between flex-wrap gap-2'>
         <Badge style={{ backgroundColor: '#1c1c3c' }}>{`Resultados de ${productFilteredBadge?.queryType}: ${productFilteredBadge?.queryValue}`}</Badge>
         <div className='flex gap-3'>
         <AscDesc title="Precio" handleSort={handleSort}/>
-        <AscDesc title="Stock" handleSort={handleSort}/>
+        {/*<AscDesc title="Stock" handleSort={handleSort}/>*/}
         </div>
     </div>
 

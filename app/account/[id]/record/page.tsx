@@ -44,7 +44,8 @@ const RecordPage = ({ params }: Props) => {
     <Container maxWidth="md" sx={{ mt: -2 }}>
       <Box my={4}>
         <h3 className="font-bold text-3xl">Historial de compras</h3>
-        <Grid spacing={4} gap={2} className="mt-10 flex flex-wrap justify-center items-center">
+        {order?.length !== 0 ? 
+          <Grid spacing={4} gap={2} className="mt-10 flex flex-wrap justify-center items-center">
           {order?.map((order, index) => (
             <Link
               href={`/account/${params.id}/record/order_detail/${order.id}`}
@@ -64,6 +65,9 @@ const RecordPage = ({ params }: Props) => {
             </Link>
           ))}
         </Grid>
+        : 
+          <p className="mt-5">No hay resultados</p>
+        }
       </Box>
     </Container>
   );

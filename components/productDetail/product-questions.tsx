@@ -17,6 +17,7 @@ import { Product } from "@/actions/get-products";
 import { Comment } from "@/interfaces/comment.interface";
 import ReviewCard from "./review-card";
 import CommentCard from "./comment-card";
+import toast from "react-hot-toast";
 
 interface ProductQuestionsProps {
   handleSubmitComment: React.FormEventHandler<HTMLFormElement>;
@@ -33,6 +34,14 @@ const ProductQuestions: React.FC<ProductQuestionsProps> = ({
   comments,
   currentUser,
 }) => {
+  if (errorComment) {
+    toast.error('Necesitas estar logueado para realizar esta acción.')
+  }
+
+  if (successComment) {
+    toast.success('Comentario realizado.')
+  }
+
   return (
     <div className="my-6 flex flex-col gap-5">
       <h2 className="text-2xl font-bold">Preguntas</h2>
@@ -40,16 +49,7 @@ const ProductQuestions: React.FC<ProductQuestionsProps> = ({
         <Input name="description" placeholder="Haz una pregunta" />
         <Button type="submit" className={`${style.primaryBtn}`}>Enviar</Button>
       </form>
-      {errorComment && (
-        <div className="text-white font-bold bg-red-500 rounded-lg px-2 py-1 flex gap-2">
-          <IconExclamationCircle /> {errorComment}
-        </div>
-      )}
-      {successComment && (
-        <div className="text-white font-bold bg-green-500 rounded-lg px-2 py-1 flex gap-2">
-          <IconCheck /> {successComment}
-        </div>
-      )}
+
       <div className="flex flex-col gap-5">
       <AlertDialog>
         <AlertDialogTrigger className={`${style.secondaryBtn} px-4 py-2 text-white rounded-lg w-56`}>

@@ -80,7 +80,7 @@ const FAQPage: React.FC = () => {
               <div key={index} className={`message ${msg.sender}`} dangerouslySetInnerHTML={{ __html: marked(msg.text) }} />
             ))}
           </div>
-          <div className="chat-input">
+          <div className="chat-input flex flex-wrap gap-3">
             <input
               type="text"
               value={input}
@@ -209,8 +209,17 @@ const FAQPage: React.FC = () => {
             width: 100%;
             margin: 10px 0;
           }
-          .chatbot {
-            height: auto; 
+          .chat-window {
+            min-height: 100px; 
+            max-height: 400px;
+          }
+
+          .chat-input button {
+            width: 100%;
+          }
+
+          .chat-input input {
+            width: 100%;
           }
         }
         @media (max-width: 480px) {

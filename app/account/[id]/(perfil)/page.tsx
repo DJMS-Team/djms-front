@@ -120,7 +120,7 @@ const ProfilePage = ({ params }: Props) => {
       <div className="mt-10 flex items-center justify-between mb-3 w-full">
         <h5 className="font-semibold text-xl">Direcciones</h5>
         <Button
-          className={`${style.secondaryBtn} ml-auto`}
+          className={`${style.primaryBtn} ml-auto`}
           onClick={onAddAddress}
         >
           Añadir

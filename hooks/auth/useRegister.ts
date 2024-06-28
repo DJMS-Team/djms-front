@@ -18,11 +18,11 @@ export const useRegister = () => {
       const user = await userApi.createUser(name, password, email, photo_url, role);
       if (user) {
         Cookies.remove("currentUser")
-        return { success: "Usuario registrado correctamente" };
+        return { success: "Usuario registrado correctamente." };
       }
       return user;
     } catch (error: any) {
-      return { error: "Ocurrio un error inesperado, el usuario no se pudo registrar" };
+      return { error: "La contraseña debe tener una mayúscula, al menos 6 caracteres y un número."};
     }
 
   };

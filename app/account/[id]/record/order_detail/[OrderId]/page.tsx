@@ -101,11 +101,11 @@ const OrderDetailPage = ({ params }: Props) => {
       <div className="flex flex-col gap-4 flex-wrap mt-5">
         {order?.order_details.map((order_detail) => (
           <Card
-            className="bg-white shadow-sm rounded-lg p-4 flex flex-col gap-4 "
+            className="bg-white shadow-sm rounded-lg p-4 flex flex-wrap gap-4 "
             key={order_detail.product.id}
           >
             <CardContent className="flex items-center gap-4">
-              <div className="flex-shrink-0">
+              <div className="">
                 <Image
                   src={order_detail.product.photo_url[0]}
                   alt="Producto"
@@ -133,7 +133,7 @@ const OrderDetailPage = ({ params }: Props) => {
                   }
                 />
                 <Button
-                  className={`${styles.primaryBtn} w-full py-1 px-4`}
+                  className={`${styles.primaryBtn} w-40 py-1 px-4`}
                   onClick={() => handleOpen(order_detail.product.id)}
                 >
                   Hacer reseña

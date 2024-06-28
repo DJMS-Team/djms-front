@@ -31,9 +31,13 @@ const ForgotForm: React.FC<ForgotProps> = ({id}) =>{
 
     const handleChange = async () =>{
         if(password === confirmPassword){
-            await authApi.changePassword(id, password)
-            toast.success('Contraseña cambiada correctamente.')
-            router.push('/auth/login')
+            try { 
+                await authApi.changePassword(id, password)
+                toast.success('Contraseña cambiada correctamente.')
+                router.push('/auth/login')
+            } catch {
+                toast.error("La contraseña debe tener una mayúscula, al menos 6 caracteres y un número.")
+            }
         }else{
             toast.error('Las contraseñas no coinciden.')
         }

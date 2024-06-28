@@ -81,16 +81,20 @@ const SummaryContent = () => {
 
     const handleConfirm = async () => {
         if(user){
-            const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
-            console.log(order)
-            for (const item of items) {
-                const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
-                console.log(res);
+            try {
+                const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
+                console.log(order)
+                for (const item of items) {
+                    const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
+                    console.log(res);
+                }
+                
+                window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/paypal/create/${order?.id}`
+                localStorage.removeItem('cart-storage')
+                setOpen(false);
+            } catch {
+                toast.error('Debes seleccionar una dirección. Si no tienes una, creala en tu perfil.')
             }
-            
-            window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/paypal/create/${order?.id}`
-            localStorage.removeItem('cart-storage')
-            setOpen(false);
         }
         
         

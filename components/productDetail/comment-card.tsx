@@ -32,7 +32,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment }) => {
       <p className="flex-grow">
         {comment?.description
           ? comment.description
-          : "No hay pregunta para este producto."}
+          : "No hay preguntas para este producto."}
       </p>
     </div>
   );
