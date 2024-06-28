@@ -33,11 +33,12 @@ export const Actions = ({id}: Props) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align='end'>
                     <DropdownMenuItem
+                    className='cursor-pointer'
                         disabled={false}
                         onClick= {()=>onOpen(id)}
                     >
                         <Edit className="size-4 mr-2" />
-                        Edit
+                        Editar
                     </DropdownMenuItem>
                     
                 </DropdownMenuContent>

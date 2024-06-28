@@ -26,20 +26,39 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
     
   const cart = useCart()
   const router = useRouter()
-  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
-     event?.stopPropagation()
-     
-     if (product) {
-       cart.addItem(product);
-     }
-  }
+
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = async (event) => {
+    event?.stopPropagation()
+
+    const productoncart = cart.items.find((item) => item.id == product?.id);
+    
+    if (product) {
+      if (productoncart) {
+        if (Number(product.quantity == 0)) {
+            toast.error('No hay suficiente stock.')
+        } /*else if (Number(product.quantity) - Number(productoncart?.quantity) > 0) {
+          cart.incrementQuantity(product.id);
+        }*/ else {
+            toast.error('Producto ya en el carrito, puedes aumentar la cantidad desde allí.', {icon: '⚠️'})
+        }
+      } else {
+        if (Number(product.quantity == 0)) {
+            toast.error('No hay suficiente stock.')
+        } else {
+            cart.addItem(product);
+        }
+      }
+    } else {
+      toast.error('Error al cargar el producto.')
+    }
+}
 
   const handleBuyNow = () => {
     if (product) {
       if (product?.quantity > 0) {
         handleOpen();
       } else {
-        toast.error('There is not enough stock')
+        toast.error('No hay suficiente stock.')
       }
     }
   }
@@ -48,7 +67,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
     if(user){
       setOpen(true);
     }else{
-      toast.error("Necesitas estar logueado para comprar")
+      toast.error('Necesitas estar logueado para realizar esta acción.')
     }
     
   };
@@ -62,8 +81,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
       const order = await orderApi.createOrder('PENDING', new Date(), user?.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
       console.log(order)
       const res = await orderApi.createOrderDetail(1, order?.id,product?.id )
-      window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
-      //await productApi.decrementProduct(product.id, 1)
+      window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/paypal/create/${order?.id}`
       localStorage.removeItem('cart-storage')
       setOpen(false);
     }
@@ -75,6 +93,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
     if (product) {
       cart.addItem(product);
     }
+    
     router.push('/cart')
  }
  
@@ -85,10 +104,10 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
         <Card className="border-none shadow-none">
           <CardHeader>
             <CardTitle className="text-3xl font-bold">{product?.product_name}</CardTitle>
-            <p className="text-gray-600">Vendido por: {product?.seller? product.seller.name : "Uknown"}</p>
+            <p className="text-gray-600">Vendido por: {product?.seller? product.seller.name : "Desconocido"}</p>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">${product?.price ? product.price : 0.0} USD</p>
+            <p className="text-3xl font-bold">${product?.price ? product.price : 0.0} COP</p>
             <p>Stock: {product?.quantity}</p>
           </CardContent>
           <CardFooter className="flex flex-row gap-5">
@@ -96,7 +115,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
             <Button className={`${styles.secondaryBtn} w-1/2`} onClick={onAddToCart}>Añadir al carrito</Button>
           </CardFooter>
           <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Selecciona la direccion a enviar</DialogTitle>
+                <DialogTitle>Selecciona la dirección a enviar</DialogTitle>
                 <DialogContent>
                     <Select
                         value={selectedValue}
@@ -110,10 +129,10 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
                 </DialogContent>
                 <DialogActions>
                     <Button className={`${styles.secondaryBtn}`} onClick={handleClose} color="secondary">
-                        Cancela
+                        Cancelar
                     </Button>
                     <Button className={`${styles.primaryBtn}`} onClick={handleConfirm} color="primary">
-                        Confirma
+                        Confirmar
                     </Button>
                 </DialogActions>
             </Dialog>

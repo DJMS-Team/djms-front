@@ -20,10 +20,14 @@ const SummaryContent = () => {
     const items = useCart((state) => state.items)
     const removeAll = useCart((state) => state.removeAll)
     const [user, setUser] = useState<User | null>()
-
+    const [totalPrice, setTotalPrice] = useState<number>(0);
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string>('');
     const [Addreses, setAdresses] = useState<Address[]>();
+
+    useEffect(() => {
+        setTotalPrice(calculateTotalPrice);
+    })
 
     useEffect(() => {
         if (searchParams.get('success')) {
@@ -42,17 +46,15 @@ const SummaryContent = () => {
             const currentUser = Cookies.get("currentUser");
             if (currentUser) {
               setUser(JSON.parse(currentUser));
-             // console.log(JSON.parse(currentUser)?.id)
               const res = await userApi.findOneUser(JSON.parse(currentUser)?.id)
               setAdresses(res?.addresses)
-              //console.log(res)
             }
         }
 
         fetchData();
     },[])
 
-    const totalPrice = items.reduce((acc, item) => {
+    const calculateTotalPrice = items.reduce((acc, item) => {
         return acc + Number(item.price)
     }, 0)
 
@@ -64,7 +66,7 @@ const SummaryContent = () => {
         if(user){
             setOpen(true);
         }else{
-            toast.error('Necesita estar logueado para comprar')
+            toast.error('Necesitas estar logueado para realizar esta acción.')
         }
         
     };
@@ -79,29 +81,33 @@ const SummaryContent = () => {
 
     const handleConfirm = async () => {
         if(user){
-            const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
-            console.log(order)
-            for (const item of items) {
-                const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
-                console.log(res);
+            try {
+                const order = await orderApi.createOrder('PENDING', new Date(),user.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
+                console.log(order)
+                for (const item of items) {
+                    const res = await orderApi.createOrderDetail(item.quantity, order?.id, item.id);
+                    console.log(res);
+                }
+                
+                window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/paypal/create/${order?.id}`
+                localStorage.removeItem('cart-storage')
+                setOpen(false);
+            } catch {
+                toast.error('Debes seleccionar una dirección. Si no tienes una, creala en tu perfil.')
             }
-            
-            window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
-            localStorage.removeItem('cart-storage')
-            setOpen(false);
         }
         
         
     };
 
     return (
-        <div className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
-            <h2 className="text-lg font-medium text-gray-900">
+        <div className="sticky top-24 mt-16 rounded-lg bg-white shadow-md px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8">
+            <h2 className="text-lg font-semibold text-gray-900">
                 Resumen de orden
             </h2>
             <div className="mt-6 space-y-4">
                 <div className="flex items-center justify-between border-t border-gray-200 pt-4">
-                    <div className="text-base font-medium text-gray-900">
+                    <div className="text-base font-semibold text-gray-900">
                         Order total
                     </div>
                     <Currency value={totalPrice} />
@@ -139,7 +145,7 @@ const SummaryContent = () => {
 
 export const Summary = () => {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div>Cargando...</div>}>
             <SummaryContent />
         </Suspense>
     )

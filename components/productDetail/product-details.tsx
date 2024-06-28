@@ -24,19 +24,20 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
 }) => {
   return (
     <div className="md:w-1/2">
-      <div className="flex gap-2">
-        <Badge>{product?.product_category?.category}</Badge>
+      <div className="flex gap-2 mb-2">
+        <Badge className="bg-[#1c1c3c]">{product?.product_category?.category}</Badge>
       </div>
       <ProductImage
         photoUrl={product?.photo_url}
         productName={product?.product_name}
       />
-      <ProductDescription description={product?.description ? product.description : 'There is not a description of the product'} />
+      <ProductDescription description={product?.description ? product.description : 'No hay descripción del producto'} />
       <ProductQuestions
         handleSubmitComment={handleSubmitComment}
         errorComment={errorComment}
         successComment={successComment}
         currentUser={currentUser ? currentUser : null}
+        comments={product?.comments ? product?.comments : null}
       />
       <ProductReviews reviews={product?.reviews} product={product} />
     </div>

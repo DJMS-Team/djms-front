@@ -32,7 +32,7 @@ export const EditUserSheet = ({ onUserUpdate }: Props) => {
     const {isOpen, onClose, id} = useOpenUser();
     const { user, loading, error } = useUserData(id as string, 'token');
     const { onSubmit, updating } = useUpdateUser(id as string, onClose, onUserUpdate);
-    console.log('user', user);
+    
     const defaultValues: User = {
         name: user?.name || '',
         email: user?.email || '',
@@ -47,13 +47,13 @@ export const EditUserSheet = ({ onUserUpdate }: Props) => {
   
     return (
         <Sheet open={isOpen} onOpenChange={onClose}>
-            <SheetContent className="space-y-4">
+            <SheetContent className="space-y-4 bg-[white]">
                 <SheetHeader>
                     <SheetTitle>
-                        Edit User
+                        Editar usuario
                     </SheetTitle>
                     <SheetDescription>
-                        Edit user details
+                        Editar detalles de usuario
                     </SheetDescription>
                 </SheetHeader>
                 {loading 

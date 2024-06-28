@@ -10,6 +10,7 @@ import { Product } from "@/interfaces/product.interface";
 import { User } from "@/interfaces/user";
 import { userApi } from "@/APIS";
 import { Address } from "@/interfaces/address";
+import toast from "react-hot-toast";
 
 const getCurrentUserFromCookies = (): User | null => {
   const userCookie = Cookies.get("currentUser");
@@ -45,7 +46,7 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
     event.preventDefault();
 
     if (!currentUser) {
-      setErrorComment("Debes iniciar sesión para comentar!");
+      toast.error('Necesitas estar logueado para realizar esta acción.');
       return;
     }
 
@@ -55,16 +56,15 @@ const PageProduct = ({ params }: { params: { id: string } }) => {
       product_id: id,
     };
 
-    setErrorComment("");
-    setSuccessComment("");
-
-    setIsPendingComment(() => {
-      createComment(values).then((data: any) => {
+    createComment(values).then((data: any) => {
         console.log(data);
-        setErrorComment(data?.error);
-        setSuccessComment(data?.success);
+
+        if (data?.error) {
+          toast.error('Necesitas estar logueado para realizar esta acción.');
+        } else {
+          toast.success('Comentario realizado.')
+        }
       });
-    });
   };
 
   return (

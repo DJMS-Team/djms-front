@@ -5,4 +5,5 @@ export interface Product {
     price:number,
     photo_url:string[],
     quantity:string
+    productCategoryId: string;
 }

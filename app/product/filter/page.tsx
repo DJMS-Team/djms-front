@@ -12,16 +12,13 @@ const FilteredProductsPage = () => {
   const updateFilteredProducts = () => {
     const storedProducts = getFilteredProductsFromCookie();
     setFilteredProducts(storedProducts);
-    console.log('Stored products:', storedProducts);
   };
 
   const updateQueryType = () => {
-    console.log('query type actualizandose: ' + getQueryTypeFromCookie()?.queryType)
     setQueryType(getQueryTypeFromCookie()?.queryType);
   }
 
   const updateQueryValue = () => {
-    console.log('query value actualizandose: ' + getQueryTypeFromCookie()?.value)
     setQueryValue(getQueryTypeFromCookie()?.value);
   }
 
@@ -43,7 +40,7 @@ const FilteredProductsPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-36 mt-3">
+      <div className="flex flex-col w-full gap-y-8 mt-3">
       <ProductFilteredList
         title="Productos disponibles"
         items={filteredProducts || []}

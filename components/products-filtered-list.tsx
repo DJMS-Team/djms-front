@@ -27,7 +27,9 @@ export const ProductFilteredList: React.FC<ProductListProps> = ({ title, items, 
     setSortCriteria(criteria);
   };
 
-  const sortedItems = [...items].sort((a, b) => {
+  const filteredItems = items.filter(item => item.quantity > 0);
+
+  const sortedItems = [...filteredItems].sort((a, b) => {
     if (sortCriteria === 'priceAscendente') {
       return a.price - b.price;
     } else if (sortCriteria === 'priceDescendente') {
@@ -43,18 +45,18 @@ export const ProductFilteredList: React.FC<ProductListProps> = ({ title, items, 
   return (
     <div className="space-y-4">
       <h3 className="font-bold text-3xl">{title}</h3>
-    <div className='flex justify-between'>
-        <Badge>{`Resultados de ${productFilteredBadge?.queryType}: ${productFilteredBadge?.queryValue}`}</Badge>
+    <div className='flex justify-between flex-wrap gap-2'>
+        <Badge style={{ backgroundColor: '#1c1c3c' }}>{`Resultados de ${productFilteredBadge?.queryType}: ${productFilteredBadge?.queryValue}`}</Badge>
         <div className='flex gap-3'>
         <AscDesc title="Precio" handleSort={handleSort}/>
-        <AscDesc title="Stock" handleSort={handleSort}/>
+        {/*<AscDesc title="Stock" handleSort={handleSort}/>*/}
         </div>
     </div>
 
       {sortedItems.length === 0 ? (
         <NoResults />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols">
+        <div className="flex flex-wrap justify-center gap-5">
           {sortedItems.map((item) => (
             <ProductCard key={item.id} data={item} />
           ))}

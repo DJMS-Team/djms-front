@@ -22,10 +22,10 @@ export const FormSearch = () => {
       };    
 
     return (
-        <form className={`flex ${styles.formContainer}`} onSubmit={handleSearchSubmit}>
+        <form className={`flex w-full ${styles.formContainer}`} onSubmit={handleSearchSubmit}>
                 <input
                   type="text"
-                  placeholder="Search..."
+                  placeholder="Buscar..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className={`w-full flex-grow ${styles.searchInput}`}

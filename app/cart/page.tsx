@@ -14,9 +14,8 @@ const CartPage = () => {
         <>
         <Navbar />
         <div className="bg-[#F8F8F8]">
-            <Container>
-                <div className="px-4 py-24 sm:px-6 lg:px-8">
-                    <h1 className="text-3xl font-bold text-black">
+                <div className="px-4 pt-24 mt-3 py-24 sm:px-6 lg:px-36">
+                    <h1 className="text-3xl font-bold text-[#000000de]">
                         Carrito
                     </h1>
                     <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start gap-x-12">
@@ -30,10 +29,9 @@ const CartPage = () => {
                                 ))}
                             </ul>
                         </div>
-                        <Summary />
+                        <Summary/>
                     </div>
                 </div>
-            </Container>
         </div>    
         </>
     )

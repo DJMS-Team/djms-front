@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { login } from "@/actions/login";
 import { useLogin } from "@/hooks/auth/useLogin";
 import Cookies from "js-cookie";
+import Link from "next/link";
 
 const FormLogin = () => {
   const [error, setError] = useState<string | undefined>("");
@@ -17,7 +18,7 @@ const FormLogin = () => {
   const router = useRouter();
 
   const handleGoogleSubmit = () => {
-    window.location.href = `http://localhost:3001/auth/google/callback`;
+    window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/google/callback`;
   };
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (
@@ -57,7 +58,7 @@ const FormLogin = () => {
   return (
     <>
       <form onSubmit={handleSubmit} className="flex gap-3 flex-col w-full">
-        <label htmlFor="email">Correo electronico</label>
+        <label htmlFor="email">Correo electrónico</label>
         <input
           id="email"
           name="email"
@@ -77,6 +78,9 @@ const FormLogin = () => {
           disabled={isPending}
           required
         />
+        <Link href={"/auth/checkEmail"} className="underline">
+          ¿Olvidaste tu contraseña?
+        </Link>
         {error && (
           <div className="text-white font-bold bg-red-500 mt-2 rounded-lg px-2 py-1 flex gap-2">
             <IconExclamationCircle /> {error}
@@ -89,10 +93,17 @@ const FormLogin = () => {
         )}
         <button
           type="submit"
-          className="mt-2 bg-[#0FF] hover:bg-[#0FF]/60 text-black font-bold transition-all w-full p-[10px] rounded-3xl"
+          className="mt-2 bg-white/80 hover:bg-white text-[#1c1c3c] transition-all font-bold transition-all w-full p-[10px] rounded-3xl"
           disabled={isPending}
         >
           Ingresar
+        </button>
+        <button
+          className="mt-2 bg-transparent border-2 border-white/80 hover:bg-[#14142c] text-white/80 transition-all font-bold transition-all w-full p-[10px] rounded-3xl"
+          disabled={isPending}
+          onClick={() => router.push("/")}
+        >
+          Volver al inicio
         </button>
         <div className="flex justify-center items-center gap-2">
           <div className="bg-secondary w-full h-[2px]"></div>
@@ -101,7 +112,7 @@ const FormLogin = () => {
         </div>
 
         <button
-          className="bg-white/80 hover:bg-white px-2 py-3 w-16 rounded-lg flex justify-center items-start mx-auto"
+          className="bg-white/80 hover:bg-white text-[#1c1c3c] transition-all px-2 py-3 w-16 rounded-lg flex justify-center items-start mx-auto"
           onClick={handleGoogleSubmit}
         >
           <IconBrandGoogleFilled className="text-primary" />

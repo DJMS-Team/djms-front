@@ -1,53 +1,64 @@
-"use client"
-import React, { useEffect, useState } from 'react';
-import { Container, Card, CardMedia, CardContent, Typography, Button, Grid, Box } from '@mui/material';
-import ProductCard from '@/components/profile/productCard';
-import { userApi } from '@/APIS';
-import { Product } from '@/interfaces/product';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+"use client";
+import React, { useEffect, useState } from "react";
+import {
+  Container,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  Button,
+  Grid,
+  Box,
+} from "@mui/material";
+import ProductCard from "@/components/profile/productCard";
+import { userApi } from "@/APIS";
+import { Product } from "@/interfaces/product";
+import { useRouter } from "next/navigation";
+import styles from "../../../../components/navbar.module.css";
 
 interface Props {
-    params: { id: string }
+  params: { id: string };
 }
 
-const ProductPage = ({params}:Props) => {
+const ProductPage = ({ params }: Props) => {
+  const [product, setProduct] = useState<Product[]>();
+  const router = useRouter();
 
-    const [product, setProduct]= useState<Product[]>()
-    const router = useRouter();
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await userApi.findOneUser(params.id);
+      setProduct(res.products);
+    };
 
-    useEffect(()=>{
-        const fetchData = async () =>{
-            const res = await userApi.findOneUser(params.id)
-            setProduct(res.products)
-            
-        }
+    fetchData();
+  }, [params.id]);
 
-        fetchData();
-    },[params.id])
+  const onAddProduct = () => {
+    router.push(`/account/${params.id}/products/add_product`);
+  };
 
-    const onAddProduct = () =>{
-        router.push(`/account/${params.id}/products/add_product`)
-    }
+  return (
+    <Container maxWidth="md" sx={{ mt: 2 }}>
+      <Box sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
+        <h3 className="font-bold text-3xl">Mis productos</h3>
+        <Button
+          variant="contained"
+          className={`${styles.primaryBtn}`}
+          sx={{ textTransform: "none" }}
+          onClick={onAddProduct}
+        >
+          Añadir
+        </Button>
+      </Box>
 
-    return (
-        <Container maxWidth="md" sx={{ mt: 2 }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-            <Typography variant="h4">Mis productos</Typography>
-            <Button variant="contained" color="primary" onClick={onAddProduct}>Añadir</Button>
-          </Box>
-          {product?.map((product,index) => (
-            
-            <Grid container spacing={2} key={index}>
-            <Grid item xs={12}>
-              <ProductCard products = {product}  user = {params.id}/>
-            </Grid>
-          </Grid>
-          
-          ))}
-          
-        </Container>
-      );
-}
+      {product?.length !== 0 ? <div className="flex flex-row gap-5 flex-wrap justify-start items-center">
 
-export default ProductPage
+        {product?.map((product, index) => (
+          <ProductCard key={product.id} products={product} user={params.id} />
+        ))}
+      </div> : <p className="mt-5">No hay resultados</p>}
+    </Container>
+  );
+};
+
+export default ProductPage;

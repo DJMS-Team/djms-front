@@ -1,6 +1,8 @@
-'use client'
+'use client';
+
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import styles from './contact-form.module.css';
+import toast from 'react-hot-toast';
 
 interface FormData {
   name: string;
@@ -38,38 +40,31 @@ const ContactForm: React.FC = () => {
 
       const result = await response.json();
       if (result.success) {
-        alert('Your feedback has been sent successfully!');
+        toast.success('Feedback enviado.');
+        setFormData({ name: '', email: '', subject: '', message: '' }); 
       } else {
-        alert('Failed to send your feedback.');
+        toast.error('Error al enviar feedback.');
       }
     } catch (error) {
-      console.error('Failed to send email:', error);
-      alert('Failed to send your feedback.');
+      toast.error('Error al enviar feedback.');
     }
   };
 
   return (
     <form className={styles.contactForm} onSubmit={handleSubmit}>
-      <h2>Send an email</h2>
+      <label htmlFor="name" className="text-white">Nombre</label>
+      <input type="text" id="name" name="name" placeholder="Ingresar nombre" value={formData.name} onChange={handleChange} required />
 
-      <label htmlFor="name">Enter Your Name (Required)</label>
-      <input type="text" id="name" name="name" placeholder="Enter Name" value={formData.name} onChange={handleChange} required />
+      <label htmlFor="email" className="text-white">Digita tu email</label>
+      <input type="email" id="email" name="email" placeholder="Ingresar email" value={formData.email} onChange={handleChange} required />
 
-      <label htmlFor="email">Enter Your Email (Required)</label>
-      <input type="email" id="email" name="email" placeholder="Enter Email" value={formData.email} onChange={handleChange} required />
+      <label htmlFor="subject" className="text-white">Asunto</label>
+      <input type="text" id="subject" name="subject" placeholder="Ingresar asunto" value={formData.subject} onChange={handleChange} required />
 
-      <label htmlFor="subject">Subject (Required)</label>
-      <input type="text" id="subject" name="subject" placeholder="Enter Subject" value={formData.subject} onChange={handleChange} required />
+      <label htmlFor="message" className="text-white">Mensaje</label>
+      <textarea id="message" name="message" placeholder="Ingresar mensaje" value={formData.message} onChange={handleChange} required />
 
-      <label htmlFor="message">Your message (Required)</label>
-      <textarea id="message" name="message" placeholder="Enter Message" value={formData.message} onChange={handleChange} required />
-
-      <div className={styles.terms}>
-        <input type="checkbox" id="privacyTerms" name="privacyTerms" required />
-        <label htmlFor="privacyTerms">I accept the <a href="/privacy-terms" target="_blank">Privacy Terms</a></label>
-      </div>
-
-      <button type="submit">Send</button>
+      <button type="submit" className='mt-3'>Enviar</button>
     </form>
   );
 }
