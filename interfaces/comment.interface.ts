@@ -4,6 +4,6 @@ import { User } from "./user.interface";
 export interface Comment {
   id: string;
   description: string;
-  customer: User;
-  product: Product;
+  customerId: User;
+  productId: Product;
 }

@@ -108,7 +108,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
             <p className="text-gray-600">Vendido por: {product?.seller? product.seller.name : "Desconocido"}</p>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">${product?.price ? product.price : 0.0} USD</p>
+            <p className="text-3xl font-bold">${product?.price ? product.price : 0.0} COP</p>
             <p>Stock: {product?.quantity}</p>
           </CardContent>
           <CardFooter className="flex flex-row gap-5">
@@ -130,10 +130,10 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
                 </DialogContent>
                 <DialogActions>
                     <Button className={`${styles.secondaryBtn}`} onClick={handleClose} color="secondary">
-                        Cancela
+                        Cancelar
                     </Button>
                     <Button className={`${styles.primaryBtn}`} onClick={handleConfirm} color="primary">
-                        Confirma
+                        Confirmar
                     </Button>
                 </DialogActions>
             </Dialog>

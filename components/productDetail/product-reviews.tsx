@@ -25,20 +25,22 @@ const ProductReviews: React.FC<ProductReviewsProps> = ({ reviews, product }) => 
       <h2 className="text-2xl font-bold">Reseñas</h2>
         <ReviewTotalCard key={product?.id} product_id={product?.id} />
       <AlertDialog>
-        <AlertDialogTrigger className={`${styles.primaryBtn} px-4 py-2 text-white rounded-lg w-48`}>
+        <AlertDialogTrigger className={`${styles.secondaryBtn} px-4 py-2 text-white rounded-lg w-48`}>
           Ver todas las reseñas
         </AlertDialogTrigger>
-        <AlertDialogContent>
+        <AlertDialogContent className="bg-white">
           <AlertDialogHeader>
             <AlertDialogTitle>Todas las reseñas</AlertDialogTitle>
             <AlertDialogDescription className="max-h-[300px] overflow-auto text-black">
-              {reviews?.slice(0, reviews.length).map((review, index) => (
-                <ReviewCard key={review.id || index} review={review} />
-              ))}
+              {
+                reviews?.length ? reviews?.slice(0, reviews.length).map((review, index) => (
+                  <ReviewCard key={review.id || index} review={review} />
+                )) : 'No hay reseñas para este producto.'
+              }
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Close</AlertDialogCancel>
+            <AlertDialogCancel>Cerrar</AlertDialogCancel>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
