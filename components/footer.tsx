@@ -68,19 +68,7 @@ export const Footer = () => {
             <p className="text-lg font-semibold text-white">Síguenos</p>
             <div className="flex space-x-4 mt-2">
               <Link
-                href="#"
-                className="hover:text-white transition-colors duration-300"
-              >
-                <IconBrandFacebook />
-              </Link>
-              <Link
-                href="#"
-                className="hover:text-white transition-colors duration-300"
-              >
-                <IconBrandTwitter />
-              </Link>
-              <Link
-                href="#"
+                href="https://www.instagram.com/dmajorstore/"
                 className="hover:text-white transition-colors duration-300"
               >
                 <IconBrandInstagram />

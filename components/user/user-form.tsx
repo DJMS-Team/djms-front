@@ -87,9 +87,17 @@ export const UserForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Prop
                             Rol
                         </FormLabel>
                         <FormControl>
-                            <Input disabled={disabled} 
+                        <select
+                            value={field.value}
+                            onChange={field.onChange}
+                            className="w-full p-2 border rounded"
+                            >
+                            <option value="ADMIN">Administrador</option>
+                            <option value="USER">Usuario</option>
+                            </select>
+                            {/*<Input disabled={disabled} 
                              placeholder='admin'
-                             {...field} />
+                             {...field} />*/}
                         </FormControl>
                     </FormItem>
                  )}
@@ -103,9 +111,18 @@ export const UserForm = ({id, defaultValues, onSubmit, onDelete, disabled}: Prop
                             Estado
                         </FormLabel>
                         <FormControl>
-                            <Input disabled={disabled} 
+                            <select
+                            value={field.value}
+                            onChange={field.onChange}
+                            className="w-full p-2 border rounded"
+                            >
+                            <option value="ACTIVE">Activo</option>
+                            <option value="INACTIVE">Inactivo</option>
+                            <option value="DELETED">Eliminado</option>
+                            </select>
+                            {/*<Input disabled={disabled} 
                              placeholder='ACTIVE | INACTIVE | DELETED'
-                             {...field} />
+                             {...field} />*/}
                         </FormControl>
                     </FormItem>
                  )}
