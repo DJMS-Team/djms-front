@@ -8,7 +8,7 @@ export function HoverBorderGradientDemo() {
       <HoverBorderGradient
         containerClassName="rounded-full"
         as="button"
-        className="bg-[#1c1c3c] hover:bg-[#14142c] transition-all duration-300 text-white flex items-center space-x-2"
+        className="bg-[#1c1c3c] font-bold hover:bg-[#14142c] transition-all duration-300 text-white flex items-center space-x-2"
       >
         <span>Prueba DMaJorAI</span>
       </HoverBorderGradient>

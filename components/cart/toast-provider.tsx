@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 export const ToastProvider = () => {
   return (
     <Toaster
-      position="bottom-center"
+      position="bottom-right"
       reverseOrder={false}
       toastOptions={{
         style: {
@@ -13,7 +13,7 @@ export const ToastProvider = () => {
           minWidth: '250px',
           borderRadius: '5px',
           color: '#1c1c3c',
-          border: '2px solid #cecece'
+          border: '1px solid #707070'
         },
       }}
     />

@@ -20,8 +20,8 @@ const Home = async () => {
       <NavbarLanding />
       <div className="bg-[#F8F8F8] w-full">
           <Billboard
-            title="TECNOLOGÍA"
-            subtitle="Innovación y calidad a tu alcance"
+            titles={["TECNOLOGÍA","CALIDAD","RENDIMIENTO"]}
+            subtitle="Todo a tu alcance"
             btnText="Prueba DMaJorAI"
             photoUrl="https://res.cloudinary.com/dbcdnlxle/image/upload/v1719460143/mouselogitechDH_iavvyp.png"
           />      
