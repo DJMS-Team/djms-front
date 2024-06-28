@@ -13,6 +13,7 @@ import { Product } from "@/interfaces/product";
 import { productApi } from "@/APIS";
 import Link from "next/link";
 import styles from "../../components/navbar.module.css";
+import toast from "react-hot-toast";
 
 interface productProps {
   products: Product;
@@ -28,23 +29,27 @@ const truncateText = (text: string, maxLength: number) => {
 
 const ProductCard = (props: productProps) => {
   const onDelete = async () => {
-    await productApi.deleteProduct(props.products.id);
+    const updated = await productApi.updateProduct(props.products.id, props.products.product_name,
+      props.products.description, Number(props.products.price), 0, props.products.photo_url,
+      props.products.productCategoryId, props.user)
+
+      toast.success('Producto desactivado.')
   };
 
   return (
     <Card
       sx={{
-        boxShadow: "0 4px 8px rgba(0,0,0,0.1)", // Sombra suave
-        borderRadius: 2, // Bordes redondeados
-        overflow: "hidden", // Asegura que los bordes redondeados se apliquen correctamente a la imagen
-        transition: "transform 0.3s ease-in-out", // Transición para el efecto de escala
+        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
+        borderRadius: 2,
+        overflow: "hidden", 
+        transition: "transform 0.3s ease-in-out", 
         "&:hover": {
-          transform: "scale(1.03)", // Escala al hacer hover
+          transform: "scale(1.03)", 
         },
         display: "flex",
         flexDirection: "column",
       }}
-      className="w-full lg:w-[350px]"
+      className="w-full"
     >
       <div className="flex gap-5">
         <CardMedia
@@ -54,7 +59,7 @@ const ProductCard = (props: productProps) => {
             height: 100,
             objectFit: "cover",
             backgroundColor: "#fff",
-          }} // Ajustar imagen y fondo blanco
+          }} 
           image={props.products.photo_url[0]}
           alt={props.products.product_name}
           className="my-auto"
@@ -88,7 +93,7 @@ const ProductCard = (props: productProps) => {
           onClick={onDelete}
           sx={{ mr: 1, textTransform: "none" }}
         >
-          Eliminar
+          Desactivar
         </Button>
         <Button
           variant="contained"

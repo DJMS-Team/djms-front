@@ -50,11 +50,13 @@ const ProductPage = ({ params }: Props) => {
           Añadir
         </Button>
       </Box>
-      <div className="flex flex-row gap-5 flex-wrap justify-start items-center">
+
+      {product?.length !== 0 ? <div className="flex flex-row gap-5 flex-wrap justify-start items-center">
+
         {product?.map((product, index) => (
           <ProductCard key={product.id} products={product} user={params.id} />
         ))}
-      </div>
+      </div> : <p className="mt-5">No hay resultados</p>}
     </Container>
   );
 };

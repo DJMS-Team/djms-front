@@ -1,10 +1,6 @@
 .contactForm {
     max-width: 500px;
-    margin: 0 auto;
     padding: 1rem;
-    background: rgba(22, 5, 85, 0.2);
-    border: 1px solid #ddd;
-    border-radius: 4px;
   }
   
   .contactForm h2 {
@@ -53,13 +49,14 @@
     display: block;
     width: 100%;
     padding: 0.75rem;
-    background: #6F00FF;
-    color: #fff;
+    color: #1c1c3c;
+    background: rgb(204, 204, 204);
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s;
   }
   
   .contactForm button:hover {
-    background: #005bb5;
+    background: white;
   }

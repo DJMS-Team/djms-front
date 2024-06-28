@@ -17,6 +17,7 @@ import {
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import style from "../../../../../components/navbar.module.css";
+import toast from "react-hot-toast";
 
 interface Props {
   params: { id: string };
@@ -24,16 +25,15 @@ interface Props {
 
 const AddressPage = ({ params }: Props) => {
   const router = useRouter();
-
   const [deparments, setDeparments] = useState<Department[]>();
   const [cities, setCities] = useState<City[]>();
-
   const [deparment, setDeparment] = useState<string | undefined>();
   const [city, setCity] = useState<string>("");
   const [user, setUser] = useState<string>("");
   const [calle, setCalle] = useState<string>("");
   const [avenida, setAvenida] = useState<string>("");
   const [house_number, SetHouse_Number] = useState<string>("");
+
   useEffect(() => {
     const fetchData = async () => {
       const response: Department[] = await addressApi.findDepartments();
@@ -52,6 +52,7 @@ const AddressPage = ({ params }: Props) => {
 
   async function onCreateAddress() {
     await addressApi.createAddress(calle, avenida, house_number, user, city);
+    toast.success('Dirección añadida.')
     router.push(`/account/${params.id}`);
   }
 
@@ -62,7 +63,7 @@ const AddressPage = ({ params }: Props) => {
         container
         className="mt-5"
         direction="column"
-        style={{ minHeight: "90vh" }} // Para centrar verticalmente
+        style={{ minHeight: "90vh" }}
       >
         <Grid item className="w-full">
           <Box

@@ -16,6 +16,7 @@ import {
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import style from "../../../../../../components/navbar.module.css";
+import toast from "react-hot-toast";
 
 interface Props {
   params: { AdressId: string; id: string };
@@ -74,6 +75,7 @@ const UpdateAddressPage = ({ params }: Props) => {
       user,
       city
     );
+    toast.success('Dirección actualizada.')
     Router.push(`/account/${params.id}`);
   }
 

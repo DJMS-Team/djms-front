@@ -77,7 +77,7 @@ export const NavbarLanding = () => {
   if (isMobile) {
     return (
       <nav
-        className={`${styles.navbar} px-4 z-10 flex justify-between items-center h-20 ${
+        className={`${styles.navbar} px-4 z-50 flex justify-between items-center h-20 ${
           showNavbar ? styles.show : styles.hide
         } ${isTransparent ? "bg-transparent" : "bg-[#1c1c3c]"}`}
       >
@@ -127,9 +127,9 @@ export const NavbarLanding = () => {
                 />
                 <button
                   onClick={() => router.push("/guides")}
-                  className={`${styles.navLink}`}
+                  className={`${styles.navLink} text-left`}
                 >
-                  Guias
+                  DMajorAI
                 </button>
                 <NavbarRole
                   isMobile={true}
@@ -180,7 +180,7 @@ export const NavbarLanding = () => {
                   onClick={() => router.push("/guides")}
                   className={`${styles.navLink}`}
                 >
-                  Guias
+                  DMajorAI
                 </button>
                 <button
                   onClick={() => setSearchVisible(!searchVisible)}

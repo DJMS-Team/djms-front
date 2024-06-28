@@ -33,6 +33,7 @@ export const Actions = ({id}: Props) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align='end'>
                     <DropdownMenuItem
+                    className='cursor-pointer'
                         disabled={false}
                         onClick= {()=>onOpen(id)}
                     >

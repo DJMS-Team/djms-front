@@ -8,12 +8,9 @@ const GuidesLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="relative min-h-screen flex flex-col overflow-x-hidden">
       <Navbar />
-      <div className="absolute inset-0 z-0">
-        <BackgroundGradientAnimation />
-      </div>
-      <div className="flex-grow flex justify-center items-center w-full h-auto px-4 py-10 relative z-10">
+      <div className="flex-grow flex justify-center bg-[#f8f8f8] items-center w-full h-auto px-4 py-10 relative z-10">
         <div className="content-container">
-          <h1 className="title font-bold text-center text-white mb-6">Contactanos!</h1>
+          <h1 className="title font-bold text-center text-white">Contáctanos</h1>
           {children}
         </div>
       </div>
@@ -27,7 +24,7 @@ const GuidesLayout = ({ children }: { children: React.ReactNode }) => {
         .content-container {
           width: 100%;
           max-width: 500px;
-          background-color: rgba(28, 28, 59, 0.8);
+          background-color: #1c1c3c;
           border-radius: 10px;
           padding: 20px;
           margin-top: 70px;

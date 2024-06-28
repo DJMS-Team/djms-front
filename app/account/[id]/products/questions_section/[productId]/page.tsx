@@ -64,10 +64,10 @@ const QuestionsPage = ({ params }: Props) => {
   const handleMessage = async (comment_id:string) => {
     if(user){
       await resourceApi.answerQuestion(comment_id,params.productId,user, commentary)
-      toast.success('Comentario respondido')
+      toast.success('Comentario respondido.')
       router.push(`/account/${params.id}/products`)
     }else{
-      toast.error('usuario no logueado')
+      toast.error('Necesitas loguearte para realizar esta acción.')
     }
     
   };
@@ -86,65 +86,72 @@ const QuestionsPage = ({ params }: Props) => {
         </Button>
       </div>
       <div className="mt-5 flex gap-5 flex-col">
-        {comments?.map((comment) => (
-          <Card key={comment.id} sx={{
-            transition: "transform 0.3s ease-in-out", // Transición para el efecto de escala
-            "&:hover": {
-              transform: "scale(1.03)", // Escala al hacer hover
-            }
-          }}>
-            <CardContent className="flex justify-between items-center p-4">
-              <h4>{comment.description}</h4>
-              <Button
-                id="demo-customized-button"
-                aria-controls={opened ? "demo-customized-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={opened ? "true" : undefined}
-                variant="contained"
-                disableElevation
-                style={{ background: "#1c1c3c" }}
-                onClick={handleClick}
-                endIcon={<SendIcon size={18} />}
-                className={`${styles.primaryBtn} ml-auto text-white px-6 mt-2 mr-2`}
-                sx={{ textTransform: "none" }}
-              >
-                Responder
-              </Button>
-              <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Responder al comentario</DialogTitle>
-                <DialogContent className="w-[500px]">
-                  <TextField
-                    fullWidth
-                    margin="dense"
-                    value={commentary}
-                    onChange={(e) => setComment(e.target.value)}
-                    autoFocus={false}
-                  />
-                </DialogContent>
-                <DialogActions>
-                  <Button
-                    onClick={() => {
-                      handleMessage(comment.id);
-                      handleClose();
-                    }}
-                    color="primary"
-                    className={`${styles.primaryBtn} ml-auto text-white px-6 mt-2 mr-2`}
-                    sx={{ textTransform: "none" }}
-                  >
-                    Confirmar
-                  </Button>
-                  <Button
-                    className={`${styles.secondaryBtn} ml-auto text-white px-6 mt-2`}
-                    sx={{ textTransform: "none" }}
-                    onClick={handleClose}
-                  >
-                    Cancelar
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            </CardContent>
-          </Card>
-        ))}
+        {comments?.length !== 0 ? 
+          <>
+            {comments?.map((comment) => (
+            <Card key={comment.id} sx={{
+              transition: "transform 0.3s ease-in-out", // Transición para el efecto de escala
+              "&:hover": {
+                transform: "scale(1.03)", // Escala al hacer hover
+              }
+            }}>
+              <CardContent className="flex justify-between items-center p-4">
+                <h4>{comment.description}</h4>
+                <Button
+                  id="demo-customized-button"
+                  aria-controls={opened ? "demo-customized-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={opened ? "true" : undefined}
+                  variant="contained"
+                  disableElevation
+                  style={{ background: "#1c1c3c" }}
+                  onClick={handleClick}
+                  endIcon={<SendIcon size={18} />}
+                  className={`${styles.primaryBtn} ml-auto text-white px-6 mt-2 mr-2`}
+                  sx={{ textTransform: "none" }}
+                >
+                  Responder
+                </Button>
+                <Dialog open={open} onClose={handleClose}>
+                  <DialogTitle>Responder al comentario</DialogTitle>
+                  <DialogContent className="w-[500px]">
+                    <TextField
+                      fullWidth
+                      margin="dense"
+                      value={commentary}
+                      onChange={(e) => setComment(e.target.value)}
+                      autoFocus={false}
+                    />
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      onClick={() => {
+                        handleMessage(comment.id);
+                        handleClose();
+                      }}
+                      color="primary"
+                      className={`${styles.primaryBtn} ml-auto text-white px-6 mt-2 mr-2`}
+                      sx={{ textTransform: "none" }}
+                    >
+                      Confirmar
+                    </Button>
+                    <Button
+                      className={`${styles.secondaryBtn} ml-auto text-white px-6 mt-2`}
+                      sx={{ textTransform: "none" }}
+                      onClick={handleClose}
+                    >
+                      Cancelar
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </CardContent>
+            </Card>
+          ))}
+          </>
+        :
+         <p className='mt-5'>No hay resultados</p> 
+        }
+        
       </div>
     </Container>
   );

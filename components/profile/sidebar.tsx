@@ -61,7 +61,7 @@ const Sidebar = () => {
         </ListItem>
         <ListItem onClick={() => router.push("/account/" + id + "/orders")} className={`${styles.sidebarItem}`}>
           <ListItemIcon className='space-x-2'>
-            <BookText className='size-6 text-sidebar' />
+            <BookText className={`${styles.textSidebar} size-6`} />
           <p className={`${styles.textSidebar}`}>Mis ordenes</p>
           </ListItemIcon>
         </ListItem>

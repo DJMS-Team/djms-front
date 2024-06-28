@@ -126,7 +126,7 @@ export const Navbar = () => {
                   onClick={() => router.push("/guides")}
                   className={`${styles.navLink} text-left`}
                 >
-                  Guias
+                  DMajorAI
                 </button>
                 <NavbarRole
                   isMobile={true}
@@ -177,7 +177,7 @@ export const Navbar = () => {
                   onClick={() => router.push("/guides")}
                   className={`${styles.navLink}`}
                 >
-                  Guias
+                  DMajorAI
                 </button>
                 <button
                   onClick={() => setSearchVisible(!searchVisible)}

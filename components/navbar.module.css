@@ -88,7 +88,6 @@
 
 .navLink {
   padding: 10px;
-  border-radius: 5px;
   color: #cecece;
   transition: all 0.3s;
 }
@@ -96,6 +95,7 @@
 .navLinkTwo {
   padding: 10px;
   border-radius: 5px;
+  transition: all 0.3s;
   color: #1c1c3c;
   background-color: #cecece;
 }
@@ -114,7 +114,6 @@
   background-color: transparent;
   font-weight: 600;
 }
-
 
 .primaryBtn {
   transition: background-color 0.3s;

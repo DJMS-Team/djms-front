@@ -15,7 +15,7 @@ const Register = () => {
               className="w-20 h-24"
             />
             </Link>
-          </div>
+    </div>
 
       <h1 className="text-4xl text-center w-full font-bold">Iniciar sesión</h1>
       <FormLogin />
@@ -23,10 +23,6 @@ const Register = () => {
         ¿Aún no tienes cuenta?{" "}
         <span className="text-success underline">Registrarse</span>
       </a>
-      <Link href={"/auth/checkEmail"}>
-          ¿Olvidaste tu contraseña?{" "}
-          <span className="text-success hover:underline">Recuperar contraseña</span>
-      </Link>
     </>
   );
 };
