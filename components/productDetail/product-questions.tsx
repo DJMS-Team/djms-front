@@ -3,18 +3,34 @@ import { Button } from "@/components/ui/button";
 import { IconExclamationCircle, IconCheck } from "@tabler/icons-react";
 import { User } from "@/interfaces/user";
 import style from '../navbar.module.css';
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Product } from "@/actions/get-products";
+import { Comment } from "@/interfaces/comment.interface";
+import ReviewCard from "./review-card";
+import CommentCard from "./comment-card";
 
 interface ProductQuestionsProps {
   handleSubmitComment: React.FormEventHandler<HTMLFormElement>;
   errorComment: string | undefined;
   successComment: string | undefined;
   currentUser: User | null;
+  comments?: Comment[] | null;
 }
 
 const ProductQuestions: React.FC<ProductQuestionsProps> = ({
   handleSubmitComment,
   errorComment,
   successComment,
+  comments,
   currentUser,
 }) => {
   return (
@@ -34,6 +50,28 @@ const ProductQuestions: React.FC<ProductQuestionsProps> = ({
           <IconCheck /> {successComment}
         </div>
       )}
+      <div className="flex flex-col gap-5">
+      <AlertDialog>
+        <AlertDialogTrigger className={`${style.secondaryBtn} px-4 py-2 text-white rounded-lg w-56`}>
+          Ver todas las preguntas
+        </AlertDialogTrigger>
+        <AlertDialogContent className="bg-white">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Todas las preguntas</AlertDialogTitle>
+            <AlertDialogDescription className="max-h-[300px] overflow-auto text-black">
+              {
+                comments?.length ? comments?.slice(0, comments.length).map((comment, index) => (
+                  <CommentCard key={comment.id || index} comment={comment} />
+                )) : 'No hay preguntas para este producto.'
+              }
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cerrar</AlertDialogCancel>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
     </div>
   );
 };

@@ -7,7 +7,7 @@ const ProductDescription: React.FC<ProductDescriptionProps> = ({
 }) => {
   return (
     <div className="mt-6">
-      <h2 className="text-2xl font-bold">Description</h2>
+      <h2 className="text-2xl font-bold">Descripción</h2>
       <p className="text-gray-600 mt-2">{description}</p>
     </div>
   );

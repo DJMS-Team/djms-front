@@ -21,7 +21,7 @@ describe('Login Test', function() {
             let passwordInput = await driver.findElement(By.xpath('//*[@id="password"]'))
             await passwordInput.sendKeys('password123')
     
-            let loginButton = await driver.findElement(By.xpath('/html/body/div[2]/div/div/form/button[1]'))
+            let loginButton = await driver.findElement(By.xpath('/html/body/div[2]/div/div[2]/div/form/button[1]'))
             await loginButton.click()
            
     
@@ -58,13 +58,13 @@ describe('Login Test', function() {
             let passwordInput = await driver.findElement(By.xpath('//*[@id="password"]'))
             await passwordInput.sendKeys('password123')
     
-            let loginButton = await driver.findElement(By.xpath('/html/body/div[2]/div/div/form/button[1]'))
+            let loginButton = await driver.findElement(By.xpath('/html/body/div[2]/div/div[2]/div/form/button[1]'))
             await loginButton.click()
             
-            await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/div/form/div[1]')), 10000);
+            await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/div[2]/div/form/div[1]')), 10000);
  
             
-            let welcome = await driver.findElement(By.xpath('/html/body/div[2]/div/div/form/div[1]'))
+            let welcome = await driver.findElement(By.xpath('/html/body/div[2]/div/div[2]/div/form/div[1]'))
     
             assert.equal(await welcome.getText(), 'O')
             

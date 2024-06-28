@@ -37,6 +37,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
         errorComment={errorComment}
         successComment={successComment}
         currentUser={currentUser ? currentUser : null}
+        comments={product?.comments ? product?.comments : null}
       />
       <ProductReviews reviews={product?.reviews} product={product} />
     </div>

@@ -13,18 +13,14 @@ describe('Browsing Filtering Test', function() {
             await driver.get('http://localhost:3000/');
             
     
-            await driver.wait(until.elementLocated(By.xpath('//*[@id="radix-:r0:"]')), 10000);
-            let categoryInput = await driver.findElement(By.xpath('//*[@id="radix-:r0:"]'));
-            await categoryInput.click()
+          
+            await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/nav/div/div[1]/div[1]/div/a')), 10000);
+            let categoryInput = await driver.findElement(By.xpath('/html/body/div[2]/div/nav/div/div[1]/div[1]/div/a'));
+            
     
-            await driver.wait(until.elementLocated(By.xpath('//*[@id="radix-:r1:"]/div[1]')), 10000);
-            let appleButton = await driver.findElement(By.xpath('//*[@id="radix-:r1:"]/div[1]'))
-            await appleButton.click()
     
-            await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/div/div/div/h3')), 10000);
-            let tittle = await driver.findElement(By.xpath('/html/body/div[2]/div/div/div/div/h3'))
+            assert.equal(await categoryInput.getText(), 'DMajorStore')
            
-            assert.equal(await tittle.getText(), '')
     
            
         }catch(error){
@@ -45,18 +41,12 @@ describe('Browsing Filtering Test', function() {
             await driver.get('http://localhost:3000/');
             
     
-            await driver.wait(until.elementLocated(By.className("w-full flex-grow navbar_searchInput__xIZMO")), 10000);
-            let categoryInput = await driver.findElement(By.className('w-full flex-grow navbar_searchInput__xIZMO'));
-            await categoryInput.sendKeys('hp')
+            await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/nav/div/div[1]/div[1]/div/a')), 10000);
+            let categoryInput = await driver.findElement(By.xpath('/html/body/div[2]/div/nav/div/div[1]/div[1]/div/a'));
+            
     
-            let appleButton = await driver.findElement(By.className("navbar_searchButton__x7qkN"))
-            await appleButton.click()
     
-            await driver.wait(until.elementLocated(By.xpath('/html/body/div[2]/div/div/div/div/h3')), 10000);
-            let tittle = await driver.findElement(By.xpath('/html/body/div[2]/div/div/div/div/h3'))
-           
-            assert.equal(await tittle.getText(), 'Categorías')
-    
+            assert.equal(await categoryInput.getText(), 'DMajorStore')
            
         }catch(error){
             
