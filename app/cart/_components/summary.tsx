@@ -24,7 +24,6 @@ const SummaryContent = () => {
     const [open, setOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string>('');
     const [Addreses, setAdresses] = useState<Address[]>();
-    const [productsOnCart] = useState(localStorage.getItem('cart-storage'));
 
     useEffect(() => {
         setTotalPrice(calculateTotalPrice);
@@ -89,7 +88,7 @@ const SummaryContent = () => {
                 console.log(res);
             }
             
-            window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
+            window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/paypal/create/${order?.id}`
             localStorage.removeItem('cart-storage')
             setOpen(false);
         }

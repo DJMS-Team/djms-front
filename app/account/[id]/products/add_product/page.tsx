@@ -15,6 +15,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { uploadImageCloudinaryProduct } from "@/cloudinary";
 import { ProductCategory } from "@/interfaces/product-category.interface";
+import toast from "react-hot-toast";
 
 interface Props {
   params: { id: string };
@@ -83,12 +84,13 @@ const AddProductPage = ({ params }: Props) => {
       category,
       params.id
     );
+    toast.success('Producto añadido.');
     router.push(`/account/${params.id}/products`);
   };
 
   return (
     <Container maxWidth="md" sx={{ mt: 2 }}>
-      <h3 className="font-bold text-3xl">Agregar dirección</h3>
+      <h3 className="font-bold text-3xl">Agregar producto</h3>
       <Grid
         container
         className="mt-5"
@@ -115,6 +117,7 @@ const AddProductPage = ({ params }: Props) => {
                 }}
               >
                 <input
+                  required
                   accept="image/*"
                   style={{ display: "none" }}
                   id="upload-button-file"
@@ -163,6 +166,7 @@ const AddProductPage = ({ params }: Props) => {
                   Nombre
                 </Typography>
                 <TextField
+                  required = {true}
                   label="Ingrese nombre del producto"
                   value={name}
                   variant="outlined"
@@ -176,6 +180,7 @@ const AddProductPage = ({ params }: Props) => {
                   Descripción
                 </Typography>
                 <TextField
+                  required = {true}
                   label="Ingrese descripción del producto"
                   variant="outlined"
                   fullWidth
@@ -189,6 +194,7 @@ const AddProductPage = ({ params }: Props) => {
                   Categoría
                 </p>
                 <Select
+                  required = {true}
                   fullWidth
                   onChange={(e) => setCategory(e.target.value)}
                   value={category}
@@ -205,6 +211,7 @@ const AddProductPage = ({ params }: Props) => {
                   Precio
                 </Typography>
                 <TextField
+                  required = {true}
                   label="Ingrese precio del producto"
                   variant="outlined"
                   fullWidth
@@ -218,6 +225,7 @@ const AddProductPage = ({ params }: Props) => {
                   Cantidad
                 </Typography>
                 <TextField
+                  required = {true}
                   label="Ingrese cantidad del producto"
                   variant="outlined"
                   fullWidth

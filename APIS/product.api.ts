@@ -13,6 +13,17 @@ export class ProductApi {
     });
   }
 
+  totalRating = async (id:string) =>{
+    try{
+        const res = await this.instance
+            .get(`/products/${id}/reviews`)
+        console.log(res.data)
+        return parseFloat(res.data)
+    }catch(error){
+        throw error;
+    }
+    }
+
   createProduct = async (
     product_name: string,
     description: string,

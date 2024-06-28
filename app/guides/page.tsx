@@ -4,7 +4,7 @@ import FAQCard from '../../components/FAQ-card';
 import { useState } from 'react';
 import axios from 'axios';
 import { marked } from 'marked';
-import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
+import { CardTitle } from '@/components/ui/card';
 
 const faqs = [
   {
@@ -48,7 +48,7 @@ const FAQPage: React.FC = () => {
       setInput("");
 
       try {
-        const response = await axios.post('/api/chatbot', { message: input });
+        const response = await axios.post(`/api/chatbot`, { message: input });
         const botMessage = response.data.choices[0].message.content;
 
         setMessages([...newMessages, { text: botMessage, sender: "bot" }]);
@@ -61,17 +61,17 @@ const FAQPage: React.FC = () => {
 
   return (
     <div className="">
-      <h1 className='guia-title'>GUIAS</h1>
+      <CardTitle className='text-4xl font-bold text-center text-white'>Guías</CardTitle>
       <div className="container relative z-10 flex-grow flex justify-center items-center">
         <div className="faq-page">
-          <h1 className='font-bold '>Preguntas Frecuentes</h1>
+          <div className="use-dmajorai">
+            <h2 className='font-bold'>Usa DMAJORAI</h2>
+            <p>Conoce a DMaJor AI, nuestro modelo de inteligencia artifical. Si no sabes qué se adecua a tus necesidades siéntete libre de chatear con nuestra asesora personalizada. ¡Haz todas las preguntas que necesites!</p>
+          </div>
+          <h2 className='font-bold'>Preguntas Frecuentes</h2>
           {faqs.map((faq, index) => (
             <FAQCard key={index} question={faq.question} answer={faq.answer} />
           ))}
-          <div className="use-dmajorai">
-            <h1 className='font-bold'>Usa DMAJORAI</h1>
-            <p>Si no sabes que se adecua a tus necesidades siéntete libre de chatear con nuestra asesora personalizada, ¡haz todas las preguntas que necesites!</p>
-          </div>
         </div>
         <div className="chatbot">
           <h1 className='font-bold m-4'>Chatea con DMAJORAI</h1>
@@ -143,15 +143,15 @@ const FAQPage: React.FC = () => {
         }
         .chat-input button {
           padding: 10px 20px;
-          border: none;
-          background-color: #6F00FF; 
+          border: 1px solid white;
+          background-color: #1c1c3c; 
           color: white;
           border-radius: 5px;
           cursor: pointer;
           transition: background-color 0.3s;
         }
         .chat-input button:hover {
-          background-color: #6F00FF; 
+          background-color: #14142c; 
         }
         .message {
           margin-bottom: 10px;
@@ -159,13 +159,17 @@ const FAQPage: React.FC = () => {
           border-radius: 5px;
           color: #fff;
         }
-        .message.user {
-          background-color: #6F00FF; 
-          text-align: right;
-        }
         .message.bot {
-          background-color: #0E0EB0;
-          color: white;
+          background-color: transparent;
+          text-align: left;
+          border-color: #fff
+        }
+        .message.user {
+          text-align: right;
+          background-color: #CECECE;
+          opacity: .9;
+          color: #1c1c3c;
+          border-color: #1c1c3c;
         }
         .powered-by {
           color: rgba(255, 255, 255, 0.5);
@@ -174,28 +178,28 @@ const FAQPage: React.FC = () => {
           margin-bottom: 10px;
         }
         .guia-title {
-          font-size: 2.5rem; 
           text-align: center;
-          
           color: #fff;
         }
           .font-bold {
           font-size: 1.5rem;
       }
         .use-dmajorai {
-          text-align: center;
-          margin-top: 80px;
+          text-align: left;
           font-size: 1.5rem;
+          margin-bottom: 50px;
         }
+
         .use-dmajorai p {
           font-size: 1rem;
-        
         }
-        h1 {
+
+        h2 {
           text-align: center;
           margin-bottom: 10px;
           color: #fff;
         }
+          
          @media (max-width: 768px) {
           .container {
             flex-direction: column;

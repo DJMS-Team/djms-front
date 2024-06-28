@@ -49,7 +49,7 @@ const ProductCard = (props: productProps) => {
         display: "flex",
         flexDirection: "column",
       }}
-      className="w-full lg:w-[350px]"
+      className="w-full"
     >
       <div className="flex gap-5">
         <CardMedia

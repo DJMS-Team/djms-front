@@ -95,7 +95,6 @@ const UpdateProductPage = ({ params }: Props) => {
       router.push(`/account/${params.id}/products`);
     } catch (error) {
       toast.error('Error actualizando el producto.');
-      console.error('Error updating product:', error);
     }
   };
 

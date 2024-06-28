@@ -81,8 +81,7 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
       const order = await orderApi.createOrder('PENDING', new Date(), user?.id, 'bee0c58c-1503-4f3e-a8a8-a6d8a3cdcaa4', selectedValue )
       console.log(order)
       const res = await orderApi.createOrderDetail(1, order?.id,product?.id )
-      window.location.href = `http://localhost:3001/paypal/create/${order?.id}`
-      //await productApi.decrementProduct(product.id, 1)
+      window.location.href = `${process.env.NEXT_PUBLIC_API_BASE_URL}/paypal/create/${order?.id}`
       localStorage.removeItem('cart-storage')
       setOpen(false);
     }

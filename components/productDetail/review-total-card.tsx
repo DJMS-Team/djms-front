@@ -35,7 +35,7 @@ const ReviewTotalCard: React.FC<ReviewCardProps> = ({ product_id }) => {
             <div className="text-8xl font-bold flex-col flex text-center">{displayValue}</div>
             <div>
             { <Rating 
-                style={{color : "#2A2A5A"}} 
+                style={{color : "#1C1C3C"}} 
                 value={displayValue}
                 readOnly
                 precision={0.1}

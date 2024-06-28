@@ -13,7 +13,7 @@ const CheckForm = () =>{
 
     const handleForgot = async() =>{
         await authApi.forgot(email)
-        toast.success('revise su correo')
+        toast.success('Revisa tu correo.')
     }
 
     return (
@@ -35,7 +35,7 @@ const CheckForm = () =>{
                     
                     <button
                         type="button"
-                        className="mt-2 bg-[#0FF] hover:bg-[#0FF]/60 text-black font-bold transition-all w-full p-[10px] rounded-3xl"
+                        className="mt-2 bg-white/80 hover:bg-white text-[#1c1c3c] transition-all font-bold transition-all w-full p-[10px] rounded-3xl"
                         disabled={isPending}
                         onClick={handleForgot}
                     >

@@ -24,7 +24,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
         <>
             {section == 'vender' && currentUser? 
             <a href={`/account/${idUser}/products/add_product`} className={`${styles.navLink} text-white`}>
-                Vender
+                Quiero vender
             </a>
         :
             <></>
@@ -32,7 +32,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
 
         {section == 'vender' && !currentUser? 
             <a onClick={handleNoLogin} className={`${styles.navLink} text-white cursor-pointer`}>
-                Vender
+                Quiero vender
             </a>
         :
             <></>
@@ -62,7 +62,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
     <>
         {section == 'vender' && currentUser? 
             <a href={`/account/${idUser}/products/add_product`} className={`${styles.navLink} text-white`}>
-                Vender
+                Quiero vender
             </a>
         :
             <></>
@@ -70,7 +70,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
 
         {section == 'vender' && !currentUser? 
             <a onClick={handleNoLogin} className={`${styles.navLink} text-white cursor-pointer`}>
-                Vender
+                Quiero vender
             </a>
         :
             <></>

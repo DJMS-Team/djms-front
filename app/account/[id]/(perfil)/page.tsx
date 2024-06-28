@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Trash, Edit, Plus, MoreVertical } from "lucide-react";
 import Link from "next/link";
+import toast from "react-hot-toast";
 interface Props {
   params: { id: string };
 }
@@ -74,6 +75,7 @@ const ProfilePage = ({ params }: Props) => {
       photo_url,
       user_role
     );
+    toast.success('Usuario actualizado.')
     window.location.reload();
   };
 
@@ -84,6 +86,7 @@ const ProfilePage = ({ params }: Props) => {
       <h5 className="mt-3 font-semibold text-xl">Información personal</h5>
 
       <TextField
+        disabled
         fullWidth
         value={updateName}
         className="border focus:border-[#0ff]"
@@ -100,6 +103,7 @@ const ProfilePage = ({ params }: Props) => {
       />
 
       <TextField
+      disabled
         fullWidth
         value={updateEmail}
         margin="normal"
@@ -113,11 +117,6 @@ const ProfilePage = ({ params }: Props) => {
           },
         }}
       />
-
-      <Button className={`${style.primaryBtn} mt-3`} onClick={onUpdateUser}>
-        Actualizar
-      </Button>
-
       <div className="mt-10 flex items-center justify-between mb-3 w-full">
         <h5 className="font-semibold text-xl">Direcciones</h5>
         <Button

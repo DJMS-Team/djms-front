@@ -7,8 +7,6 @@ import Link from "next/link"
 
 
 const CheckPage = () =>{
-
-
     return(
         <>
             <Container className="flex flex-col justify-center items-center w-full">
@@ -18,7 +16,7 @@ const CheckPage = () =>{
                 alt="DMajorStore Logo"
                 width={96}
                 height={96}
-                className="w-20 h-24"
+                className="w-20 h-24 mx-auto"
                 />
                 </Link>
             </Container>

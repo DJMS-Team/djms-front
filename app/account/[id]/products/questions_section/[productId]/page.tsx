@@ -64,10 +64,10 @@ const QuestionsPage = ({ params }: Props) => {
   const handleMessage = async (comment_id:string) => {
     if(user){
       await resourceApi.answerQuestion(comment_id,params.productId,user, commentary)
-      toast.success('Comentario respondido')
+      toast.success('Comentario respondido.')
       router.push(`/account/${params.id}/products`)
     }else{
-      toast.error('usuario no logueado')
+      toast.error('Necesitas loguearte para realizar esta acción.')
     }
     
   };

@@ -40,7 +40,7 @@ const FilteredProductsPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-y-8 px-4 sm:px-6 lg:px-36 mt-3">
+      <div className="flex flex-col w-full gap-y-8 mt-3">
       <ProductFilteredList
         title="Productos disponibles"
         items={filteredProducts || []}

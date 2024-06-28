@@ -56,7 +56,7 @@ export const ProductFilteredList: React.FC<ProductListProps> = ({ title, items, 
       {sortedItems.length === 0 ? (
         <NoResults />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols">
+        <div className="flex flex-wrap justify-center gap-5">
           {sortedItems.map((item) => (
             <ProductCard key={item.id} data={item} />
           ))}

@@ -1,6 +1,6 @@
 "use client";
 import { orderApi, resourceApi } from "@/APIS";
-import { CardFooter } from "@/components/ui/card";
+import {Button } from "@/components/ui/button";
 import { Order } from "@/interfaces/order";
 import {
   Card,
@@ -9,7 +9,6 @@ import {
   CardMedia,
   Container,
   Typography,
-  Button,
   Rating,
   Dialog,
   DialogTitle,
@@ -22,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { OrderHistory } from "@/components/order-status";
 import Image from "next/image";
 import styles from "../../../../../../components/navbar.module.css";
+import toast from "react-hot-toast";
 
 interface Props {
   params: { id: string; OrderId: string };
@@ -55,8 +55,8 @@ const OrderDetailPage = ({ params }: Props) => {
         params.id,
         product_id
       );
-      console.log(res);
-      router.push(`/account/${params.id}`);
+      toast.success('Reseña enviada.')
+      router.push(`/account/${params.id}/record`);
     }
   };
 
@@ -92,9 +92,7 @@ const OrderDetailPage = ({ params }: Props) => {
       <div className="flex justify-between items-center">
         <h3 className="font-bold text-3xl">Detalles de orden</h3>
         <Button
-          variant="contained"
           className={`${styles.secondaryBtn}`}
-          sx={{ textTransform: "none" }}
           onClick={() => router.back()}
         >
           Volver
@@ -128,18 +126,18 @@ const OrderDetailPage = ({ params }: Props) => {
                 </Typography>
                 <Rating
                   value={ratings[order_detail.product.id] || 0}
-                  style={{ color: "#2A2A5A" }}
+                  style={{ color: "#1C1C3C" }}
                   precision={0.25}
                   onChange={(event, newValue) =>
                     handleRatingChange(order_detail.product.id, newValue)
                   }
                 />
-                <button
-                  className={`${styles.secondaryBtn} w-full py-1 px-4`}
+                <Button
+                  className={`${styles.primaryBtn} w-full py-1 px-4`}
                   onClick={() => handleOpen(order_detail.product.id)}
                 >
                   Hacer reseña
-                </button>
+                </Button>
               </div>
             </CardContent>
             <Dialog
@@ -160,7 +158,6 @@ const OrderDetailPage = ({ params }: Props) => {
               <DialogActions>
                 <Button
                   className={`${styles.primaryBtn} ml-auto text-white px-6 mt-2 mr-2`}
-                  sx={{ textTransform: "none" }}
                   onClick={() => {
                     onGiveReview(order_detail.product.id);
                     handleClose();
@@ -170,7 +167,6 @@ const OrderDetailPage = ({ params }: Props) => {
                 </Button>
                 <Button
                   className={`${styles.secondaryBtn} ml-auto text-white px-6 mt-2`}
-                  sx={{ textTransform: "none" }}
                   onClick={handleClose}
                 >
                   Cancelar
