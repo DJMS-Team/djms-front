@@ -25,6 +25,17 @@ $ npm run build
 $ npm run start
 ```
 
+## Variables de entorno (.env)
+
+Se debe crear el archivo .env en la raiz del proyecto y colocar los siguientes valores.
+
+```env
+NEXT_PUBLIC_API_BASE_URL=https://djms-api.icybeach-62331649.eastus.azurecontainerapps.io
+NEXT_PUBLIC_BREVO_API=Contacta-al-equipo
+NEXT_PUBLIC_API_URL=https://api.totalgpt.ai
+NEXT_PUBLIC_API_KEY=Contacta-al-equipo
+```
+
 ## Tests
 
 Para el frontend realizamos algunas pruebas utilizando Selenium.
