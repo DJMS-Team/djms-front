@@ -5,6 +5,7 @@ import { UserButton } from "./profile/user-button-page";
 import Link from "next/link";
 import { LogoutButton } from "./dashboard/logout-button";
 import toast from "react-hot-toast";
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 
 interface NavbarRoleProps {
     isMobile: boolean;
@@ -19,11 +20,13 @@ const handleNoLogin = () => {
 
 export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, currentUser, idUser}: NavbarRoleProps) => {
 
+    const currentUserVar = useCurrentUser();
+
   if (isMobile) {
     return (
         <>
             {section == 'vender' && currentUser? 
-            <a href={`/account/${idUser}/products/add_product`} className={`${styles.navLink} text-white`}>
+            <a href={`/account/${currentUserVar?.user?.id}/products/add_product`} className={`${styles.navLink} text-white`}>
                 Quiero vender
             </a>
         :
@@ -61,7 +64,7 @@ export const NavbarRole: React.FC<NavbarRoleProps> = ({isMobile, section, curren
   return (
     <>
         {section == 'vender' && currentUser? 
-            <a href={`/account/${idUser}/products/add_product`} className={`${styles.navLink} text-white`}>
+            <a href={`/account/${currentUserVar?.user?.id}/products/add_product`} className={`${styles.navLink} text-white`}>
                 Quiero vender
             </a>
         :

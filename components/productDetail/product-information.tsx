@@ -102,17 +102,17 @@ const ProductInformation : React.FC<ProductInformationProps> = ({ product, user,
     <div className="md:w-1/2 md:pl-6 mt-6 md:mt-0">
       <div className="sticky top-16">
         <Card className="border-none shadow-none">
-          <CardHeader>
-            <CardTitle className="text-3xl font-bold">{product?.product_name}</CardTitle>
+          <CardHeader className='px-0'>
+            <CardTitle className="text-2xl sm:text-3xl font-bold">{product?.product_name}</CardTitle>
             <p className="text-gray-600">Vendido por: {product?.seller? product.seller.name : "Desconocido"}</p>
           </CardHeader>
           <CardContent>
             <p className="text-3xl font-bold">${product?.price ? product.price : 0.0} COP</p>
             <p>Stock: {product?.quantity}</p>
           </CardContent>
-          <CardFooter className="flex flex-row gap-5">
-            <Button className={`${styles.primaryBtn} w-1/2`} onClick={handleBuyNow}>Comprar</Button>
-            <Button className={`${styles.secondaryBtn} w-1/2`} onClick={onAddToCart}>Añadir al carrito</Button>
+          <CardFooter className="flex sm:flex-row gap-5">
+            <Button className={`${styles.primaryBtn} w-full sm:w-1/2`} onClick={handleBuyNow}>Comprar</Button>
+            <Button className={`${styles.secondaryBtn} w-full sm:w-1/2`} onClick={onAddToCart}>Añadir al carrito</Button>
           </CardFooter>
           <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Selecciona la dirección a enviar</DialogTitle>

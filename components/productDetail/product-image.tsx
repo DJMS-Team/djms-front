@@ -40,7 +40,7 @@ const ProductImage: React.FC<ProductImageProps> = ({
 
   return (
     <Box textAlign="center">
-      <div className="mx-auto w-[400px] h-auto">
+      <div className="mx-auto w-full sm:w-[400px] h-auto">
         <Gallery images={photoUrl}/>
       </div>
     </Box>

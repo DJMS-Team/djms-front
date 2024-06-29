@@ -45,7 +45,7 @@ const ProductQuestions: React.FC<ProductQuestionsProps> = ({
   return (
     <div className="my-6 flex flex-col gap-5">
       <h2 className="text-2xl font-bold">Preguntas</h2>
-      <form onSubmit={handleSubmitComment} className="flex gap-5">
+      <form onSubmit={handleSubmitComment} className="flex gap-5 flex-wrap sm:flex-nowrap">
         <Input name="description" placeholder="Haz una pregunta" />
         <Button type="submit" className={`${style.primaryBtn}`}>Enviar</Button>
       </form>

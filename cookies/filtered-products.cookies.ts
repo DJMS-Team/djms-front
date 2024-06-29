@@ -10,9 +10,7 @@ export const getProductsFiltered = async (query: FilterProductsDto) => {
       params: query
     });
 
-    Cookies.set('filteredProducts', JSON.stringify(response.data), {
-      path: '/',
-    });
+    localStorage.setItem('filteredProducts', JSON.stringify(response.data));
 
     if (query.category) {
       removeQueryTypes();
