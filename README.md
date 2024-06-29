@@ -6,6 +6,10 @@
 
 Bienvenido a DMajorStore, tu plataforma de e-commerce para productos tecnológicos y configuración de setups ideales. Esta guía te ayudará a navegar por las diferentes funcionalidades y roles dentro de la aplicación.
 
+## Despliegue URL
+
+https://www.dmajorstore.online/
+
 ## Guía de instalación
 
 - [Guía DMajor Store](https://www.youtube.com/watch?v=Q7FqbyjuRn4)
@@ -38,7 +42,12 @@ NEXT_PUBLIC_API_KEY=Contacta-al-equipo
 
 ## Tests
 
-Para el frontend realizamos algunas pruebas utilizando Selenium.
+Para el frontend realizamos algunas pruebas utilizando Selenium. Para ejecutar estas pruebas, se debe correr el siguiente comando
+
+```bash
+npx mocha test\
+```
+
 
 ## Tecnologías
 
