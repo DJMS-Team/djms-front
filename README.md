@@ -8,20 +8,41 @@ Bienvenido a DMajorStore, tu plataforma de e-commerce para productos tecnológic
 
 ## Guía de instalación
 
-### [Guía DMajor Store](https://www.youtube.com/watch?v=Q7FqbyjuRn4)
+- [Guía DMajor Store](https://www.youtube.com/watch?v=Q7FqbyjuRn4)
+
+```bash
+$ npm install
+```
+
+## Ejecución la aplicación
+
+```bash
+# development
+$ npm run dev
+
+# production mode
+$ npm run build
+$ npm run start
+```
+
+## Tests
+
+Para el frontend realizamos algunas pruebas utilizando Selenium.
 
 ## Tecnologías
 
-### **Desarrollo**: Next.js, Tailwind CSS
-### **Despliegue (CD)**: Vercel. Para hacer un despliegue continuo enlazamos el repositorio a una cuenta de Vercel, haciendo el despliegue real en la rama main y una vista previa en el resto de ramas.
-### **Integración (CI)**: GitHub Actions. Para hacer una integración continua creamos un flujo de trabajo en GitHub que cada vez que hiciéramos push ejecutara ciertos comandos, tales como `npm run build`.
+- **Desarrollo**: Next.js, Tailwind CSS
+- **Despliegue (CD)**: Vercel. Para hacer un despliegue continuo enlazamos el repositorio a una cuenta de Vercel, haciendo el despliegue real en la rama main y una vista previa en el resto de ramas.
+- **Integración (CI)**: GitHub Actions. Para hacer una integración continua creamos un flujo de trabajo en GitHub que cada vez que hiciéramos push ejecutara ciertos comandos, tales como `npm run build`.
 
 ## Figma
 
-### [Prototipos](https://www.figma.com/design/ZZPMg3fxJ1W6OzkyTaBh4Y/DMaJor-Store?node-id=63-2&t=3eUJnyWkwDMcYTe6-0)
-### [Estudio de mercado](https://www.figma.com/design/ZZPMg3fxJ1W6OzkyTaBh4Y/DMaJor-Store?node-id=368-2&t=3eUJnyWkwDMcYTe6-0)
+- [Prototipos](https://www.figma.com/design/ZZPMg3fxJ1W6OzkyTaBh4Y/DMaJor-Store?node-id=63-2&t=3eUJnyWkwDMcYTe6-0)
+- [Estudio de mercado](https://www.figma.com/design/ZZPMg3fxJ1W6OzkyTaBh4Y/DMaJor-Store?node-id=368-2&t=3eUJnyWkwDMcYTe6-0)
 
 ## Roles y Funcionalidades
+
+Es importante resaltar que un usuario puede comprar y vender productos.
 
 ### Cliente
 
@@ -50,14 +71,12 @@ Bienvenido a DMajorStore, tu plataforma de e-commerce para productos tecnológic
    - Verifica el historial de compras y revisa el detalle de tus órdenes anteriores.
    - Escribe reseñas sobre productos que has comprado.
 
-### Vendedor
-
-1. **Gestión de Productos**
+6. **Gestión de Productos**
    - Crea nuevos productos para la venta.
    - Edita la información de productos existentes.
    - Desactiva productos que ya no deseas vender.
 
-2. **Historial de Ordenes**
+7. **Historial de Ordenes**
    - Accede a la sección de historial de ordenes desde tu perfil para ver tus ventas.
 
 ### Admin
@@ -68,4 +87,4 @@ Bienvenido a DMajorStore, tu plataforma de e-commerce para productos tecnológic
 
 ## DMajor AI
 
-Utiliza nuestra herramienta de inteligencia artificial, DMajor AI, para obtener recomendaciones personalizadas y ayuda en la configuración de tu setup ideal.
+Descubre y aprovecha al máximo nuestra avanzada herramienta de inteligencia artificial, DMajor AI. Diseñada para satisfacer las necesidades específicas de los usuarios, DMajor AI te ofrece recomendaciones personalizadas y asistencia especializada para configurar tu setup ideal. Ya sea que estés buscando optimizar tu entorno de trabajo o mejorar tu experiencia tecnológica, nuestra IA te guiará paso a paso, asegurando que cada configuración se adapte perfectamente a tus preferencias y requerimientos. Explora nuevas posibilidades y toma decisiones informadas con DMajor AI, tu compañero inteligente en la creación de un espacio tecnológico que se ajuste a ti.
