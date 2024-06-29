@@ -19,7 +19,7 @@ export const Billboard = ({
   return (
     <div className="overflow-hidden">
       <div
-        className="min-h-screen relative text-white justify-end flex text-center gap-5 py-10 flex-col items-center overflow-hidden bg-cover bg-fixed bg-center"
+        className="min-h-screen relative text-white justify-end flex text-center gap-5 py-10 flex-col items-center overflow-hidden bg-cover bg-fixed bg-top"
         style={{ backgroundImage: `url(${photoUrl})` }}
       >
         <FlipWordsDemo />
